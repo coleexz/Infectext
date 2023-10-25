@@ -1,20 +1,26 @@
 extends CharacterBody2D
 
-@export var move_speed : float = 150
+@export var speed: int = 100
+@onready var animations = $AnimationPlayer
 
+func handleInput():
+	var moveDirection = Input.get_vector("left","right","up","down")
+	velocity = moveDirection*speed
+	
+func updateAnimation():
+	if velocity.length() == 0:
+		if animations.is_playing():
+			animations.stop()
+	else :
+		var direction = "down"
+		if velocity.x<0 : direction = "left"
+		elif velocity.x>0 : direction = "right"
+		elif velocity.y<0 : direction = "up"
+		animations.play("walk_"+direction)
+	
 func _physics_process(delta):
-	
-	var input_direction = Vector2(
-			Input.get_action_strength("left") - Input.get_action_strength("right"),
-			Input.get_action_strength("down") - Input.get_action_strength("up")
-		)
-	
-	#coordenadas
-	print(input_direction)
-	
-	velocity = input_direction * move_speed
-	
+	handleInput()
 	move_and_slide()
-	
+	updateAnimation()
 	
 	
