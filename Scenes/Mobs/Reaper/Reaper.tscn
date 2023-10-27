@@ -330,5 +330,5 @@ animation = &"run"
 frame_progress = 0.581779
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(8, 70)
+position = Vector2(1, 67)
 shape = SubResource("CircleShape2D_mvcr0")
