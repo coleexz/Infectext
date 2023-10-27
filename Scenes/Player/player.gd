@@ -1,27 +1,28 @@
 extends CharacterBody2D
 
-@export var speed: int = 35
-@onready var animations = $AnimationPlayer
+@onready var anim = $AnimatedSprite2D
+var speed = 150
 
-func handleInput():
-	var moveDirection = Input.get_vector("right","left","up","down")
-	velocity = speed*moveDirection
-	
-func updateAnimation():
-	if velocity.length() == 0:
-		if animations.is_playing():
-			animations.stop()
-	else:
-		var direction = "down"
-		if velocity.x < 0 : direction = "left"
-		elif velocity.x > 0 : direction = "right"
-		elif velocity.y < 0 : direction = "up"
-		
-		animations.play("walk_"+direction)
-		
+func _ready():
+	anim.play("idle_down")
+
 func _physics_process(delta):
-	handleInput()
+	var dir = Input.get_vector("right","left","up","down")
+	velocity = dir * speed
+	
+	var mouse_pos = get_global_mouse_position()
+	var dir_to_mouse = mouse_pos - global_position
+
+	if dir == Vector2.ZERO:
+		anim.stop()
+	else:
+		if dir.x > 0:
+			anim.play("walk_right")
+		elif dir.x < 0:
+			anim.play("walk_left")
+		elif dir.y > 0:
+			anim.play("walk_down")
+		elif dir.y < 0:
+			anim.play("walk_up")
+
 	move_and_slide()
-	updateAnimation()
-	
-	

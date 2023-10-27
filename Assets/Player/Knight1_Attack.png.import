@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpqipq3llgmb8"
-path="res://.godot/imported/Full Spritesheet.png-53193038c22269d195fd3a87b17aad52.ctex"
+uid="uid://4qd1vjv1fnvf"
+path="res://.godot/imported/Knight1_Attack.png-4aba011d2fc3b4a0e5d38359eeb23025.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/Full Spritesheet.png"
-dest_files=["res://.godot/imported/Full Spritesheet.png-53193038c22269d195fd3a87b17aad52.ctex"]
+source_file="res://Assets/Player/Knight1_Attack.png"
+dest_files=["res://.godot/imported/Knight1_Attack.png-4aba011d2fc3b4a0e5d38359eeb23025.ctex"]
 
 [params]
 
