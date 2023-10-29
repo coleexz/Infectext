@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://bchb40vn662b6"]
+
+[ext_resource type="Script" path="res://Scenes/Rat/Rat.gd" id="1_0rk5g"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7c5cg"]
+load_path = "res://.godot/imported/Idle.png-5affab870b5ce9e27b8e57a5c5b142dd.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seth6"]
+atlas = SubResource("CompressedTexture2D_7c5cg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ohig"]
+atlas = SubResource("CompressedTexture2D_7c5cg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ps6ie"]
+atlas = SubResource("CompressedTexture2D_7c5cg")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bw2q"]
+atlas = SubResource("CompressedTexture2D_7c5cg")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_88yav"]
+load_path = "res://.godot/imported/Walk.png-4b94fb28f954d378c42528e926c3b52e.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bn7i"]
+atlas = SubResource("CompressedTexture2D_88yav")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8284"]
+atlas = SubResource("CompressedTexture2D_88yav")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i47ll"]
+atlas = SubResource("CompressedTexture2D_88yav")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq80f"]
+atlas = SubResource("CompressedTexture2D_88yav")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j85no"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seth6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ohig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ps6ie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bw2q")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bn7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8284")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i47ll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uq80f")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_0rk5g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-10, 0)
+scale = Vector2(0.375, 0.375)
+sprite_frames = SubResource("SpriteFrames_j85no")
+animation = &"walk"
+frame = 2
+frame_progress = 0.73715

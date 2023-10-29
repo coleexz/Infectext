@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://h34at2bt5i7"]
+
+[ext_resource type="Script" path="res://Scenes/Cat/Cat.gd" id="1_sas8k"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ggtn6"]
+load_path = "res://.godot/imported/Idle.png-73638f34a4220ced4997f7b2398ecf88.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6yxx"]
+atlas = SubResource("CompressedTexture2D_ggtn6")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ty8ux"]
+atlas = SubResource("CompressedTexture2D_ggtn6")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u5le"]
+atlas = SubResource("CompressedTexture2D_ggtn6")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgjdt"]
+atlas = SubResource("CompressedTexture2D_ggtn6")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p3vkk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6yxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ty8ux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u5le")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgjdt")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hx2k6"]
+size = Vector2(45, 52)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_sas8k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-3.5, 4)
+scale = Vector2(0.854167, 0.833333)
+sprite_frames = SubResource("SpriteFrames_p3vkk")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 14)
+shape = SubResource("RectangleShape2D_hx2k6")

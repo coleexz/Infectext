@@ -1,0 +1,349 @@
+[gd_scene load_steps=49 format=3 uid="uid://bd34mp05ws1ds"]
+
+[sub_resource type="GDScript" id="GDScript_26v5n"]
+script/source = "extends CharacterBody2D
+
+@onready var anim = $AnimatedSprite2D
+
+func _ready():
+	anim.play(\"attack\")
+"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fva3y"]
+load_path = "res://.godot/imported/reaper-attack-outline.png-9c93dff3e97b8887859987d4fc9c6e21.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5arsf"]
+atlas = SubResource("CompressedTexture2D_fva3y")
+region = Rect2(0, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ex4r8"]
+atlas = SubResource("CompressedTexture2D_fva3y")
+region = Rect2(128, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rf12q"]
+atlas = SubResource("CompressedTexture2D_fva3y")
+region = Rect2(256, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rikv8"]
+atlas = SubResource("CompressedTexture2D_fva3y")
+region = Rect2(384, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bc3d"]
+atlas = SubResource("CompressedTexture2D_fva3y")
+region = Rect2(512, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_faaai"]
+atlas = SubResource("CompressedTexture2D_fva3y")
+region = Rect2(640, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67nkf"]
+atlas = SubResource("CompressedTexture2D_fva3y")
+region = Rect2(768, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3oygt"]
+atlas = SubResource("CompressedTexture2D_fva3y")
+region = Rect2(896, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s4u3"]
+atlas = SubResource("CompressedTexture2D_fva3y")
+region = Rect2(1024, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lp48e"]
+atlas = SubResource("CompressedTexture2D_fva3y")
+region = Rect2(1152, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2w206"]
+atlas = SubResource("CompressedTexture2D_fva3y")
+region = Rect2(1280, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gse0"]
+atlas = SubResource("CompressedTexture2D_fva3y")
+region = Rect2(1408, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0wg6"]
+atlas = SubResource("CompressedTexture2D_fva3y")
+region = Rect2(1536, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_voao4"]
+atlas = SubResource("CompressedTexture2D_fva3y")
+region = Rect2(1664, 0, 128, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tgefx"]
+load_path = "res://.godot/imported/reaper-death-outline.png-a3253c9748ebed6211057f3533324e30.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o418"]
+atlas = SubResource("CompressedTexture2D_tgefx")
+region = Rect2(0, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sok7k"]
+atlas = SubResource("CompressedTexture2D_tgefx")
+region = Rect2(128, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bem35"]
+atlas = SubResource("CompressedTexture2D_tgefx")
+region = Rect2(256, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ntei"]
+atlas = SubResource("CompressedTexture2D_tgefx")
+region = Rect2(384, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfugk"]
+atlas = SubResource("CompressedTexture2D_tgefx")
+region = Rect2(512, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoetm"]
+atlas = SubResource("CompressedTexture2D_tgefx")
+region = Rect2(640, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10o8l"]
+atlas = SubResource("CompressedTexture2D_tgefx")
+region = Rect2(768, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq3yw"]
+atlas = SubResource("CompressedTexture2D_tgefx")
+region = Rect2(896, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odwar"]
+atlas = SubResource("CompressedTexture2D_tgefx")
+region = Rect2(1024, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7xsx"]
+atlas = SubResource("CompressedTexture2D_tgefx")
+region = Rect2(1152, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ij7kn"]
+atlas = SubResource("CompressedTexture2D_tgefx")
+region = Rect2(1280, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqo84"]
+atlas = SubResource("CompressedTexture2D_tgefx")
+region = Rect2(1408, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjggq"]
+atlas = SubResource("CompressedTexture2D_tgefx")
+region = Rect2(1536, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rhur"]
+atlas = SubResource("CompressedTexture2D_tgefx")
+region = Rect2(1664, 0, 128, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l7dr0"]
+load_path = "res://.godot/imported/reaper-idle-outline.png-508f8f9157ed04c025d1dd5df9014f25.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lov4x"]
+atlas = SubResource("CompressedTexture2D_l7dr0")
+region = Rect2(0, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsow4"]
+atlas = SubResource("CompressedTexture2D_l7dr0")
+region = Rect2(128, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbbft"]
+atlas = SubResource("CompressedTexture2D_l7dr0")
+region = Rect2(256, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vs5y"]
+atlas = SubResource("CompressedTexture2D_l7dr0")
+region = Rect2(384, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1cjy"]
+atlas = SubResource("CompressedTexture2D_l7dr0")
+region = Rect2(512, 0, 128, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_raa16"]
+load_path = "res://.godot/imported/reaper-run-outline.png-5996e6437a0b2da6108b5af30f1555d0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iv1ll"]
+atlas = SubResource("CompressedTexture2D_raa16")
+region = Rect2(0, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lisvo"]
+atlas = SubResource("CompressedTexture2D_raa16")
+region = Rect2(128, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf7ax"]
+atlas = SubResource("CompressedTexture2D_raa16")
+region = Rect2(256, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc3l6"]
+atlas = SubResource("CompressedTexture2D_raa16")
+region = Rect2(384, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ymi6"]
+atlas = SubResource("CompressedTexture2D_raa16")
+region = Rect2(512, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i6qy"]
+atlas = SubResource("CompressedTexture2D_raa16")
+region = Rect2(640, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fu8cm"]
+atlas = SubResource("CompressedTexture2D_raa16")
+region = Rect2(768, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hkv8"]
+atlas = SubResource("CompressedTexture2D_raa16")
+region = Rect2(896, 0, 128, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rxebk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5arsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ex4r8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rf12q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rikv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bc3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_faaai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67nkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3oygt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s4u3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lp48e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2w206")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gse0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0wg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_voao4")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3o418")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sok7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bem35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ntei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfugk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eoetm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10o8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq3yw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odwar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7xsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ij7kn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqo84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjggq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rhur")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lov4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsow4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbbft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vs5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1cjy")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iv1ll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lisvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf7ax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc3l6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ymi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i6qy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fu8cm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hkv8")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mvcr0"]
+radius = 90.05
+
+[node name="Reaper" type="CharacterBody2D"]
+script = SubResource("GDScript_26v5n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(89, 40.5)
+scale = Vector2(2.39063, 2.26563)
+sprite_frames = SubResource("SpriteFrames_rxebk")
+animation = &"attack"
+frame_progress = 0.815435
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 67)
+shape = SubResource("CircleShape2D_mvcr0")

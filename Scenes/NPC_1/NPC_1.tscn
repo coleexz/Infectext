@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://cpohfj5xgk8a3"]
+
+[ext_resource type="Script" path="res://Scenes/NPC_1/NPC_1.gd" id="1_iu5ao"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8edrf"]
+load_path = "res://.godot/imported/merchant.png-bc06f501ce32dd4ac36ec39c35ee29a8.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tufh"]
+atlas = SubResource("CompressedTexture2D_8edrf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ihmn"]
+atlas = SubResource("CompressedTexture2D_8edrf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bqxv"]
+atlas = SubResource("CompressedTexture2D_8edrf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jau2f"]
+atlas = SubResource("CompressedTexture2D_8edrf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ci4a"]
+atlas = SubResource("CompressedTexture2D_8edrf")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p4nb2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tufh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ihmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bqxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jau2f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ci4a")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7pupo"]
+size = Vector2(98, 100)
+
+[node name="NPC_1" type="CharacterBody2D"]
+script = ExtResource("1_iu5ao")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(23.8235, 13.8382)
+scale = Vector2(2.44853, 2.32261)
+sprite_frames = SubResource("SpriteFrames_p4nb2")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+texture_filter = 1
+position = Vector2(26, 20)
+shape = SubResource("RectangleShape2D_7pupo")

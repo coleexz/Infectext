@@ -1,0 +1,40 @@
+[gd_scene load_steps=10 format=3 uid="uid://bybbgc24l2ivv"]
+
+[ext_resource type="PackedScene" uid="uid://de6pic1rsxunv" path="res://Scenes/Beholder/Beholder.tscn" id="1_y8ke6"]
+[ext_resource type="PackedScene" uid="uid://bvvay8k0iv1kc" path="res://Scenes/Player/Player.tscn" id="2_uqkw3"]
+[ext_resource type="PackedScene" uid="uid://bt4t2ymfpoml4" path="res://Scenes/Behemoth/Behemoth.tscn" id="3_3lx5p"]
+[ext_resource type="PackedScene" uid="uid://dndsesxrrhp62" path="res://Scenes/Paragon/Paragon.tscn" id="4_mtbs4"]
+[ext_resource type="PackedScene" uid="uid://s8wapijblex2" path="res://Scenes/NPC_3/NPC_3.tscn" id="5_w74er"]
+[ext_resource type="PackedScene" uid="uid://qntm0kroabgy" path="res://Scenes/NPC_2/NPC_2.tscn" id="6_l2ows"]
+[ext_resource type="PackedScene" uid="uid://cpohfj5xgk8a3" path="res://Scenes/NPC_1/NPC_1.tscn" id="7_qukot"]
+[ext_resource type="PackedScene" uid="uid://bchb40vn662b6" path="res://Scenes/Rat/Rat.tscn" id="8_crfv0"]
+[ext_resource type="PackedScene" uid="uid://bd34mp05ws1ds" path="res://Scenes/Reaper/Reaper.tscn" id="9_b4oc6"]
+
+[node name="world" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_uqkw3")]
+position = Vector2(263, 189)
+
+[node name="enemy" parent="." instance=ExtResource("1_y8ke6")]
+position = Vector2(104, 99)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_3lx5p")]
+position = Vector2(365, 82)
+
+[node name="Paragon" parent="." instance=ExtResource("4_mtbs4")]
+position = Vector2(191, 346)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("5_w74er")]
+position = Vector2(422, 243)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("6_l2ows")]
+position = Vector2(-63, 321)
+
+[node name="NPC_1" parent="." instance=ExtResource("7_qukot")]
+position = Vector2(216, -73)
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("8_crfv0")]
+position = Vector2(254, 127)
+
+[node name="Reaper" parent="." instance=ExtResource("9_b4oc6")]
+position = Vector2(392, 405)

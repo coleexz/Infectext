@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://s8wapijblex2"]
+
+[ext_resource type="Script" path="res://Scenes/NPC_3/NPC_3.gd" id="1_3cs2w"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_acw65"]
+load_path = "res://.godot/imported/king.png-aa40119db1b4c229636fb3d9c6ef7b50.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7mt3"]
+atlas = SubResource("CompressedTexture2D_acw65")
+region = Rect2(0, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0xp6"]
+atlas = SubResource("CompressedTexture2D_acw65")
+region = Rect2(34, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b801r"]
+atlas = SubResource("CompressedTexture2D_acw65")
+region = Rect2(68, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kx3n"]
+atlas = SubResource("CompressedTexture2D_acw65")
+region = Rect2(102, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4tij"]
+atlas = SubResource("CompressedTexture2D_acw65")
+region = Rect2(136, 0, 34, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3i0t4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7mt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0xp6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b801r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kx3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4tij")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrf4d"]
+size = Vector2(97, 127)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_3cs2w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(29, 19.5)
+scale = Vector2(2.70588, 2.85294)
+sprite_frames = SubResource("SpriteFrames_3i0t4")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(28.5, 22.5)
+shape = SubResource("RectangleShape2D_qrf4d")
