@@ -1,40 +1,45 @@
-[gd_scene load_steps=9 format=3 uid="uid://qntm0kroabgy"]
+[gd_scene load_steps=10 format=3 uid="uid://qntm0kroabgy"]
 
 [ext_resource type="Script" path="res://Scenes/NPC_2/NPC_2.gd" id="1_uebgx"]
+[ext_resource type="Texture2D" uid="uid://dcqu85u75a0g8" path="res://Assets/Mobs/NPC/merchant.png" id="2_1hx8i"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1nntl"]
-load_path = "res://.godot/imported/captain.png-8f41e05bbe03bae098ae081de7ca2bf4.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6akim"]
-atlas = SubResource("CompressedTexture2D_1nntl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nw3y"]
+atlas = ExtResource("2_1hx8i")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xq5mu"]
-atlas = SubResource("CompressedTexture2D_1nntl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_r13pb"]
+atlas = ExtResource("2_1hx8i")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_24usk"]
-atlas = SubResource("CompressedTexture2D_1nntl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjqif"]
+atlas = ExtResource("2_1hx8i")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_afaro"]
-atlas = SubResource("CompressedTexture2D_1nntl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_aocdk"]
+atlas = ExtResource("2_1hx8i")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhl14"]
+atlas = ExtResource("2_1hx8i")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jvlu8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6akim")
+"texture": SubResource("AtlasTexture_8nw3y")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xq5mu")
+"texture": SubResource("AtlasTexture_r13pb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_24usk")
+"texture": SubResource("AtlasTexture_pjqif")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_afaro")
+"texture": SubResource("AtlasTexture_aocdk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhl14")
 }],
 "loop": true,
 "name": &"idle",

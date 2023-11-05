@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dndsesxrrhp62"]
+[gd_scene load_steps=43 format=3 uid="uid://dndsesxrrhp62"]
 
 [ext_resource type="Script" path="res://Scenes/Paragon/Paragon.gd" id="1_br12o"]
 
@@ -203,7 +203,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ef5pi")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_irrod")
 }, {
 "duration": 1.0,
@@ -275,6 +275,9 @@ radius = 24.0832
 [sub_resource type="CircleShape2D" id="CircleShape2D_fhdqg"]
 radius = 117.098
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtuvy"]
+size = Vector2(113, 48)
+
 [node name="Paragon" type="CharacterBody2D"]
 script = ExtResource("1_br12o")
 
@@ -289,10 +292,18 @@ animation = &"attack2"
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_fq3hr")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="watch_zone" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="watch_zone"]
 shape = SubResource("CircleShape2D_fhdqg")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="attack_zone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_zone"]
+position = Vector2(1.5, -1)
+shape = SubResource("RectangleShape2D_vtuvy")
+
+[connection signal="body_entered" from="watch_zone" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="watch_zone" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="attack_zone" to="." method="_on_attack_zone_body_entered"]
+[connection signal="body_exited" from="attack_zone" to="." method="_on_attack_zone_body_exited"]

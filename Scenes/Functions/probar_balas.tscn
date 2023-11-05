@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4htryvge1tig"]
+
+[ext_resource type="PackedScene" uid="uid://bd34mp05ws1ds" path="res://Scenes/Reaper/boss.tscn" id="1_epfwq"]
+
+[node name="Reaper" instance=ExtResource("1_epfwq")]
+position = Vector2(300, 300)
+time_between_shots = 0.2
+direction_change_interval = 50
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(88, -21)
+scale = Vector2(2.625, 2.26563)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 0)

@@ -1,47 +1,45 @@
 [gd_scene load_steps=10 format=3 uid="uid://cpohfj5xgk8a3"]
 
 [ext_resource type="Script" path="res://Scenes/NPC_1/NPC_1.gd" id="1_iu5ao"]
+[ext_resource type="Texture2D" uid="uid://cfd7axu6omhqo" path="res://Assets/Mobs/NPC/king.png" id="2_k6p5f"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8edrf"]
-load_path = "res://.godot/imported/merchant.png-bc06f501ce32dd4ac36ec39c35ee29a8.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6xx4"]
+atlas = ExtResource("2_k6p5f")
+region = Rect2(0, 0, 34, 34)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1tufh"]
-atlas = SubResource("CompressedTexture2D_8edrf")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnxdi"]
+atlas = ExtResource("2_k6p5f")
+region = Rect2(34, 0, 34, 34)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0ihmn"]
-atlas = SubResource("CompressedTexture2D_8edrf")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu4m6"]
+atlas = ExtResource("2_k6p5f")
+region = Rect2(68, 0, 34, 34)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8bqxv"]
-atlas = SubResource("CompressedTexture2D_8edrf")
-region = Rect2(64, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1v4o"]
+atlas = ExtResource("2_k6p5f")
+region = Rect2(102, 0, 34, 34)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jau2f"]
-atlas = SubResource("CompressedTexture2D_8edrf")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ci4a"]
-atlas = SubResource("CompressedTexture2D_8edrf")
-region = Rect2(128, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_avse4"]
+atlas = ExtResource("2_k6p5f")
+region = Rect2(136, 0, 34, 34)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p4nb2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1tufh")
+"texture": SubResource("AtlasTexture_l6xx4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0ihmn")
+"texture": SubResource("AtlasTexture_vnxdi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8bqxv")
+"texture": SubResource("AtlasTexture_cu4m6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jau2f")
+"texture": SubResource("AtlasTexture_m1v4o")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8ci4a")
+"texture": SubResource("AtlasTexture_avse4")
 }],
 "loop": true,
 "name": &"idle",

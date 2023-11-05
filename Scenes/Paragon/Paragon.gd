@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var anim = $AnimatedSprite2D
 
-var speed = 250
+var speed = 100
 var player_chase = false
 var player = null
 
@@ -18,7 +18,6 @@ func _physics_process(delta):
 			anim.flip_h = false
 
 		global_position += direction / speed
-		anim.play("move")
 	else:
 		anim.play("idle")
 
@@ -34,3 +33,15 @@ func _on_area_2d_body_exited(body):
 	if body.name == "Player":
 		player = null
 		player_chase = false
+
+func _on_attack_zone_body_entered(body):
+	if body.name == "Player":
+		var num = randi()%2
+		if num == 0:
+			anim.play("attack1")
+		else :
+			anim.play("attack2")
+
+func _on_attack_zone_body_exited(body):
+	if body.name == "Player":
+		anim.play("move")
