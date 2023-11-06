@@ -41,4 +41,4 @@ position = Vector2(757, 148)
 position = Vector2(307, 316)
 
 [node name="Reaper" parent="." instance=ExtResource("9_b4oc6")]
-position = Vector2(492, 139)
+position = Vector2(473, 199)
