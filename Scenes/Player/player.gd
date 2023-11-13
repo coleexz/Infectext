@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 @onready var anim = $AnimatedSprite2D
-var speed = 250
+var speed = 200
 
-var player_alive = true
+static var player_alive = true
 var health = 100
 var enemy_attack_cooldown = true
 var enemy_in_attack_range = false
@@ -48,7 +48,6 @@ func die():
 	player_alive = false
 	anim.play("death")
 	death_timer.start()
-	# Stop all movements and further interactions as needed here.
 
 func enemy_attack():
 	if enemy_in_attack_range and enemy_attack_cooldown and player_alive: 
@@ -59,13 +58,13 @@ func enemy_attack():
 
 func reduce_health(bod):
 	if bod == "Paragon":
-		health -= 15
+		health -= 10
 	elif bod == "Behemoth":
-		health -= 25
+		health -= 15
 	elif bod == "Beholder":
 		health -= 5
 	else:
-		health -= 30
+		health -= 20
 
 func _on_attack_cooldown_timeout():
 	enemy_attack_cooldown = true
@@ -85,4 +84,4 @@ func _on_player_hitbox_body_exited(body):
 	bod = ""
 
 func _on_death_timer_timeout():
-	self.queue_free()  # Remove the player character from the scene
+	self.queue_free() 

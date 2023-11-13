@@ -11,10 +11,9 @@ func _physics_process(delta):
 	if player_chase:
 		var direction = player.global_position - global_position
 
-		# Flipear la animación dependiendo de la dirección
-		if direction.x < 0:  # Si el jugador está a la izquierda
+		if direction.x < 0: 
 			anim.flip_h = true
-		else:  # Si el jugador está a la derecha
+		else: 
 			anim.flip_h = false
 
 		global_position += direction / speed

@@ -5,20 +5,19 @@ var speed = 250
 var player_chase = false
 var player = null
 
-var original_offset = Vector2(0, 0)  # Guarda el offset original del sprite
-var flipped_offset = Vector2(-30,0)  # Ajusta este valor según necesites
+var original_offset = Vector2(0, 0)  
+var flipped_offset = Vector2(-30,0)  
 
 func _physics_process(delta):
 	if player_chase:
 		var direction = player.global_position - global_position
-
-		# Flipear la animación dependiendo de la dirección
+		
 		if direction.x < 0:  # Si el jugador está a la izquierda
 			anim.flip_h = true
-			anim.offset = flipped_offset  # Ajusta el offset cuando el sprite es "flipeado"
+			anim.offset = flipped_offset  
 		else:  # Si el jugador está a la derecha
 			anim.flip_h = false
-			anim.offset = original_offset  # Vuelve al offset original
+			anim.offset = original_offset  
 
 		global_position += direction / speed
 	
