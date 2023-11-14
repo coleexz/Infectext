@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqiykwrhqpo3l"]
+
+[ext_resource type="FontFile" uid="uid://dc11tx7jc36fv" path="res://resurces/Kenney Pixel.ttf" id="1_o583s"]
+[ext_resource type="Texture2D" uid="uid://77ms0fl8vi8u" path="res://resurces/White Black M Letter Design Business Identity for Digital Design Company Logo .png" id="1_sxmxx"]
+[ext_resource type="PackedScene" uid="uid://bs6kyr7b8u11m" path="res://Scenes/parallax_background.tscn" id="2_dg08x"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxMenu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.187
+anchor_right = 0.5
+anchor_bottom = 0.516
+offset_left = -326.0
+offset_top = -23.96
+offset_right = 335.0
+offset_bottom = 399.72
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Logo" type="TextureRect" parent="VBoxMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_sxmxx")
+stretch_mode = 3
+
+[node name="VBoxBottones" type="VBoxContainer" parent="VBoxMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+auto_translate = false
+theme_override_constants/separation = 40
+
+[node name="Play" type="Button" parent="VBoxMenu/VBoxBottones"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.968627, 0.968627, 0.968627, 1)
+theme_override_colors/font_pressed_color = Color(0.988235, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_o583s")
+theme_override_font_sizes/font_size = 100
+action_mode = 0
+text = "Play"
+
+[node name="Salir" type="Button" parent="VBoxMenu/VBoxBottones"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.988235, 1, 0.984314, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_o583s")
+theme_override_font_sizes/font_size = 100
+action_mode = 0
+text = "Salir"
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_dg08x")]
