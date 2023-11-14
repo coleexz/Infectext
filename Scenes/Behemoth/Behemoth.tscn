@@ -297,10 +297,10 @@ radius = 93.0054
 [sub_resource type="CircleShape2D" id="CircleShape2D_g6wj3"]
 radius = 29.4279
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_d70yx"]
-radius = 59.2115
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qn1a2"]
+size = Vector2(118, 50)
 
-[node name="Behemoth" type="CharacterBody2D"]
+[node name="enemy" type="CharacterBody2D"]
 input_pickable = true
 script = ExtResource("1_575c2")
 
@@ -326,7 +326,8 @@ shape = SubResource("CircleShape2D_g6wj3")
 position = Vector2(-6, 9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_zone"]
-shape = SubResource("CircleShape2D_d70yx")
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_qn1a2")
 
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

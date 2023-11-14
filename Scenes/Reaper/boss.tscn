@@ -1,13 +1,6 @@
-[gd_scene load_steps=49 format=3 uid="uid://bd34mp05ws1ds"]
+[gd_scene load_steps=50 format=3 uid="uid://bd34mp05ws1ds"]
 
-[sub_resource type="GDScript" id="GDScript_26v5n"]
-script/source = "extends CharacterBody2D
-
-@onready var anim = $AnimatedSprite2D
-
-func _ready():
-	anim.play(\"attack\")
-"
+[ext_resource type="Script" path="res://Scenes/Reaper/boss.gd" id="1_0n0mo"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fva3y"]
 load_path = "res://.godot/imported/reaper-attack-outline.png-9c93dff3e97b8887859987d4fc9c6e21.ctex"
@@ -334,16 +327,40 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvcr0"]
 radius = 90.05
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_uc2jr"]
+radius = 285.727
+
 [node name="Reaper" type="CharacterBody2D"]
-script = SubResource("GDScript_26v5n")
+script = ExtResource("1_0n0mo")
+
+[node name="Rotator" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(89, 40.5)
+position = Vector2(87.0001, -15)
 scale = Vector2(2.39063, 2.26563)
 sprite_frames = SubResource("SpriteFrames_rxebk")
 animation = &"attack"
 frame_progress = 0.815435
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 67)
+position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_mvcr0")
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+[node name="ModeTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="IdleTimer" type="Timer" parent="."]
+wait_time = 2.5
+
+[node name="walk_zone" type="Area2D" parent="."]
+position = Vector2(0, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walk_zone"]
+shape = SubResource("CircleShape2D_uc2jr")
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="ModeTimer" to="." method="_on_mode_timer_timeout"]
+[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
+[connection signal="body_entered" from="walk_zone" to="." method="_on_walk_zone_body_entered"]
