@@ -1,8 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://slpyugjjxqkt"]
+[gd_scene load_steps=16 format=3 uid="uid://slpyugjjxqkt"]
 
 [ext_resource type="Texture2D" uid="uid://1ougu1kckfh6" path="res://Assets/Mapa/Tiles.png" id="1_bw4tn"]
 [ext_resource type="Texture2D" uid="uid://b1uwjdu7lenao" path="res://Assets/Mapa/Props.png" id="2_jbc3a"]
 [ext_resource type="PackedScene" uid="uid://bvvay8k0iv1kc" path="res://Scenes/Player/player.tscn" id="3_gsyic"]
+[ext_resource type="PackedScene" uid="uid://dndsesxrrhp62" path="res://Scenes/Paragon/Paragon.tscn" id="4_xitxn"]
+[ext_resource type="PackedScene" uid="uid://s8wapijblex2" path="res://Scenes/NPC_3/NPC_3.tscn" id="5_upjcb"]
+[ext_resource type="PackedScene" uid="uid://qntm0kroabgy" path="res://Scenes/NPC_2/NPC_2.tscn" id="6_75xl6"]
+[ext_resource type="PackedScene" uid="uid://de6pic1rsxunv" path="res://Scenes/Beholder/Beholder.tscn" id="7_i6waq"]
+[ext_resource type="PackedScene" uid="uid://bt4t2ymfpoml4" path="res://Scenes/Behemoth/Behemoth.tscn" id="8_5e4tr"]
+[ext_resource type="PackedScene" uid="uid://cpohfj5xgk8a3" path="res://Scenes/NPC_1/NPC_1.tscn" id="9_7hxnf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ufk2a"]
 texture = ExtResource("1_bw4tn")
@@ -1281,3 +1287,21 @@ polygon = PackedVector2Array(4.00159, 1.99681, 31, -0.0247345, 30.9896, -13.0247
 
 [node name="Player" parent="." instance=ExtResource("3_gsyic")]
 position = Vector2(126.158, 197.899)
+
+[node name="Paragon" parent="." instance=ExtResource("4_xitxn")]
+position = Vector2(439.185, 231.65)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("5_upjcb")]
+position = Vector2(195.12, 150.844)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("6_75xl6")]
+position = Vector2(262.451, 565.791)
+
+[node name="enemy" parent="." instance=ExtResource("7_i6waq")]
+position = Vector2(126.356, 445.899)
+
+[node name="enemy2" parent="." instance=ExtResource("8_5e4tr")]
+position = Vector2(864.237, 296.311)
+
+[node name="NPC_1" parent="." instance=ExtResource("9_7hxnf")]
+position = Vector2(713.414, 518.431)

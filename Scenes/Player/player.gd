@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var anim = $AnimatedSprite2D
-var speed = 200
+var speed = 120
 
 static var player_alive = true
 var health = 100
