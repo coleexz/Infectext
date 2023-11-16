@@ -49,6 +49,9 @@ func die():
 	anim.play("death")
 	death_timer.start()
 
+func Player():
+	pass
+	
 func enemy_attack():
 	if enemy_in_attack_range and enemy_attack_cooldown and player_alive: 
 		reduce_health(bod)

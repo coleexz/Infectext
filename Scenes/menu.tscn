@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqiykwrhqpo3l"]
+[gd_scene load_steps=5 format=3 uid="uid://bqiykwrhqpo3l"]
 
 [ext_resource type="FontFile" uid="uid://dc11tx7jc36fv" path="res://resurces/Kenney Pixel.ttf" id="1_o583s"]
 [ext_resource type="Texture2D" uid="uid://77ms0fl8vi8u" path="res://resurces/White Black M Letter Design Business Identity for Digital Design Company Logo .png" id="1_sxmxx"]
 [ext_resource type="PackedScene" uid="uid://bs6kyr7b8u11m" path="res://Scenes/parallax_background.tscn" id="2_dg08x"]
+[ext_resource type="Script" path="res://Scenes/Play.gd" id="3_ppw1x"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -14,9 +15,9 @@ grow_vertical = 2
 
 [node name="VBoxMenu" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 0.187
+anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.516
 offset_left = -326.0
@@ -49,6 +50,7 @@ theme_override_fonts/font = ExtResource("1_o583s")
 theme_override_font_sizes/font_size = 100
 action_mode = 0
 text = "Play"
+script = ExtResource("3_ppw1x")
 
 [node name="Salir" type="Button" parent="VBoxMenu/VBoxBottones"]
 layout_mode = 2
@@ -62,3 +64,6 @@ action_mode = 0
 text = "Salir"
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("2_dg08x")]
+
+[connection signal="pressed" from="VBoxMenu/VBoxBottones/Play" to="VBoxMenu/VBoxBottones/Play" method="_on_pressed"]
+[connection signal="pressed" from="VBoxMenu/VBoxBottones/Salir" to="VBoxMenu/VBoxBottones/Play" method="_on_salir_pressed"]
