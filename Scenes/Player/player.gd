@@ -8,7 +8,6 @@ var health = 100
 var enemy_attack_cooldown = true
 var enemy_in_attack_range = false
 var bod = ""
-@onready var death_timer = $death_timer
 
 func _ready():
 	anim.play("idle_down")
@@ -47,7 +46,6 @@ func _physics_process(delta):
 func die():
 	player_alive = false
 	anim.play("death")
-	death_timer.start()
 
 func Player():
 	pass
@@ -85,6 +83,3 @@ func _on_player_hitbox_body_entered(body):
 
 func _on_player_hitbox_body_exited(body):
 	bod = ""
-
-func _on_death_timer_timeout():
-	self.queue_free() 

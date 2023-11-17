@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://fcve7hnidg64"]
+[gd_scene load_steps=11 format=3 uid="uid://fcve7hnidg64"]
 
 [ext_resource type="Texture2D" uid="uid://b1uwjdu7lenao" path="res://Assets/Mapa/Props.png" id="1_ccs18"]
 [ext_resource type="Texture2D" uid="uid://1ougu1kckfh6" path="res://Assets/Mapa/Tiles.png" id="2_hiu7q"]
+[ext_resource type="PackedScene" uid="uid://bvvay8k0iv1kc" path="res://Scenes/Player/player.tscn" id="3_eic0e"]
+[ext_resource type="PackedScene" uid="uid://bd34mp05ws1ds" path="res://Scenes/Reaper/boss.tscn" id="4_lce1j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lieqj"]
 texture = ExtResource("1_ccs18")
@@ -2798,3 +2800,9 @@ layer_0/tile_data = PackedInt32Array(196666, 1, 28, 262202, 1, 29, 327738, 1, 30
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(17, 116)
 polygon = PackedVector2Array(3, 3, 18, 4, 17, -29, 77, -31, 76, 25, 83, 26, 84, -29, 773, -31, 782, -6, 877, -4, 880, -30, 906, -29, 908, 41, 1063, 50, 1058, 336, 1060, 480, 631, 476, 19, 481, 15, 215, 8, 31, -2, -6, -9, 27, -32, 172, -42, 535, 1101, 543, 1100, -100, 31, -108, 1, -2)
+
+[node name="Player" parent="." instance=ExtResource("3_eic0e")]
+position = Vector2(70, 164)
+
+[node name="Reaper" parent="." instance=ExtResource("4_lce1j")]
+position = Vector2(723, 341)

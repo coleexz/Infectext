@@ -1289,19 +1289,19 @@ polygon = PackedVector2Array(4.00159, 1.99681, 31, -0.0247345, 30.9896, -13.0247
 position = Vector2(126.158, 197.899)
 
 [node name="Paragon" parent="." instance=ExtResource("4_xitxn")]
-position = Vector2(439.185, 231.65)
+position = Vector2(471.179, 224.624)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("5_upjcb")]
-position = Vector2(195.12, 150.844)
+position = Vector2(298.419, 524.762)
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("6_75xl6")]
-position = Vector2(262.451, 565.791)
+position = Vector2(209.132, 164.833)
 
 [node name="enemy" parent="." instance=ExtResource("7_i6waq")]
 position = Vector2(126.356, 445.899)
 
 [node name="enemy2" parent="." instance=ExtResource("8_5e4tr")]
-position = Vector2(864.237, 296.311)
+position = Vector2(903.237, 296.279)
 
 [node name="NPC_1" parent="." instance=ExtResource("9_7hxnf")]
-position = Vector2(713.414, 518.431)
+position = Vector2(668.383, 479.467)
