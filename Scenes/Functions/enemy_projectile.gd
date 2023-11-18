@@ -12,4 +12,6 @@ func _on_lifetime_timer_timeout():
 
 func _on_body_entered(body):
 	if body.name == "Player":
-		body.reduce_health(20)
+		if body.check_cooldown():
+			body.reduce_health(20)
+			body.activate_cooldown()

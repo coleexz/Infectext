@@ -72,8 +72,8 @@ func die():
 func Player():
 	pass
 	
-func check_cooldown():
-	pass
+func check_cooldown() -> bool:
+	return !$attack_cooldown.is_stopped()
 	
 func activate_cooldown():
 	$attack_cooldown.start()
