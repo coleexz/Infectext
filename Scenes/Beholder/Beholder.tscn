@@ -1,8 +1,8 @@
 [gd_scene load_steps=30 format=3 uid="uid://de6pic1rsxunv"]
 
 [ext_resource type="Script" path="res://Scenes/Beholder/Beholder.gd" id="1_07ttg"]
-[ext_resource type="Texture2D" uid="uid://bennt8728cuys" path="res://Assets/Mobs/Beholder/Beholder_attack_outline.png" id="2_lmt40"]
-[ext_resource type="Texture2D" uid="uid://cgdsddeh5m1g2" path="res://Assets/Mobs/Beholder/Beholder_fly_outline.png" id="3_tr5bi"]
+[ext_resource type="Texture2D" uid="uid://b2tcye0h4cwga" path="res://Assets/Mobs/Beholder/Beholder_attack_outline.png" id="2_lmt40"]
+[ext_resource type="Texture2D" uid="uid://cjn00citxvfg8" path="res://Assets/Mobs/Beholder/Beholder_fly_outline.png" id="3_tr5bi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kfp5t"]
 atlas = ExtResource("2_lmt40")
@@ -179,7 +179,7 @@ radius = 16.2788
 radius = 106.677
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ies38"]
-size = Vector2(85, 20)
+size = Vector2(66, 27)
 
 [node name="enemy" type="CharacterBody2D"]
 floor_stop_on_slope = false
@@ -206,26 +206,26 @@ frame_progress = 0.761921
 offset = Vector2(0, 6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4, 7)
+position = Vector2(16, 8)
 shape = SubResource("CircleShape2D_7h8pe")
 
 [node name="watch_zone" type="Area2D" parent="."]
 position = Vector2(-4, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="watch_zone"]
-position = Vector2(3, 1)
+position = Vector2(19, 5)
 shape = SubResource("CircleShape2D_4lagy")
 
 [node name="attack_zone" type="Area2D" parent="."]
 position = Vector2(-7, 8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_zone"]
-position = Vector2(7.5, -1)
+position = Vector2(23, 0)
 shape = SubResource("RectangleShape2D_ies38")
 
-[connection signal="body_entered" from="watch_zone" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="watch_zone" to="." method="_on_watch_zone_body_entered"]
-[connection signal="body_exited" from="watch_zone" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="watch_zone" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="watch_zone" to="." method="_on_watch_zone_body_exited"]
+[connection signal="body_exited" from="watch_zone" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="attack_zone" to="." method="_on_attack_zone_body_entered"]
 [connection signal="body_exited" from="attack_zone" to="." method="_on_attack_zone_body_exited"]
