@@ -51,3 +51,4 @@ func _on_attack_zone_body_entered(body):
 func _on_attack_zone_body_exited(body):
 	if body.name == "Player":
 		anim.play("walk")
+
