@@ -1,9 +1,9 @@
 [gd_scene load_steps=47 format=3 uid="uid://bt4t2ymfpoml4"]
 
 [ext_resource type="Script" path="res://Scenes/Behemoth/Behemoth.gd" id="1_575c2"]
-[ext_resource type="Texture2D" uid="uid://bko3txoj40fvc" path="res://Assets/Mobs/Behemoth/Behemoth-attack1-outline.png" id="2_scep7"]
-[ext_resource type="Texture2D" uid="uid://cs0omcnqhl4q6" path="res://Assets/Mobs/Behemoth/Behemoth-attack2-outline.png" id="3_oai68"]
-[ext_resource type="Texture2D" uid="uid://bwj2havrbihem" path="res://Assets/Mobs/Behemoth/Behemoth-walk-outline.png" id="4_und3a"]
+[ext_resource type="Texture2D" uid="uid://bj2veut173kmb" path="res://Assets/Mobs/Behemoth/Behemoth-attack1-outline.png" id="2_scep7"]
+[ext_resource type="Texture2D" uid="uid://dbl3efpkstmmw" path="res://Assets/Mobs/Behemoth/Behemoth-attack2-outline.png" id="3_oai68"]
+[ext_resource type="Texture2D" uid="uid://cmqrwmxn6ft6y" path="res://Assets/Mobs/Behemoth/Behemoth-walk-outline.png" id="4_und3a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ay8hj"]
 atlas = ExtResource("2_scep7")
@@ -295,10 +295,10 @@ animations = [{
 radius = 93.0054
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g6wj3"]
-radius = 29.4279
+radius = 34.1321
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qn1a2"]
-size = Vector2(118, 50)
+size = Vector2(126, 58)
 
 [node name="enemy" type="CharacterBody2D"]
 input_pickable = true
@@ -315,19 +315,30 @@ position = Vector2(-4, 5)
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
-position = Vector2(-1, 4)
+position = Vector2(-8, -3)
 shape = SubResource("CircleShape2D_fedlp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, 9)
+position = Vector2(-13, 3)
 shape = SubResource("CircleShape2D_g6wj3")
 
 [node name="attack_zone" type="Area2D" parent="."]
 position = Vector2(-6, 9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_zone"]
-position = Vector2(0, -9)
+position = Vector2(-4, -5)
 shape = SubResource("RectangleShape2D_qn1a2")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+top_level = true
+offset_left = -36.0
+offset_top = -59.0
+offset_right = 28.0
+offset_bottom = -34.0
+bbcode_enabled = true
+text = "cerrado"
+fit_content = true
+scroll_active = false
 
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

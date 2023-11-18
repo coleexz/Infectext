@@ -28,6 +28,7 @@ func _on_watch_zone_body_entered(body):
 	if body.name == "Player":
 		player = body
 		player_chase = true
+		
 
 
 func _on_watch_zone_body_exited(body):

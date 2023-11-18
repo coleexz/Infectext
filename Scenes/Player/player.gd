@@ -8,6 +8,7 @@ var health = 100
 var enemy_attack_cooldown = true
 var enemy_in_attack_range = false
 var bod = ""
+var input_enabled = false
 
 func _ready():
 	anim.play("idle_down")
@@ -83,3 +84,13 @@ func _on_player_hitbox_body_entered(body):
 
 func _on_player_hitbox_body_exited(body):
 	bod = ""
+
+func enable_input_capture(enable: bool):
+	input_enabled = enable
+	
+func _input(event):
+	if input_enabled and event is InputEventKey:
+		var key_text = event.as_text()
+		# Procesar la entrada del teclado aqui
+		print(key_text)  # Imprime la tecla presionada
+	

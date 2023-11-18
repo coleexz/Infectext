@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" path="res://Scenes/Paragon/Paragon.gd" id="1_br12o"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fq3hr"]
+radius = 60.0083
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v5rkq"]
 load_path = "res://.godot/imported/Paragon-attack1-outline.png-866e76a6ca8cd693eefebcc6621ee379.ctex"
 
@@ -269,17 +272,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fq3hr"]
-radius = 24.0832
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_fhdqg"]
 radius = 117.098
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtuvy"]
-size = Vector2(113, 48)
+size = Vector2(208, 53)
 
 [node name="Paragon" type="CharacterBody2D"]
+floor_constant_speed = true
 script = ExtResource("1_br12o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_fq3hr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -287,10 +292,6 @@ position = Vector2(3, -29)
 scale = Vector2(1.54688, 1.5)
 sprite_frames = SubResource("SpriteFrames_v02cl")
 animation = &"attack2"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-shape = SubResource("CircleShape2D_fq3hr")
 
 [node name="watch_zone" type="Area2D" parent="."]
 
@@ -300,8 +301,18 @@ shape = SubResource("CircleShape2D_fhdqg")
 [node name="attack_zone" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_zone"]
-position = Vector2(1.5, -1)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_vtuvy")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -24.0
+offset_top = -71.0
+offset_right = 37.0
+offset_bottom = -34.0
+bbcode_enabled = true
+text = "cerrado"
+fit_content = true
+scroll_active = false
 
 [connection signal="body_entered" from="watch_zone" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="watch_zone" to="." method="_on_area_2d_body_exited"]
