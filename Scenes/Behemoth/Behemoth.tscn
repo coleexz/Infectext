@@ -1,9 +1,9 @@
 [gd_scene load_steps=47 format=3 uid="uid://bt4t2ymfpoml4"]
 
 [ext_resource type="Script" path="res://Scenes/Behemoth/Behemoth.gd" id="1_575c2"]
-[ext_resource type="Texture2D" uid="uid://bko3txoj40fvc" path="res://Assets/Mobs/Behemoth/Behemoth-attack1-outline.png" id="2_scep7"]
-[ext_resource type="Texture2D" uid="uid://cs0omcnqhl4q6" path="res://Assets/Mobs/Behemoth/Behemoth-attack2-outline.png" id="3_oai68"]
-[ext_resource type="Texture2D" uid="uid://bwj2havrbihem" path="res://Assets/Mobs/Behemoth/Behemoth-walk-outline.png" id="4_und3a"]
+[ext_resource type="Texture2D" uid="uid://bj2veut173kmb" path="res://Assets/Mobs/Behemoth/Behemoth-attack1-outline.png" id="2_scep7"]
+[ext_resource type="Texture2D" uid="uid://dbl3efpkstmmw" path="res://Assets/Mobs/Behemoth/Behemoth-attack2-outline.png" id="3_oai68"]
+[ext_resource type="Texture2D" uid="uid://cmqrwmxn6ft6y" path="res://Assets/Mobs/Behemoth/Behemoth-walk-outline.png" id="4_und3a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ay8hj"]
 atlas = ExtResource("2_scep7")
@@ -300,7 +300,7 @@ radius = 141.004
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qn1a2"]
 size = Vector2(126, 73)
 
-[node name="enemy" type="CharacterBody2D"]
+[node name="enemy2" type="CharacterBody2D"]
 input_pickable = true
 script = ExtResource("1_575c2")
 
