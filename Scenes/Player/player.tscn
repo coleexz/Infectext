@@ -318,7 +318,7 @@ animations = [{
 radius = 5.09902
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k7w1t"]
-radius = 11.0
+radius = 16.0312
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -334,7 +334,7 @@ sprite_frames = SubResource("SpriteFrames_udplx")
 animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(1, 8)
 shape = SubResource("CircleShape2D_70e7c")
 
 [node name="player_hitbox" type="Area2D" parent="."]
@@ -350,7 +350,7 @@ wait_time = 1.5
 wait_time = 4.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(0, 3)
 zoom = Vector2(4, 4)
 limit_left = -6
 limit_top = 10

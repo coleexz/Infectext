@@ -10,6 +10,27 @@ var enemy_in_attack_range = false
 var bod = ""
 var input_enabled = false
 
+var my_text = ""
+var enemy_text = ""
+var input_index = 0
+var wrote_good = false
+var error = false
+
+func get_error():
+	return error
+	
+func set_error(boolean :bool):
+	error = boolean
+	
+func get_text_player():
+	return my_text
+	
+func set_wrote_good(enable: bool):
+	wrote_good = enable
+	
+func get_wrote_good():
+	return wrote_good
+	
 func _ready():
 	anim.play("idle_down")
 	
@@ -51,22 +72,21 @@ func die():
 func Player():
 	pass
 	
+func check_cooldown():
+	pass
+	
+func activate_cooldown():
+	$attack_cooldown.start()
+	enemy_attack_cooldown = false
+		
 func enemy_attack():
-	if enemy_in_attack_range and enemy_attack_cooldown and player_alive: 
-		reduce_health(bod)
-		print("health = " , health)
+	if enemy_in_attack_range and enemy_attack_cooldown and player_alive:
 		enemy_attack_cooldown = false
-		$attack_cooldown.start()
+		activate_cooldown()
 
-func reduce_health(bod):
-	if bod == "Paragon":
-		health -= 10
-	elif bod == "Behemoth":
-		health -= 15
-	elif bod == "Beholder":
-		health -= 5
-	else:
-		health -= 20
+func reduce_health(h: int):
+	health -=h
+	print(health)
 
 func _on_attack_cooldown_timeout():
 	enemy_attack_cooldown = true
@@ -80,17 +100,37 @@ func _on_player_hitbox_area_exited(area):
 		enemy_in_attack_range = false
 
 func _on_player_hitbox_body_entered(body):
-	bod = body.name 
+	bod = body.name
+	print(bod)
 
 func _on_player_hitbox_body_exited(body):
 	bod = ""
 
+func set_text(text: String):
+	enemy_text = text
+	
 func enable_input_capture(enable: bool):
 	input_enabled = enable
 	
 func _input(event):
 	if input_enabled and event is InputEventKey:
-		var key_text = event.as_text()
-		# Procesar la entrada del teclado aqui
-		print(key_text)  # Imprime la tecla presionada
-	
+		if event.pressed and not event.is_echo():
+			var key_text = event.as_text()
+			
+			if key_text not in ["Up", "Down", "Left", "Right", "CapsLock", "Super", "PageDown", "PageUp"]:  # Filtro de teclas
+				if input_index < enemy_text.length() and key_text == str(enemy_text[input_index]):
+					my_text += key_text
+					input_index += 1
+					print(my_text)
+				else:
+					error = true
+					my_text = ""
+					input_index = 0
+					wrote_good = false
+					print("Reinicio debido a entrada incorrecta")
+					reduce_health(20)
+					activate_cooldown()
+					
+				if input_index == enemy_text.length():
+					wrote_good=true
+					

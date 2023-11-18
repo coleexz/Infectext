@@ -46,6 +46,7 @@ func _on_attack_zone_body_entered(body):
 			anim.play("attack1")
 		else :
 			anim.play("attack2")
+		body.reduce_health(15)
 
 func _on_attack_zone_body_exited(body):
 	if body.name == "Player":
