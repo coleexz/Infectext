@@ -318,29 +318,29 @@ animations = [{
 radius = 5.09902
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k7w1t"]
-radius = 16.0312
+radius = 17.0
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
-position = Vector2(34, 42)
 up_direction = Vector2(0, 1)
 safe_margin = 0.001
 script = ExtResource("1_fu3bl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-3, -15)
-scale = Vector2(1.55208, 1.51042)
+position = Vector2(0, -8)
+scale = Vector2(1.10417, 1.10417)
 sprite_frames = SubResource("SpriteFrames_udplx")
 animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 8)
+position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_70e7c")
 
 [node name="player_hitbox" type="Area2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(0, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
+position = Vector2(1, 2)
 shape = SubResource("CircleShape2D_k7w1t")
 
 [node name="attack_cooldown" type="Timer" parent="."]
@@ -350,8 +350,8 @@ wait_time = 1.5
 wait_time = 4.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 3)
-zoom = Vector2(4, 4)
+position = Vector2(1, 3)
+zoom = Vector2(3, 3)
 limit_left = -6
 limit_top = 10
 limit_right = 1171

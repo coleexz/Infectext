@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://cucqv3pgsovu2"]
+[gd_scene load_steps=15 format=3 uid="uid://cucqv3pgsovu2"]
 
 [ext_resource type="Texture2D" uid="uid://1ougu1kckfh6" path="res://Assets/Mapa/Tiles.png" id="1_b41ii"]
 [ext_resource type="Script" path="res://Scenes/sala_espera.gd" id="1_t4ewr"]
 [ext_resource type="Texture2D" uid="uid://b1uwjdu7lenao" path="res://Assets/Mapa/Props.png" id="2_cetli"]
 [ext_resource type="PackedScene" uid="uid://bvvay8k0iv1kc" path="res://Scenes/Player/player.tscn" id="3_5a7j0"]
+[ext_resource type="PackedScene" uid="uid://dcjjq3rtrbxtv" path="res://Scenes/Cat.tscn" id="5_78jyn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jp6xq"]
 texture = ExtResource("1_b41ii")
@@ -2670,4 +2671,8 @@ shape = SubResource("RectangleShape2D_aybux")
 [node name="Player" parent="." instance=ExtResource("3_5a7j0")]
 position = Vector2(591, 297)
 
+[node name="CharacterBody2D" parent="." instance=ExtResource("5_78jyn")]
+position = Vector2(478, 184)
+
 [connection signal="body_entered" from="entrada_laberinto" to="." method="_on_entrada_laberinto_body_entered"]
+[connection signal="child_entered_tree" from="CharacterBody2D" to="." method="_on_character_body_2d_child_entered_tree"]

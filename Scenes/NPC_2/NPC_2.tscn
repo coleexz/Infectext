@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://qntm0kroabgy"]
+[gd_scene load_steps=11 format=3 uid="uid://qntm0kroabgy"]
 
 [ext_resource type="Script" path="res://Scenes/NPC_2/NPC_2.gd" id="1_uebgx"]
 [ext_resource type="Texture2D" uid="uid://dcqu85u75a0g8" path="res://Assets/Mobs/NPC/merchant.png" id="2_1hx8i"]
@@ -49,6 +49,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0k8g"]
 size = Vector2(66, 89)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_cxmpw"]
+radius = 95.0474
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_uebgx")
 
@@ -63,3 +66,12 @@ frame_progress = 0.0572806
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(18, 5.5)
 shape = SubResource("RectangleShape2D_q0k8g")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(17, 2)
+shape = SubResource("CircleShape2D_cxmpw")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

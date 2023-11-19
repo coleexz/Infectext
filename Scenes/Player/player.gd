@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 @onready var anim = $AnimatedSprite2D
 var speed = 120
-
+var cat_inrange=false
+var alreadyspeak=false;
 static var player_alive = true
 var health = 100
 var enemy_attack_cooldown = true
@@ -35,6 +36,14 @@ func _ready():
 	anim.play("idle_down")
 	
 func _physics_process(delta):
+	
+	if Input.is_action_just_pressed("ui_accept"):
+		if alreadyspeak==false:
+			DialogueManager.show_example_dialogue_balloon(load("res://main.dialogue"),"Start")
+			alreadyspeak=true
+			return
+	
+	
 	if player_alive:
 		var dir = Input.get_vector("right","left","up","down")
 		velocity = dir * speed
@@ -100,10 +109,17 @@ func _on_player_hitbox_area_exited(area):
 		enemy_in_attack_range = false
 
 func _on_player_hitbox_body_entered(body):
+	#entro alguien
+	if body.has_method("Cat"):
+		cat_inrange=true
+		
 	bod = body.name
 	print(bod)
-
+	
 func _on_player_hitbox_body_exited(body):
+	#salio alguien
+	if body.has_method("Cat"):
+		cat_inrange=false
 	bod = ""
 
 func set_text(text: String):

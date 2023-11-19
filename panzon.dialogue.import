@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://dlkc0s0gdk1gl"
+path="res://.godot/imported/panzon.dialogue-6d70711db810dd4960f53ea51733b858.tres"
+
+[deps]
+
+source_file="res://panzon.dialogue"
+dest_files=["res://.godot/imported/panzon.dialogue-6d70711db810dd4960f53ea51733b858.tres"]
+
+[params]
+
+defaults=true
