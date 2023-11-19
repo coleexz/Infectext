@@ -1048,7 +1048,6 @@ offset_left = 296.0
 offset_top = 897.0
 offset_right = 1659.0
 offset_bottom = 1021.0
-text = "PRUEBA DE SI ESTO FUNCIONA O NO"
 label_settings = SubResource("LabelSettings_cpotn")
 horizontal_alignment = 1
 vertical_alignment = 1

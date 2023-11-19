@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Behemoth
+
 @onready var anim = $AnimatedSprite2D
 var speed = 250
 var player_chase = false
@@ -9,8 +11,13 @@ var textito = ""
 var textos = ["HELLO","GOODBYE","GOODMORNING"]
 var death_animation_played = false
 
+var maxHealth = 100
+var currentHealth = maxHealth
+
 var original_offset = Vector2(0, 0)
 var flipped_offset = Vector2(-65,0)
+
+signal healthChanged
 
 func _ready():
 	seleccionar_texto_aleatorio()
@@ -31,6 +38,8 @@ func _physics_process(delta):
 			
 		if player != null and player.wrote_good:
 			alive = false
+			healthChanged.emit()
+			currentHealth = 0
 			anim.play("death")
 			player.reset()
 			player_chase = false

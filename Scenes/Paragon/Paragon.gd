@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+class_name Paragon
+
+signal healthChanged 
+
 @onready var anim = $AnimatedSprite2D
 var speed = 70
 var player_chase = false
@@ -8,7 +12,8 @@ var alive = true
 var death_animation_played = false
 var textito = ""
 var textos = ["HELLO", "GOODBYE", "GOODMORNING"]  # Puedes cambiar estos textos según sea necesario
-
+var maxHealth = 100
+var currentHealth = maxHealth
 var original_offset = Vector2(0, 0)
 var flipped_offset = Vector2(-65, 0)
 
@@ -40,6 +45,8 @@ func _physics_process(delta):
 			player.set_text(textito)
 				
 		if player != null and player.wrote_good:
+			currentHealth = 0
+			healthChanged.emit()
 			alive = false
 			$Timer.start()  
 			player.set_wrote_good(false)

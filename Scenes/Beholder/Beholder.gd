@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Beholder
+
 @onready var anim = $AnimatedSprite2D
 var speed = 250
 var player_chase = false
@@ -7,10 +9,15 @@ var player = null
 var textito = ""
 var bod = ""
 
+var maxHealth = 100
+var currentHealth = maxHealth
+
 var textos = ["HELLO","GOODBYE","GOODMORNING"]  # Arreglo con posibles textos
 
 var original_offset = Vector2(0, 0)
 var flipped_offset = Vector2(-30,0)
+
+signal healthChanged
 
 func _ready():
 	seleccionar_texto_aleatorio()
@@ -27,6 +34,8 @@ func _physics_process(delta):
 		player.set_text(textito)
 		
 	if player != null and player.wrote_good:
+		currentHealth = 0
+		healthChanged.emit()
 		anim.play("death")
 		$Timer.start()
 		player.set_wrote_good(false)

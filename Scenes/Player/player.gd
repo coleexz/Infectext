@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-class_name Player 
+class_name Player
 
 @onready var heartsContainer = $CanvasLayer/heartsContainer
 @onready var anim = $AnimatedSprite2D
@@ -11,7 +11,7 @@ var speed = 100
 var cat_inrange=false
 var alreadyspeak=false;
 var player_alive = true
-var maxHealth = 10
+var maxHealth = 6
 var currentHealth = maxHealth
 var enemy_attack_cooldown = true
 var enemy_in_attack_range = false
@@ -160,7 +160,7 @@ func _input(event):
 	if input_enabled and event is InputEventKey:
 		if event.pressed and not event.is_echo():
 			var key_text = event.as_text()
-			
+				
 			if key_text not in ["Up", "Down", "Left", "Right", "CapsLock", "Super", "PageDown", "PageUp"]: 
 				print(key_text)
 				if input_index < enemy_text.length() and key_text == str(enemy_text[input_index]):
