@@ -5,25 +5,54 @@ extends CharacterBody2D
 @onready var rotator = $Rotator
 @onready var mode_timer = $ModeTimer
 @onready var idle_timer = $IdleTimer
+@onready var death_timer = $DeathTimer
+var player
 
 const bullet_scene = preload("res://Scenes/Functions/enemy_projectile.tscn")
+
+@export var attack_speed = 15
+@export var idle_speed = 60
 @export var time_between_shots = 0.3
 @export var spawn_point_count = 5
 @export var radius = 0
-
 @export var rotate_speed = 300
 @export var direction_change_interval = 3
+
+var current_speed = idle_speed
 var rotation_direction = 1
 var direction_change_timer = 0
-
 var mode = 0
 
-var original_offset = Vector2(0, 0)  
-var flipped_offset = Vector2(-65,0)  
+var health = 300
+
+var hurt_offset = Vector2(-50, 0)  # Ajusta este valor según sea necesario
+var normal_offset = Vector2(0, 0)
+
+var textos = [
+	"AAA",
+	"BBB",
+	"CCC",
+	"DDD"
+	#"HONORIFICABILITUDINITATIBUS",
+	#"INCOMPREHENSIBILIDADES",
+	#"ANTICONSTITUCIONALISSIMAMENTE",
+	#"TRANSUBSTANTIATIONALIST",
+	#"DISPROPORTIONABLENESS",
+	#"SUPERCALIFRAGILISTICEXPIALIDOCIOUS",
+	#"PNEUMONOULTRAMICROSCOPICSILICOVOLCANOCONIOSIS",
+	#"FLOCCINAUCINIHILIPILIFICATION"
+]
+
+var textito = ""
 
 func _ready():
-	mode_timer.start()  
+	mode_timer.start()
 	change_to_idle_mode()
+	seleccionar_texto_aleatorio()
+
+func seleccionar_texto_aleatorio():
+	textito = textos[randi() % textos.size()]
+	$RichTextLabel.text = textito
 
 func _on_shoot_timer_timeout():
 	for r in rotator.get_children():
@@ -33,33 +62,67 @@ func _on_shoot_timer_timeout():
 		bullet.rotation = r.global_rotation
 
 func _physics_process(delta):
-	direction_change_timer += delta
-	if direction_change_timer >= direction_change_interval:			
-		direction_change_timer = 0
-		rotation_direction *= -1
+	if health <= 0:
+		death()
+		health = 0
+				
+	if player !=null and player.get_error():
+		seleccionar_texto_aleatorio()
+		player.set_error(false)
+		textito = $RichTextLabel.text
+		player.set_text(textito)
+				
+	if player != null and player.wrote_good:
+		health-=100
+		print(health)
+		change_to_null_mode()
+		player.set_wrote_good(false)
+				
+	if player != null:
+		if player.get_player_alive():
+			var direction = (player.global_position - global_position).normalized()
+			position += direction * current_speed * delta
 
-	var new_rotation = rotator.rotation_degrees + rotate_speed * rotation_direction * delta
-	rotator.rotation_degrees = fmod(new_rotation, 360)
+				# Rotación y cambio de dirección
+		direction_change_timer += delta
+		if direction_change_timer >= direction_change_interval:
+			direction_change_timer = 0
+			rotation_direction *= -1
+
+		var new_rotation = rotator.rotation_degrees + rotate_speed * rotation_direction * delta
+		rotator.rotation_degrees = fmod(new_rotation, 360)
 		
-
 func change_to_attack_mode():
-	clear_spawn_points()  
-	anim.play("attack")  
-	setup_spawn_points() 
+	player.enable_input_capture(true)
+	current_speed = attack_speed
+	clear_spawn_points()
+	anim.play("attack")
+	setup_spawn_points()
 
 	idle_timer.stop()
-	shoot_timer.wait_time = time_between_shots  
-	shoot_timer.start() 
+	shoot_timer.wait_time = time_between_shots
+	shoot_timer.start()
 
 func _on_idle_timer_timeout():
-	change_pattern() 
-	change_to_attack_mode()  
+	change_pattern()
+	change_to_attack_mode()
+	mode_timer.start()
 
-	mode_timer.start()  
-
+func change_to_null_mode():
+	current_speed = 0
+	$NullMode.start()
+	shoot_timer.stop()
+	mode_timer.stop()
+	anim.offset = hurt_offset  # Cambiar al offset de "hurt"
+	anim.play("hurt")
+	
+	seleccionar_texto_aleatorio()
+	player.set_text(textito)
+	player.enable_input_capture(false)
+	
 func clear_spawn_points():
 	for child in rotator.get_children():
-		child.queue_free() 
+		child.queue_free()
 
 func setup_spawn_points():
 	for i in range(spawn_point_count):
@@ -71,16 +134,18 @@ func setup_spawn_points():
 		rotator.add_child(spawn_point)
 
 func change_to_idle_mode():
-	anim.play("idle")
-	shoot_timer.stop() 
-	mode_timer.stop()  
-	idle_timer.start()  
-
+	current_speed = idle_speed
+	anim.play("run")
+	shoot_timer.stop()
+	mode_timer.stop()
+	idle_timer.start()
+	seleccionar_texto_aleatorio()
+	
 func _on_mode_timer_timeout():
 	change_to_idle_mode()
 
 func change_pattern():
-	mode = randi() % 4  
+	mode = randi() % 4
 	if mode != 3:
 		mode_timer.wait_time = 10
 		
@@ -101,4 +166,39 @@ func change_pattern():
 		rotate_speed = 0
 		time_between_shots = 0.35
 		mode_timer.wait_time = 4
-	print(mode)
+
+func _on_walk_zone_body_entered(body):
+	if body.name == "Player":
+		player = body
+		body.enable_input_capture(true)
+		textito = $RichTextLabel.text
+		body.set_text(textito)
+
+func _on_walk_zone_body_exited(body):
+	if body.name == "Player":
+		player = null
+		seleccionar_texto_aleatorio()
+		body.enable_input_capture(false)
+		body.set_text("")
+
+func _on_null_mode_timeout():
+	change_to_attack_mode()
+	change_pattern()
+	mode_timer.start()
+	anim.offset = normal_offset
+	
+func death():
+	if not $DeathTimer.is_stopped():  # Verificar si el temporizador ya está en marcha
+		return  # Evitar reiniciar el temporizador si ya está activo
+	player.enable_input_capture(false)
+	shoot_timer.stop()
+	idle_timer.stop()
+	mode_timer.stop()
+	anim.play("death")
+	current_speed = 0
+	$DeathTimer.start()  # Asegurarse de que se inicie el temporizador
+	anim.offset = normal_offset
+	
+func _on_death_timer_timeout():
+	print("ADIOS")
+	self.queue_free()

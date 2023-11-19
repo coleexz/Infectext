@@ -4,7 +4,7 @@ extends CharacterBody2D
 var speed = 120
 var cat_inrange=false
 var alreadyspeak=false;
-static var player_alive = true
+var player_alive = true
 var health = 100
 var enemy_attack_cooldown = true
 var enemy_in_attack_range = false
@@ -17,6 +17,9 @@ var input_index = 0
 var wrote_good = false
 var error = false
 
+func get_player_alive():
+	return player_alive
+	
 func get_error():
 	return error
 	
@@ -77,6 +80,7 @@ func _physics_process(delta):
 func die():
 	player_alive = false
 	anim.play("death")
+	enable_input_capture(false)
 
 func Player():
 	pass
@@ -124,6 +128,7 @@ func _on_player_hitbox_body_exited(body):
 
 func set_text(text: String):
 	enemy_text = text
+	print("texto agarrado: "+enemy_text)
 	
 func enable_input_capture(enable: bool):
 	input_enabled = enable
@@ -133,7 +138,8 @@ func _input(event):
 		if event.pressed and not event.is_echo():
 			var key_text = event.as_text()
 			
-			if key_text not in ["Up", "Down", "Left", "Right", "CapsLock", "Super", "PageDown", "PageUp"]:  # Filtro de teclas
+			if key_text not in ["Up", "Down", "Left", "Right", "CapsLock", "Super", "PageDown", "PageUp"]: 
+				print(key_text)
 				if input_index < enemy_text.length() and key_text == str(enemy_text[input_index]):
 					my_text += key_text
 					input_index += 1

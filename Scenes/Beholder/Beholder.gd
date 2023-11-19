@@ -7,8 +7,7 @@ var player = null
 var textito = ""
 var bod = ""
 
-var textos = ["BLACKBERRY","HOLA","ADIOS"]  # Arreglo con posibles textos
-@onready var rich_text_label = $RichTextLabel
+var textos = ["HELLO","GOODBYE","GOODMORNING"]  # Arreglo con posibles textos
 
 var original_offset = Vector2(0, 0)
 var flipped_offset = Vector2(-30,0)
@@ -18,7 +17,7 @@ func _ready():
 
 func seleccionar_texto_aleatorio():
 	var texto_aleatorio = textos[randi() % textos.size()]  # Selecciona un texto al azar
-	rich_text_label.text = texto_aleatorio
+	$RichTextLabel.text = texto_aleatorio
 	
 func _physics_process(delta):
 	if player !=null and player.get_error():
@@ -28,7 +27,8 @@ func _physics_process(delta):
 		player.set_text(textito)
 		
 	if player != null and player.wrote_good:
-		self.queue_free()
+		anim.play("death")
+		$Timer.start()
 		player.set_wrote_good(false)
 		
 	if player_chase:
@@ -71,4 +71,5 @@ func _on_attack_zone_body_exited(body):
 	if body.name == "Player":
 		anim.play("fly")
 
-
+func _on_timer_timeout():
+	self.queue_free()

@@ -1,6 +1,8 @@
-[gd_scene load_steps=50 format=3 uid="uid://bd34mp05ws1ds"]
+[gd_scene load_steps=54 format=3 uid="uid://bd34mp05ws1ds"]
 
 [ext_resource type="Script" path="res://Scenes/Reaper/boss.gd" id="1_0n0mo"]
+[ext_resource type="Texture2D" uid="uid://cq1pr3lkd55cx" path="res://Assets/Mobs/Reaper/reaper-hurt-outline.png" id="2_scjdc"]
+[ext_resource type="Texture2D" uid="uid://c0qm4y86v6r8r" path="res://Assets/Mobs/Reaper/reaper-attack-outline.png" id="3_vfcmq"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fva3y"]
 load_path = "res://.godot/imported/reaper-attack-outline.png-9c93dff3e97b8887859987d4fc9c6e21.ctex"
@@ -119,6 +121,14 @@ region = Rect2(1536, 0, 128, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_4rhur"]
 atlas = SubResource("CompressedTexture2D_tgefx")
 region = Rect2(1664, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkise"]
+atlas = ExtResource("2_scjdc")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fygu5"]
+atlas = ExtResource("3_vfcmq")
+region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l7dr0"]
 load_path = "res://.godot/imported/reaper-idle-outline.png-508f8f9157ed04c025d1dd5df9014f25.ctex"
@@ -270,8 +280,19 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4rhur")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkise")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fygu5")
+}],
+"loop": true,
+"name": &"hurt",
 "speed": 5.0
 }, {
 "frames": [{
@@ -325,10 +346,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvcr0"]
-radius = 90.05
+radius = 48.3735
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uc2jr"]
-radius = 464.311
+radius = 759.853
 
 [node name="Reaper" type="CharacterBody2D"]
 script = ExtResource("1_0n0mo")
@@ -336,11 +357,12 @@ script = ExtResource("1_0n0mo")
 [node name="Rotator" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(87.0001, -15)
-scale = Vector2(2.39063, 2.26563)
+position = Vector2(75.8788, -12.7501)
+scale = Vector2(2.20372, 2.33594)
 sprite_frames = SubResource("SpriteFrames_rxebk")
-animation = &"attack"
-frame_progress = 0.815435
+animation = &"hurt"
+frame = 1
+frame_progress = 0.745005
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
@@ -354,13 +376,29 @@ wait_time = 5.0
 [node name="IdleTimer" type="Timer" parent="."]
 wait_time = 1.5
 
+[node name="NullMode" type="Timer" parent="."]
+wait_time = 3.0
+
 [node name="walk_zone" type="Area2D" parent="."]
 position = Vector2(0, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walk_zone"]
+position = Vector2(-5, 3)
 shape = SubResource("CircleShape2D_uc2jr")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -55.0
+offset_top = -71.0
+offset_right = 135.0
+offset_bottom = -39.0
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 2.0
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="ModeTimer" to="." method="_on_mode_timer_timeout"]
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="NullMode" to="." method="_on_null_mode_timeout"]
 [connection signal="body_entered" from="walk_zone" to="." method="_on_walk_zone_body_entered"]
+[connection signal="body_exited" from="walk_zone" to="." method="_on_walk_zone_body_exited"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
