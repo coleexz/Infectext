@@ -64,7 +64,7 @@ func _on_watch_zone_body_exited(body):
 		
 func _on_attack_zone_body_entered(body):
 	if body.name == "Player":
-		body.reduce_health(5)
+		body.reduce_health()
 		anim.play("attack")
 
 func _on_attack_zone_body_exited(body):

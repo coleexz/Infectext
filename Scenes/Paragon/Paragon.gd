@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var anim = $AnimatedSprite2D
-var speed = 100
+var speed = 70
 var player_chase = false
 var player = null
 var alive = true
@@ -41,11 +41,13 @@ func _physics_process(delta):
 				
 		if player != null and player.wrote_good:
 			alive = false
-			$Timer.start()  # Asegúrate de tener este nodo Timer en tu escena
+			$Timer.start()  
 			player.set_wrote_good(false)
+			
 	elif not death_animation_played:
+		player.reset()
 		anim.play("death")
-		$Timer.start()  # Reinicia el temporizador para la animación de muerte
+		$Timer.start()  
 		death_animation_played = true
 
 func _on_area_2d_body_entered(body):
@@ -71,7 +73,7 @@ func _on_attack_zone_body_entered(body):
 			anim.play("attack1")
 		else:
 			anim.play("attack2")
-		body.reduce_health(10)
+		body.reduce_health()
 
 func _on_attack_zone_body_exited(body):
 	if body.name == "Player":

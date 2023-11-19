@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+class_name Reaper
+
+signal healthChanged
+
 @onready var anim = $AnimatedSprite2D
 @onready var shoot_timer = $ShootTimer
 @onready var rotator = $Rotator
@@ -23,23 +27,23 @@ var rotation_direction = 1
 var direction_change_timer = 0
 var mode = 0
 
-var health = 300
+var maxHealth = 300
+var currentHealth = maxHealth
 
 var hurt_offset = Vector2(-50, 0)  # Ajusta este valor según sea necesario
 var normal_offset = Vector2(0, 0)
 
 var textos = [
-	"AAA",
-	"BBB",
-	"CCC",
-	"DDD"
+	"A",
+	"B",
+	"C"
 	#"HONORIFICABILITUDINITATIBUS",
 	#"INCOMPREHENSIBILIDADES",
 	#"ANTICONSTITUCIONALISSIMAMENTE",
 	#"TRANSUBSTANTIATIONALIST",
 	#"DISPROPORTIONABLENESS",
 	#"SUPERCALIFRAGILISTICEXPIALIDOCIOUS",
-	#"PNEUMONOULTRAMICROSCOPICSILICOVOLCANOCONIOSIS",
+	##"PNEUMONOULTRAMICROSCOPICSILICOVOLCANOCONIOSIS",
 	#"FLOCCINAUCINIHILIPILIFICATION"
 ]
 
@@ -62,9 +66,10 @@ func _on_shoot_timer_timeout():
 		bullet.rotation = r.global_rotation
 
 func _physics_process(delta):
-	if health <= 0:
+		
+	if currentHealth <= 0:
 		death()
-		health = 0
+		currentHealth = 0
 				
 	if player !=null and player.get_error():
 		seleccionar_texto_aleatorio()
@@ -73,8 +78,9 @@ func _physics_process(delta):
 		player.set_text(textito)
 				
 	if player != null and player.wrote_good:
-		health-=100
-		print(health)
+		player.reset()
+		currentHealth-=100
+		healthChanged.emit()
 		change_to_null_mode()
 		player.set_wrote_good(false)
 				
@@ -84,24 +90,30 @@ func _physics_process(delta):
 			position += direction * current_speed * delta
 
 				# Rotación y cambio de dirección
-		direction_change_timer += delta
-		if direction_change_timer >= direction_change_interval:
-			direction_change_timer = 0
-			rotation_direction *= -1
+			direction_change_timer += delta
+			if direction_change_timer >= direction_change_interval:
+				direction_change_timer = 0
+				rotation_direction *= -1
 
-		var new_rotation = rotator.rotation_degrees + rotate_speed * rotation_direction * delta
-		rotator.rotation_degrees = fmod(new_rotation, 360)
-		
+			var new_rotation = rotator.rotation_degrees + rotate_speed * rotation_direction * delta
+			rotator.rotation_degrees = fmod(new_rotation, 360)
+		else:
+			change_to_idle_mode()
+			current_speed = 0
+			anim.play("idle")
+			player.reset()
+			
 func change_to_attack_mode():
-	player.enable_input_capture(true)
-	current_speed = attack_speed
-	clear_spawn_points()
-	anim.play("attack")
-	setup_spawn_points()
+	if player.get_player_alive():
+		player.enable_input_capture(true)
+		current_speed = attack_speed
+		clear_spawn_points()
+		anim.play("attack")
+		setup_spawn_points()
 
-	idle_timer.stop()
-	shoot_timer.wait_time = time_between_shots
-	shoot_timer.start()
+		idle_timer.stop()
+		shoot_timer.wait_time = time_between_shots
+		shoot_timer.start()
 
 func _on_idle_timer_timeout():
 	change_pattern()

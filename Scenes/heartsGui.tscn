@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b78n07dmq5gyc"]
+
+[ext_resource type="Texture2D" uid="uid://r3ijvyqimvj6" path="res://Assets/Personaje/Heart.png" id="1_ki552"]
+[ext_resource type="Script" path="res://Scenes/heartsGui.gd" id="1_r46w6"]
+
+[node name="heart_gui" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_r46w6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_ki552")
+centered = false
+hframes = 5

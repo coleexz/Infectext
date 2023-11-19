@@ -1,11 +1,18 @@
 extends CharacterBody2D
 
+class_name Player 
+
+@onready var heartsContainer = $CanvasLayer/heartsContainer
 @onready var anim = $AnimatedSprite2D
-var speed = 120
+
+@export var knockBackPower: int = 800
+
+var speed = 100
 var cat_inrange=false
 var alreadyspeak=false;
 var player_alive = true
-var health = 100
+var maxHealth = 10
+var currentHealth = maxHealth
 var enemy_attack_cooldown = true
 var enemy_in_attack_range = false
 var bod = ""
@@ -17,6 +24,14 @@ var input_index = 0
 var wrote_good = false
 var error = false
 
+func reset():
+	$CanvasLayer/TEXTO.text = ""
+	my_text = ""
+	enemy_text = ""
+	input_index = 0
+	wrote_good = false
+	error = false
+	
 func get_player_alive():
 	return player_alive
 	
@@ -37,9 +52,11 @@ func get_wrote_good():
 	
 func _ready():
 	anim.play("idle_down")
+	$Particles.hide()
+	heartsContainer.setMaxHearts(maxHealth)
 	
 func _physics_process(delta):
-	
+	$Particles.play("null")
 	if Input.is_action_just_pressed("ui_accept"):
 		if alreadyspeak==false:
 			DialogueManager.show_example_dialogue_balloon(load("res://main.dialogue"),"Start")
@@ -74,7 +91,7 @@ func _physics_process(delta):
 		move_and_slide()
 		enemy_attack()
 		
-		if health<=0:
+		if currentHealth<=0:
 			die()
 
 func die():
@@ -97,9 +114,11 @@ func enemy_attack():
 		enemy_attack_cooldown = false
 		activate_cooldown()
 
-func reduce_health(h: int):
-	health -=h
-	print(health)
+func reduce_health():
+	currentHealth -=1
+	heartsContainer.updateHearts(currentHealth)
+	$Particles.show()
+	$Particles.play("blood")
 
 func _on_attack_cooldown_timeout():
 	enemy_attack_cooldown = true
@@ -114,11 +133,14 @@ func _on_player_hitbox_area_exited(area):
 
 func _on_player_hitbox_body_entered(body):
 	#entro alguien
+	if body.name == "limite" or body.name == "CollisionPolygon2D":
+		pass
+	else :
+		knockBack()
 	if body.has_method("Cat"):
 		cat_inrange=true
 		
 	bod = body.name
-	print(bod)
 	
 func _on_player_hitbox_body_exited(body):
 	#salio alguien
@@ -129,6 +151,7 @@ func _on_player_hitbox_body_exited(body):
 func set_text(text: String):
 	enemy_text = text
 	print("texto agarrado: "+enemy_text)
+	$CanvasLayer/TEXTO.text = enemy_text
 	
 func enable_input_capture(enable: bool):
 	input_enabled = enable
@@ -144,15 +167,22 @@ func _input(event):
 					my_text += key_text
 					input_index += 1
 					print(my_text)
+					$Particles.show()
+					$Particles.play("good")
 				else:
 					error = true
 					my_text = ""
 					input_index = 0
 					wrote_good = false
 					print("Reinicio debido a entrada incorrecta")
-					reduce_health(20)
+					reduce_health()
 					activate_cooldown()
 					
 				if input_index == enemy_text.length():
 					wrote_good=true
 					
+func knockBack():
+	var knockBackDirection = ( -velocity.normalized()) * knockBackPower
+	velocity = knockBackDirection
+	move_and_slide()
+	

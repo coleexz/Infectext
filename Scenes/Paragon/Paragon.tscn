@@ -305,6 +305,7 @@ position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_vtuvy")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
 offset_left = -24.0
 offset_top = -71.0
 offset_right = 37.0

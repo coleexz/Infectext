@@ -32,6 +32,7 @@ func _physics_process(delta):
 		if player != null and player.wrote_good:
 			alive = false
 			anim.play("death")
+			player.reset()
 			player_chase = false
 			$Timer.start()
 			player.set_wrote_good(false)
@@ -79,7 +80,7 @@ func _on_attack_zone_body_entered(body):
 				anim.play("attack1")
 			else :
 				anim.play("attack2")
-			body.reduce_health(15)
+			body.reduce_health()
 
 func _on_attack_zone_body_exited(body):
 	if body.name == "Player":

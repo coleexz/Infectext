@@ -1,8 +1,11 @@
-[gd_scene load_steps=54 format=3 uid="uid://bd34mp05ws1ds"]
+[gd_scene load_steps=57 format=3 uid="uid://bd34mp05ws1ds"]
 
 [ext_resource type="Script" path="res://Scenes/Reaper/boss.gd" id="1_0n0mo"]
 [ext_resource type="Texture2D" uid="uid://cq1pr3lkd55cx" path="res://Assets/Mobs/Reaper/reaper-hurt-outline.png" id="2_scjdc"]
 [ext_resource type="Texture2D" uid="uid://c0qm4y86v6r8r" path="res://Assets/Mobs/Reaper/reaper-attack-outline.png" id="3_vfcmq"]
+[ext_resource type="Texture2D" uid="uid://cvgnbbnu2hvft" path="res://Assets/Mobs/Reaper/healthbarUnder.png" id="4_753ta"]
+[ext_resource type="Texture2D" uid="uid://jrj6inuwjy0t" path="res://Assets/Mobs/Reaper/healthbarProgress.png" id="5_312cu"]
+[ext_resource type="Script" path="res://Scenes/Reaper/TextureProgressBar.gd" id="6_rbcee"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fva3y"]
 load_path = "res://.godot/imported/reaper-attack-outline.png-9c93dff3e97b8887859987d4fc9c6e21.ctex"
@@ -387,6 +390,7 @@ position = Vector2(-5, 3)
 shape = SubResource("CircleShape2D_uc2jr")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
 offset_left = -55.0
 offset_top = -71.0
 offset_right = 135.0
@@ -394,6 +398,29 @@ offset_bottom = -39.0
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 701.0
+offset_top = 76.0
+offset_right = 1277.0
+offset_bottom = 102.0
+text = "REAPER OF DREAMS
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("boss")]
+offset_left = 709.0
+offset_top = 109.0
+offset_right = 1294.0
+offset_bottom = 147.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_753ta")
+texture_progress = ExtResource("5_312cu")
+script = ExtResource("6_rbcee")
+boss = NodePath("../..")
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="ModeTimer" to="." method="_on_mode_timer_timeout"]
