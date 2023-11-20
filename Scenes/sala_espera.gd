@@ -15,7 +15,7 @@ func _on_entrada_laberinto_body_entered(body):
 	if body.has_method("Player"):
 		Global.cambioescena=true
 	
-		
+	
 func cambiarescena():
 		if Global.cambioescena==true:
 			if Global.escenaactual=="sala_espera":

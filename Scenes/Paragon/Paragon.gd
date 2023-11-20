@@ -89,3 +89,4 @@ func _on_attack_zone_body_exited(body):
 
 func _on_timer_timeout():
 	self.queue_free()  # Elimina el objeto cuando la animación de muerte termina
+

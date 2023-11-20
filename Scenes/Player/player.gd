@@ -11,7 +11,7 @@ var speed = 100
 var cat_inrange=false
 var alreadyspeak=false;
 var player_alive = true
-var maxHealth = 100
+var maxHealth = 8
 var currentHealth = maxHealth
 var enemy_attack_cooldown = true
 var enemy_in_attack_range = false
@@ -186,3 +186,6 @@ func knockBack():
 	velocity = knockBackDirection
 	move_and_slide()
 	
+
+
+

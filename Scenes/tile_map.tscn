@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://slpyugjjxqkt"]
+[gd_scene load_steps=17 format=3 uid="uid://slpyugjjxqkt"]
 
 [ext_resource type="Texture2D" uid="uid://1ougu1kckfh6" path="res://Assets/Mapa/Tiles.png" id="1_bw4tn"]
+[ext_resource type="Script" path="res://Scenes/tile_map.gd" id="1_m1v73"]
 [ext_resource type="Texture2D" uid="uid://b1uwjdu7lenao" path="res://Assets/Mapa/Props.png" id="2_jbc3a"]
 [ext_resource type="PackedScene" uid="uid://bvvay8k0iv1kc" path="res://Scenes/Player/player.tscn" id="3_gsyic"]
 [ext_resource type="PackedScene" uid="uid://dndsesxrrhp62" path="res://Scenes/Paragon/Paragon.tscn" id="4_xitxn"]
@@ -1262,9 +1263,13 @@ texture = ExtResource("1_bw4tn")
 sources/0 = SubResource("TileSetAtlasSource_h2iih")
 sources/1 = SubResource("TileSetAtlasSource_8p7iw")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82iop"]
+size = Vector2(65.0294, 94.9738)
+
 [node name="Mapa" type="Node2D"]
 position = Vector2(-10, -96)
 rotation = 0.000797791
+script = ExtResource("1_m1v73")
 
 [node name="Node2D" type="TileMap" parent="."]
 position = Vector2(15.1093, 136.988)
@@ -1302,3 +1307,11 @@ collision_mask = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="limite"]
 position = Vector2(63.1516, 189.95)
 polygon = PackedVector2Array(4.00159, 1.99681, 31, -0.0247345, 30.9896, -13.0247, 93.9912, -11.075, 94.0008, 0.925003, 96.0103, 12.9234, 129.011, 13.8971, 130.963, -46.1045, 507.963, -46.4053, 518.086, 107.586, 306.092, 114.756, 300.165, 206.76, 454.165, 206.637, 463.303, 379.63, 534.302, 378.574, 530.206, 258.577, 783.203, 254.375, 784.219, 274.374, 822.218, 272.344, 818.136, 170.347, 781.131, 164.377, 777.142, 177.38, 533.14, 175.575, 536.086, 107.572, 527.965, -44.4212, 923.959, -51.7371, 927.021, 26.2604, 1016.03, 34.1894, 1023.13, 161.184, 988.13, 162.212, 991.213, 266.209, 1019.22, 269.187, 1028.33, 409.18, 1028.41, 516.18, 967.41, 513.228, 960.38, 476.234, 946.391, 490.245, 5.3949, 494.996, 8.16031, 200.993, 125.16, 200.9, 142.291, 364.886, 298.291, 364.762, 308.309, 386.754, 337.303, 379.731, 338.218, 273.73, 204.218, 272.837, 194.071, 88.8449, 8.06857, 85.9933, 3.00235, 2.99728, -57.0774, -96.9548, -62.0112, -13.9509, -58.5508, 563.047, 490.441, 552.609, 990.456, 571.21, 1097.44, 549.125, 1107.97, -42.8839, 1091.92, -94.8712, 319.923, -97.2553, 138.924, -95.1109, -50.0774, -96.9601, 5.996, -5.00478)
+
+[node name="Puertaboss" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Puertaboss"]
+position = Vector2(1056.52, 656.671)
+shape = SubResource("RectangleShape2D_82iop")
+
+[connection signal="body_entered" from="Puertaboss" to="." method="_on_puertaboss_body_entered"]

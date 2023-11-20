@@ -15,12 +15,18 @@ var playerexit_y=0
 
 func finish_changescenes():
 	if cambioescena==true:
-		if encontrogato==true:
-			cambioescena=false
-			if escenaactual=="sala_espera":
-				escenaactual="tile_map"
-			else:
-				escenaactual="tile_map"
+		cambioescena=false
+		if escenaactual=="sala_espera":
+			escenaactual="tile_map"
 		else:
-			print("no ha interactuado con el gato")
+			escenaactual="tile_map"
+			
+func finish_salaboss():
+	if entrosalaboss==true:
+		entrosalaboss=false
+		if escenaactual=="tile_map":
+			escenaactual="sala_boss"
+		else:
+			escenaactual="sala_boss"
+		
 			
