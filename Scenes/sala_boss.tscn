@@ -2805,4 +2805,4 @@ polygon = PackedVector2Array(3, 3, 18, 4, 17, -29, 77, -31, 76, 25, 83, 26, 84, 
 position = Vector2(70, 164)
 
 [node name="Reaper" parent="." instance=ExtResource("4_lce1j")]
-position = Vector2(723, 341)
+position = Vector2(491, 347)
