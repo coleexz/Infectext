@@ -59,7 +59,7 @@ scale = Vector2(2.44853, 2.32261)
 sprite_frames = SubResource("SpriteFrames_p4nb2")
 animation = &"idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="npc" type="CollisionShape2D" parent="."]
 texture_filter = 1
 position = Vector2(23.5, 15)
 shape = SubResource("RectangleShape2D_7pupo")
