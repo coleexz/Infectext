@@ -1294,7 +1294,7 @@ position = Vector2(459.165, 206.634)
 position = Vector2(845.222, 278.326)
 
 [node name="Paragon" parent="." instance=ExtResource("4_xitxn")]
-position = Vector2(151.36, 450.879)
+position = Vector2(118.346, 433.906)
 
 [node name="limite" type="StaticBody2D" parent="."]
 collision_mask = 2

@@ -67,6 +67,7 @@ func _on_area_2d_body_entered(body):
 
 func _on_area_2d_body_exited(body):
 	if body.name == "Player":
+		player.reset()
 		player = null
 		player_chase = false
 		seleccionar_texto_aleatorio()

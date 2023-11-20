@@ -65,6 +65,7 @@ func _on_watch_zone_body_entered(body):
 
 func _on_watch_zone_body_exited(body):
 	if body.name == "Player":
+		player.reset()
 		player = null
 		player_chase = false
 		seleccionar_texto_aleatorio() 

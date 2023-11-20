@@ -38,8 +38,8 @@ func _physics_process(delta):
 			
 		if player != null and player.wrote_good:
 			alive = false
-			healthChanged.emit()
 			currentHealth = 0
+			healthChanged.emit()
 			anim.play("death")
 			player.reset()
 			player_chase = false
@@ -58,6 +58,7 @@ func _physics_process(delta):
 
 			global_position += direction / speed
 			anim.play("walk")
+			
 	elif not death_animation_played:
 		anim.play("death")
 		$Timer.start()
@@ -75,6 +76,7 @@ func _on_detection_area_body_entered(body):
 
 func _on_detection_area_body_exited(body):
 	if body.name == "Player":
+		player.reset()
 		player = null
 		player_chase = false
 		seleccionar_texto_aleatorio()
