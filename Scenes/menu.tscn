@@ -1,17 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqiykwrhqpo3l"]
+[gd_scene load_steps=7 format=3 uid="uid://bqiykwrhqpo3l"]
 
 [ext_resource type="FontFile" uid="uid://dc11tx7jc36fv" path="res://resurces/Kenney Pixel.ttf" id="1_o583s"]
+[ext_resource type="Script" path="res://Scenes/menu.gd" id="1_q58s0"]
 [ext_resource type="Texture2D" uid="uid://77ms0fl8vi8u" path="res://resurces/White Black M Letter Design Business Identity for Digital Design Company Logo .png" id="1_sxmxx"]
 [ext_resource type="PackedScene" uid="uid://bs6kyr7b8u11m" path="res://Scenes/parallax_background.tscn" id="2_dg08x"]
 [ext_resource type="Script" path="res://Scenes/Play.gd" id="3_ppw1x"]
+[ext_resource type="AudioStream" uid="uid://6pf4w5ih030b" path="res://Assets/MP3/waitingscreenmusic.mp3" id="6_xy1en"]
 
-[node name="Menu" type="Control"]
+[node name="Menu" type="Control" node_paths=PackedStringArray("play")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_q58s0")
+play = NodePath("VBoxMenu/VBoxBottones/Play")
 
 [node name="VBoxMenu" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -40,7 +44,7 @@ size_flags_vertical = 8
 auto_translate = false
 theme_override_constants/separation = 40
 
-[node name="Play" type="Button" parent="VBoxMenu/VBoxBottones"]
+[node name="Play" type="Button" parent="VBoxMenu/VBoxBottones" node_paths=PackedStringArray("Menu")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -51,6 +55,7 @@ theme_override_font_sizes/font_size = 100
 action_mode = 0
 text = "Play"
 script = ExtResource("3_ppw1x")
+Menu = NodePath("../../..")
 
 [node name="Salir" type="Button" parent="VBoxMenu/VBoxBottones"]
 layout_mode = 2
@@ -64,6 +69,9 @@ action_mode = 0
 text = "Salir"
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("2_dg08x")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_xy1en")
 
 [connection signal="pressed" from="VBoxMenu/VBoxBottones/Play" to="VBoxMenu/VBoxBottones/Play" method="_on_pressed"]
 [connection signal="pressed" from="VBoxMenu/VBoxBottones/Salir" to="VBoxMenu/VBoxBottones/Play" method="_on_salir_pressed"]
