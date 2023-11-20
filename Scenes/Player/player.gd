@@ -133,7 +133,7 @@ func _on_player_hitbox_area_exited(area):
 
 func _on_player_hitbox_body_entered(body):
 	#entro alguien
-	if body.name == "limite" or body.name == "CollisionPolygon2D":
+	if body.name == "limite" or body.name == "CollisionPolygon2D" or body.name == "npc":
 		pass
 	else :
 		knockBack()
