@@ -11,7 +11,7 @@ var speed = 100
 var cat_inrange=false
 var alreadyspeak=false;
 var player_alive = true
-var maxHealth = 100
+var maxHealth = 8
 var currentHealth = maxHealth
 var enemy_attack_cooldown = true
 var enemy_in_attack_range = false
@@ -133,7 +133,7 @@ func _on_player_hitbox_area_exited(area):
 
 func _on_player_hitbox_body_entered(body):
 	#entro alguien
-	if body.name == "limite" or body.name == "CollisionPolygon2D" or body.name == "npc":
+	if body.name == "limite" or body.name == "CollisionPolygon2D" or body.name == "NPC_1" or body.name == "NPC_2" or body.name == "NPC_3" or body.name == "cat":
 		pass
 	else :
 		knockBack()
@@ -180,6 +180,10 @@ func _input(event):
 					
 				if input_index == enemy_text.length():
 					wrote_good=true
+					currentHealth=currentHealth+1
+					if currentHealth >= maxHealth:
+						currentHealth = maxHealth
+					heartsContainer.updateHearts(currentHealth)
 					
 func knockBack():
 	var knockBackDirection = ( -velocity.normalized()) * knockBackPower
