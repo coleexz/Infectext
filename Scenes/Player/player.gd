@@ -7,6 +7,7 @@ class_name Player
 
 @export var knockBackPower: int = 800
 
+var anim_speed = 1200
 var speed = 100
 var cat_inrange=false
 var alreadyspeak=false;
@@ -54,6 +55,7 @@ func _ready():
 	anim.play("idle_down")
 	$Particles.hide()
 	heartsContainer.setMaxHearts(maxHealth)
+	hiiide()
 	
 func _physics_process(delta):
 	$Particles.play("null")
@@ -93,7 +95,36 @@ func _physics_process(delta):
 		
 		if currentHealth<=0:
 			die()
+		
+		if input_enabled == false:
+			hide_canvas(delta)
+			
+		if input_enabled == true:
+			show_canvas(delta)
 
+func hiiide():
+	$CanvasLayer/TEXTO.position.y = 1500
+	$CanvasLayer/Sprite2D.position.y = 1500
+	
+func hide_canvas(delta):
+	var current_y_sprite2d = $CanvasLayer/Sprite2D.position.y
+	var current_y_texto = $CanvasLayer/TEXTO.position.y
+	
+	if current_y_sprite2d < 1500 and current_y_texto < 1500:
+		$CanvasLayer/Sprite2D.position.y += anim_speed * delta
+		$CanvasLayer/TEXTO.position.y += anim_speed * delta
+
+# Función para mostrar el canvas
+func show_canvas(delta):
+	var current_y_sprite2d = $CanvasLayer/Sprite2D.position.y
+	var current_y_texto = $CanvasLayer/TEXTO.position.y
+	if current_y_sprite2d > 961:
+		$CanvasLayer/Sprite2D.position.y -= anim_speed * delta
+	if current_y_texto > 910:
+		$CanvasLayer/TEXTO.position.y -= anim_speed * delta
+	else: 
+		pass
+	
 func die():
 	player_alive = false
 	anim.play("death")
@@ -161,7 +192,7 @@ func _input(event):
 		if event.pressed and not event.is_echo():
 			var key_text = event.as_text()
 				
-			if key_text not in ["Up", "Down", "Left", "Right", "CapsLock", "Super", "PageDown", "PageUp"]: 
+			if key_text not in ["Up", "Down", "Left", "Right", "CapsLock", "Super", "PageDown", "PageUp"]:
 				print(key_text)
 				if input_index < enemy_text.length() and key_text == str(enemy_text[input_index]):
 					my_text += key_text
@@ -189,7 +220,3 @@ func knockBack():
 	var knockBackDirection = ( -velocity.normalized()) * knockBackPower
 	velocity = knockBackDirection
 	move_and_slide()
-	
-
-
-

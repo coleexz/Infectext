@@ -5,5 +5,5 @@
 [node name="heartsContainer" type="HBoxContainer"]
 offset_right = 117.0
 offset_bottom = 40.0
-theme_override_constants/separation = 50
+theme_override_constants/separation = 65
 script = ExtResource("1_abk08")
