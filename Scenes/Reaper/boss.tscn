@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bd34mp05ws1ds"]
+[gd_scene load_steps=58 format=3 uid="uid://bd34mp05ws1ds"]
 
 [ext_resource type="Script" path="res://Scenes/Reaper/boss.gd" id="1_0n0mo"]
 [ext_resource type="Texture2D" uid="uid://cq1pr3lkd55cx" path="res://Assets/Mobs/Reaper/reaper-hurt-outline.png" id="2_scjdc"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cvgnbbnu2hvft" path="res://Assets/Mobs/Reaper/healthbarUnder.png" id="4_753ta"]
 [ext_resource type="Texture2D" uid="uid://jrj6inuwjy0t" path="res://Assets/Mobs/Reaper/healthbarProgress.png" id="5_312cu"]
 [ext_resource type="Script" path="res://Scenes/Reaper/TextureProgressBar.gd" id="6_rbcee"]
+[ext_resource type="AudioStream" uid="uid://0ps4huj73dl8" path="res://Assets/MP3/x2mate.com - Dark Souls 3 OST - Slave Knight Gael (128 kbps).mp3" id="7_yhfga"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fva3y"]
 load_path = "res://.godot/imported/reaper-attack-outline.png-9c93dff3e97b8887859987d4fc9c6e21.ctex"
@@ -381,7 +382,7 @@ wait_time = 10.0
 wait_time = 3.0
 
 [node name="NullMode" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 4.0
 
 [node name="walk_zone" type="Area2D" parent="."]
 position = Vector2(0, 3)
@@ -403,9 +404,9 @@ wait_time = 2.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 701.0
-offset_top = 76.0
-offset_right = 1277.0
+offset_left = 697.0
+offset_top = 50.0
+offset_right = 1273.0
 offset_bottom = 102.0
 text = "REAPER 
 
@@ -414,15 +415,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("boss")]
-offset_left = 709.0
-offset_top = 109.0
-offset_right = 1294.0
-offset_bottom = 147.0
+offset_left = 703.0
+offset_top = 85.0
+offset_right = 1288.0
+offset_bottom = 123.0
 nine_patch_stretch = true
 texture_under = ExtResource("4_753ta")
 texture_progress = ExtResource("5_312cu")
 script = ExtResource("6_rbcee")
 boss = NodePath("../..")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_yhfga")
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="ModeTimer" to="." method="_on_mode_timer_timeout"]

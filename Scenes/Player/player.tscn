@@ -1,4 +1,4 @@
-[gd_scene load_steps=141 format=3 uid="uid://bvvay8k0iv1kc"]
+[gd_scene load_steps=144 format=3 uid="uid://bvvay8k0iv1kc"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_fu3bl"]
 [ext_resource type="Texture2D" uid="uid://c4nda0ut1psx" path="res://Assets/Personaje/player.png" id="1_wuduq"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://derf1es4ouqns" path="res://Assets/Personaje/Explosion_Default_Orange-sheet.png" id="4_xbhlx"]
 [ext_resource type="PackedScene" uid="uid://re1r6rt2778a" path="res://Scenes/hearts_container.tscn" id="5_sji6d"]
 [ext_resource type="Texture2D" uid="uid://quksa24yoqsi" path="res://Assets/ETC/Retro_Textbox_01-A_Transparent.png" id="6_0vbmn"]
+[ext_resource type="AudioStream" uid="uid://ev6jvffkkira" path="res://Assets/MP3/y2mate.com - Error  Sound Effects No Copyright.mp3" id="7_ta7ow"]
+[ext_resource type="AudioStream" uid="uid://dnthpradvme42" path="res://Assets/MP3/y2mate.com - Keyboard typing sound effect.mp3" id="8_6x54y"]
+[ext_resource type="AudioStream" uid="uid://lwj4ga8u1soi" path="res://Assets/MP3/y2mate.com - Minecraft Steve OOF Sound Effect.mp3" id="9_2q0gs"]
+[ext_resource type="AudioStream" uid="uid://c1atu8djuvnc" path="res://Assets/MP3/y2mate.com - Terraria  NPC Chatter Sound wav.mp3" id="10_kmyn0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fly3j"]
 atlas = ExtResource("1_wuduq")
@@ -960,6 +964,9 @@ animations = [{
 
 [sub_resource type="FontFile" id="FontFile_cqsih"]
 resource_name = "Intense Horror"
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -979,8 +986,6 @@ cache/0/48/0/kerning_overrides/48/0 = Vector2(0, 0)
 line_spacing = 5.0
 font = SubResource("FontFile_cqsih")
 font_size = 48
-
-[sub_resource type="AudioStream" id="AudioStream_2s8k1"]
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -1054,8 +1059,18 @@ label_settings = SubResource("LabelSettings_cpotn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStream_2s8k1")
+[node name="err" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ta7ow")
+
+[node name="key" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_6x54y")
+
+[node name="deathh" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_2q0gs")
+volume_db = 2.811
+
+[node name="chat" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_kmyn0")
 
 [connection signal="area_entered" from="player_hitbox" to="." method="_on_player_hitbox_area_entered"]
 [connection signal="area_exited" from="player_hitbox" to="." method="_on_player_hitbox_area_exited"]

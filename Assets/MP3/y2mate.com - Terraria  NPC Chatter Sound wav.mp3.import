@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c1atu8djuvnc"
+path="res://.godot/imported/y2mate.com - Terraria  NPC Chatter Sound wav.mp3-936b62b5f9a6f101d75a24de77301344.mp3str"
+
+[deps]
+
+source_file="res://Assets/MP3/y2mate.com - Terraria  NPC Chatter Sound wav.mp3"
+dest_files=["res://.godot/imported/y2mate.com - Terraria  NPC Chatter Sound wav.mp3-936b62b5f9a6f101d75a24de77301344.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

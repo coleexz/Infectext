@@ -1,8 +1,12 @@
 extends Node2D
 
+class_name tile_map
+
+@onready var musica = $AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	musica.play()
 	pass # Replace with function body.
 
 

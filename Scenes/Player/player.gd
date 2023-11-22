@@ -4,6 +4,8 @@ class_name Player
 
 @onready var heartsContainer = $CanvasLayer/heartsContainer
 @onready var anim = $AnimatedSprite2D
+@onready var err = $err
+@onready var key = $key
 
 @export var knockBackPower: int = 800
 
@@ -63,7 +65,7 @@ func _physics_process(delta):
 		if alreadyspeak==false:
 			DialogueManager.show_example_dialogue_balloon(load("res://main.dialogue"),"Start")
 			alreadyspeak=true
-			return
+			return 
 	
 	
 	if player_alive:
@@ -126,6 +128,7 @@ func show_canvas(delta):
 		pass
 	
 func die():
+	$deathh.play()
 	player_alive = false
 	anim.play("death")
 	enable_input_capture(false)
@@ -200,7 +203,10 @@ func _input(event):
 					print(my_text)
 					$Particles.show()
 					$Particles.play("good")
+					key.play()
 				else:
+					if currentHealth != 0:
+						err.play()
 					error = true
 					my_text = ""
 					input_index = 0

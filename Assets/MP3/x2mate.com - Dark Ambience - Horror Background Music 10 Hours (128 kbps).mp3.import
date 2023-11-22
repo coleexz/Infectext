@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://43tq17isift8"
+path="res://.godot/imported/x2mate.com - Dark Ambience - Horror Background Music 10 Hours (128 kbps).mp3-d00799be1cb5c257f88ee0ac972d9161.mp3str"
+
+[deps]
+
+source_file="res://Assets/MP3/x2mate.com - Dark Ambience - Horror Background Music 10 Hours (128 kbps).mp3"
+dest_files=["res://.godot/imported/x2mate.com - Dark Ambience - Horror Background Music 10 Hours (128 kbps).mp3-d00799be1cb5c257f88ee0ac972d9161.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

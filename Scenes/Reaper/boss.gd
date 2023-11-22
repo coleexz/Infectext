@@ -4,6 +4,7 @@ class_name Reaper
 
 signal healthChanged
 
+@onready var musica = $AudioStreamPlayer2D
 @onready var anim = $AnimatedSprite2D
 @onready var shoot_timer = $ShootTimer
 @onready var rotator = $Rotator
@@ -48,13 +49,13 @@ var textito = ""
 
 func _ready():
 	mode_timer.start()
-	change_to_idle_mode()
 	seleccionar_texto_aleatorio()
+	musica.play()
 
 func seleccionar_texto_aleatorio():
 	textito = textos[randi() % textos.size()]
 	$RichTextLabel.text = textito
-
+	
 func _on_shoot_timer_timeout():
 	for r in rotator.get_children():
 		var bullet = bullet_scene.instantiate()
@@ -67,7 +68,8 @@ func _physics_process(delta):
 	if currentHealth <= 0:
 		death()
 		currentHealth = 0
-				
+
+		
 	if player !=null and player.get_error():
 		seleccionar_texto_aleatorio()
 		player.set_error(false)
@@ -95,10 +97,12 @@ func _physics_process(delta):
 			var new_rotation = rotator.rotation_degrees + rotate_speed * rotation_direction * delta
 			rotator.rotation_degrees = fmod(new_rotation, 360)
 		else:
+			
 			change_to_idle_mode()
 			current_speed = 0
 			anim.play("idle")
 			player.reset()
+			
 			
 func change_to_attack_mode():
 	if player.get_player_alive():
@@ -124,7 +128,6 @@ func change_to_null_mode():
 	mode_timer.stop()
 	anim.offset = hurt_offset  # Cambiar al offset de "hurt"
 	anim.play("hurt")
-	
 	seleccionar_texto_aleatorio()
 	player.set_text(textito)
 	player.enable_input_capture(false)
@@ -174,7 +177,7 @@ func change_pattern():
 		spawn_point_count = 16
 		rotate_speed = 0
 		time_between_shots = 0.35
-		mode_timer.wait_time = 4
+		mode_timer.wait_time = 6
 
 func _on_walk_zone_body_entered(body):
 	if body.name == "Player":
@@ -207,7 +210,7 @@ func death():
 	current_speed = 0
 	$DeathTimer.start()  # Asegurarse de que se inicie el temporizador
 	anim.offset = normal_offset
+	musica.stop()
 	
 func _on_death_timer_timeout():
-	print("ADIOS")
 	self.queue_free()
