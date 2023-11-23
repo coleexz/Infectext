@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Beholder
 
 @onready var anim = $AnimatedSprite2D
-var speed = 250
+var speed = 20
 var player_chase = false
 var player = null
 var textito = ""
@@ -42,7 +42,7 @@ func _physics_process(delta):
 		
 	if player_chase:
 		var direction = player.global_position - global_position
-		
+		direction = direction.normalized() 
 		if direction.x < 0:  # Si el jugador está a la izquierda
 			anim.flip_h = true
 			anim.offset = flipped_offset
@@ -50,8 +50,8 @@ func _physics_process(delta):
 			anim.flip_h = false
 			anim.offset = original_offset
 
-		global_position += direction / speed
-	
+		global_position += direction * speed * delta 
+		move_and_collide(direction * speed * delta)  	
 	else:
 		anim.play("fly")
 		

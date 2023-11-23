@@ -5,7 +5,7 @@ class_name Paragon
 signal healthChanged 
 
 @onready var anim = $AnimatedSprite2D
-var speed = 70
+var speed = 20
 var player_chase = false
 var player = null
 var alive = true
@@ -29,13 +29,15 @@ func _physics_process(delta):
 	if alive:
 		if player_chase:
 			var direction = player.global_position - global_position
+			direction=direction.normalized()
 			if direction.x < 0:
 				anim.flip_h = true
 				anim.offset = flipped_offset
 			else:
 				anim.flip_h = false
 				anim.offset = original_offset
-			global_position += direction / speed
+			global_position += direction * speed * delta 
+			move_and_collide(direction * speed * delta)   # Utilizamos move_and_collide para gestionar colisiones
 			anim.play("move")
 
 		if player != null and player.get_error():

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://re1r6rt2778a" path="res://Scenes/hearts_container.tscn" id="5_sji6d"]
 [ext_resource type="Texture2D" uid="uid://quksa24yoqsi" path="res://Assets/ETC/Retro_Textbox_01-A_Transparent.png" id="6_0vbmn"]
 [ext_resource type="AudioStream" uid="uid://ev6jvffkkira" path="res://Assets/MP3/y2mate.com - Error  Sound Effects No Copyright.mp3" id="7_ta7ow"]
+[ext_resource type="FontFile" uid="uid://dc11tx7jc36fv" path="res://resurces/Kenney Pixel.ttf" id="7_v0w6m"]
 [ext_resource type="AudioStream" uid="uid://dnthpradvme42" path="res://Assets/MP3/y2mate.com - Keyboard typing sound effect.mp3" id="8_6x54y"]
 [ext_resource type="AudioStream" uid="uid://lwj4ga8u1soi" path="res://Assets/MP3/y2mate.com - Minecraft Steve OOF Sound Effect.mp3" id="9_2q0gs"]
 [ext_resource type="AudioStream" uid="uid://c1atu8djuvnc" path="res://Assets/MP3/y2mate.com - Terraria  NPC Chatter Sound wav.mp3" id="10_kmyn0"]
@@ -962,30 +963,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="FontFile" id="FontFile_cqsih"]
-resource_name = "Intense Horror"
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/48/0 = Vector2(0, 0)
-cache/0/48/0/ascent = 0.0
-cache/0/48/0/descent = 0.0
-cache/0/48/0/underline_position = 0.0
-cache/0/48/0/underline_thickness = 0.0
-cache/0/48/0/scale = 1.0
-cache/0/48/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/48/0/kerning_overrides/48/0 = Vector2(0, 0)
-
 [sub_resource type="LabelSettings" id="LabelSettings_cpotn"]
 line_spacing = 5.0
-font = SubResource("FontFile_cqsih")
-font_size = 48
+font = ExtResource("7_v0w6m")
+font_size = 60
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
