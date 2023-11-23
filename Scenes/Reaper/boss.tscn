@@ -382,7 +382,7 @@ wait_time = 10.0
 wait_time = 3.0
 
 [node name="NullMode" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 2.0
 
 [node name="walk_zone" type="Area2D" parent="."]
 position = Vector2(0, 3)
