@@ -48,6 +48,7 @@ var textos = [
 var textito = ""
 
 func _ready():
+	change_to_idle_mode()
 	mode_timer.start()
 	seleccionar_texto_aleatorio()
 	musica.play()

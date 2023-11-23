@@ -15,7 +15,7 @@ var maxHealth = 100
 var currentHealth = maxHealth
 
 var original_offset = Vector2(0, 0)
-var flipped_offset = Vector2(-65,0)
+var flipped_offset = Vector2(0,0)
 
 signal healthChanged
 
