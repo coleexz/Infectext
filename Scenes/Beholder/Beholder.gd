@@ -12,7 +12,7 @@ var bod = ""
 var maxHealth = 100
 var currentHealth = maxHealth
 
-var textos = ["HELLO","GOODBYE","GOODMORNING"]  # Arreglo con posibles textos
+var textos = ["AMOXICILINA","LANSOPRAZOL","FUROSEMIDA"]  # Arreglo con posibles textos
 
 var original_offset = Vector2(0, 0)
 var flipped_offset = Vector2(-30,0)
