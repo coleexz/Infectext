@@ -8,7 +8,7 @@ var player_chase = false
 var player = null
 var alive = true
 var textito = ""
-var textos = ["HELLO","GOODBYE","GOODMORNING"]
+var textos = ["PARACETAMOL","ACETAMINOFEN","COFALPREMIUM","SANASANACULITODERANA"]
 var death_animation_played = false
 
 var maxHealth = 100
