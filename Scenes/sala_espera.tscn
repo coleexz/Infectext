@@ -2675,4 +2675,3 @@ position = Vector2(591, 297)
 position = Vector2(478, 184)
 
 [connection signal="body_entered" from="entrada_laberinto" to="." method="_on_entrada_laberinto_body_entered"]
-[connection signal="child_entered_tree" from="cat" to="." method="_on_character_body_2d_child_entered_tree"]
