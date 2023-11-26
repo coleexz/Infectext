@@ -1289,7 +1289,6 @@ position = Vector2(674.38, 476.462)
 
 [node name="Player" parent="." instance=ExtResource("3_gsyic")]
 position = Vector2(126.158, 197.899)
-knockBackPower = 200
 
 [node name="NPC_2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_75xl6")]
 position = Vector2(231.138, 172.816)

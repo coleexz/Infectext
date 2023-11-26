@@ -109,6 +109,7 @@ func _physics_process(delta):
 		
 		if currentHealth<=0:
 			die()
+			get_tree().change_scene_to_file("res://game_over_sceen.tscn")
 		
 		if input_enabled == false:
 			hide_canvas(delta)

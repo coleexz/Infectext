@@ -35,14 +35,7 @@ var hurt_offset = Vector2(-37, 0)  # Ajusta este valor según sea necesario
 var normal_offset = Vector2(0, 0)
 
 var textos = [
-	"honorificabilitudinitatibus",
-	"incomprehensibilidades",
-	"anticonstitucionalissimamente",
-	"transubstantiationalist",
-	"disproportionableness",
-	"supercalifragilisticexpalidocious",
-	"pneumonoultramicroscopicsilicovolcanoconiosis",
-	"floccinaucinihilipilification"
+	"hola"
 ]
 
 var textito = ""
@@ -69,7 +62,9 @@ func _physics_process(delta):
 	if currentHealth <= 0:
 		death()
 		currentHealth = 0
-
+		Global.cambioescena=false
+		Global.escenaactual="sala_espera"
+		get_tree().change_scene_to_file("res://winn_sceen.tscn")
 		
 	if player !=null and player.get_error():
 		seleccionar_texto_aleatorio()

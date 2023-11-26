@@ -355,8 +355,6 @@ behemoth = NodePath("..")
 
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
-[connection signal="body_shape_exited" from="detection_area" to="." method="_on_detection_area_body_shape_exited"]
 [connection signal="body_entered" from="attack_zone" to="." method="_on_attack_zone_body_entered"]
 [connection signal="body_exited" from="attack_zone" to="." method="_on_attack_zone_body_exited"]
-[connection signal="body_shape_exited" from="attack_zone" to="." method="_on_attack_zone_body_shape_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
