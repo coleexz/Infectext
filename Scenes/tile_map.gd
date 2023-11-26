@@ -9,7 +9,6 @@ func _ready():
 	musica.play()
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	cambiarsalaboss()
@@ -23,4 +22,4 @@ func cambiarsalaboss():
 			if Global.escenaactual=="tile_map":
 				get_tree().change_scene_to_file("res://Scenes/sala_boss.tscn")
 				Global.finish_salaboss()
-				
+			

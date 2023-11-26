@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Paragon
 
-signal healthChanged 
+signal healthChanged
 
 @onready var anim = $AnimatedSprite2D
 var speed = 20
@@ -11,35 +11,50 @@ var player = null
 var alive = true
 var death_animation_played = false
 var textito = ""
-var textos = ["PANADOL","VITAFLENACO","VIXPREMIUMZ"]  # Puedes cambiar estos textos según sea necesario
+var textos = ["panadol","vitaflenaco","vixpremium"]
 var maxHealth = 100
 var currentHealth = maxHealth
-var original_offset = Vector2(0, 0)
-var flipped_offset = Vector2(-65, 0)
+var in_attack_zone = false
+var canattack = true
 
 func _ready():
 	seleccionar_texto_aleatorio()
 	anim.play("idle")
 
 func seleccionar_texto_aleatorio():
-	var texto_aleatorio = textos[randi() % textos.size()]  # Selecciona un texto al azar
-	$RichTextLabel.text = texto_aleatorio  # Asegúrate de tener este nodo en tu escena
+	var texto_aleatorio = textos[randi() % textos.size()]
+	$RichTextLabel.text = texto_aleatorio
 
 func _physics_process(delta):
 	if alive:
+		
+		if !canattack and player_chase:
+			anim.play("move")
+			
+		if canattack and in_attack_zone and player != null:
+			anim.stop()
+			var num = randi() % 2
+			if num == 0:
+				anim.play("attack1")
+			elif num==1:
+				anim.play("attack2")
+			player.reduce_health()
+			canattack = false
+			$attack_timer.start()
+			anim.play("move")
+			
 		if player_chase:
 			var direction = player.global_position - global_position
 			direction=direction.normalized()
 			if direction.x < 0:
 				anim.flip_h = true
-				anim.offset = flipped_offset
 			else:
 				anim.flip_h = false
-				anim.offset = original_offset
-			global_position += direction * speed * delta 
-			move_and_collide(direction * speed * delta)   # Utilizamos move_and_collide para gestionar colisiones
-			anim.play("move")
-
+			global_position += direction * speed * delta
+			move_and_collide(direction * speed * delta)
+		else:
+			anim.play("idle")
+			
 		if player != null and player.get_error():
 			seleccionar_texto_aleatorio()
 			player.set_error(false)
@@ -50,13 +65,13 @@ func _physics_process(delta):
 			currentHealth = 0
 			healthChanged.emit()
 			alive = false
-			$Timer.start()  
+			$Timer.start()
 			player.set_wrote_good(false)
 			
 	elif not death_animation_played:
 		player.reset()
 		anim.play("death")
-		$Timer.start()  
+		$Timer.start()
 		death_animation_played = true
 
 func _on_area_2d_body_entered(body):
@@ -72,23 +87,22 @@ func _on_area_2d_body_exited(body):
 		player.reset()
 		player = null
 		player_chase = false
-		seleccionar_texto_aleatorio()
 		body.enable_input_capture(false)
 		body.set_text("")
+		anim.play("idle")
 
 func _on_attack_zone_body_entered(body):
 	if alive and body.name == "Player":
-		var num = randi() % 2
-		if num == 0:
-			anim.play("attack1")
-		else:
-			anim.play("attack2")
-		body.reduce_health()
-
+		canattack = true
+		in_attack_zone = true
+		
 func _on_attack_zone_body_exited(body):
 	if body.name == "Player":
-		anim.play("move")
+		canattack = false
+		in_attack_zone = false
 
 func _on_timer_timeout():
 	self.queue_free()  # Elimina el objeto cuando la animación de muerte termina
 
+func _on_attack_timer_timeout():
+	canattack = true

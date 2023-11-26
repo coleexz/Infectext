@@ -182,7 +182,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7k2ws")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack1",
 "speed": 5.0
 }, {
@@ -208,7 +208,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3a64w")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack2",
 "speed": 5.0
 }, {
@@ -295,13 +295,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g6wj3"]
-radius = 39.0512
+radius = 34.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dvfei"]
 radius = 141.004
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qn1a2"]
-size = Vector2(126, 73)
+size = Vector2(126, 94)
 
 [node name="enemy" type="CharacterBody2D"]
 input_pickable = true
@@ -311,12 +311,11 @@ script = ExtResource("1_575c2")
 position = Vector2(40, -14)
 scale = Vector2(1.28906, 1.39063)
 sprite_frames = SubResource("SpriteFrames_7gry1")
-animation = &"walk"
-frame_progress = 0.497188
+animation = &"attack2"
 speed_scale = 0.8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 3)
+position = Vector2(-2, 1)
 shape = SubResource("CircleShape2D_g6wj3")
 
 [node name="detection_area" type="Area2D" parent="."]
@@ -324,14 +323,14 @@ position = Vector2(-1, 1)
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
-position = Vector2(2, 1)
+position = Vector2(1, 1)
 shape = SubResource("CircleShape2D_dvfei")
 
 [node name="attack_zone" type="Area2D" parent="."]
 position = Vector2(1, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_zone"]
-position = Vector2(-1, 0)
+position = Vector2(-2, -5)
 shape = SubResource("RectangleShape2D_qn1a2")
 
 [node name="Timer" type="Timer" parent="."]

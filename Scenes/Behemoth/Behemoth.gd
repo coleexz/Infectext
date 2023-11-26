@@ -8,14 +8,14 @@ var player_chase = false
 var player = null
 var alive = true
 var textito = ""
-var textos = ["PARACETAMOL","ACETAMINOFEN","COFALPREMIUM","SANASANACULITODERANA"]
+var textos = ["paracetamol","acetaminofen","cofalpremium","sanasanaculitoderana"]
 var death_animation_played = false
 
 var maxHealth = 100
 var currentHealth = maxHealth
 
 var original_offset = Vector2(0, 0)
-var flipped_offset = Vector2(0,0)
+var flipped_offset = Vector2(-50,0)
 
 signal healthChanged
 
@@ -29,7 +29,6 @@ func seleccionar_texto_aleatorio():
 	
 func _physics_process(delta):
 	if alive:
-		
 		if player !=null and player.get_error():
 			seleccionar_texto_aleatorio()
 			player.set_error(false)
@@ -76,6 +75,7 @@ func _on_detection_area_body_exited(body):
 		seleccionar_texto_aleatorio()
 		body.enable_input_capture(false)
 		body.set_text("")
+		anim.play("idle")
 
 func _on_attack_zone_body_entered(body):
 	if alive:

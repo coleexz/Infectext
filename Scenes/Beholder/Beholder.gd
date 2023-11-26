@@ -8,11 +8,12 @@ var player_chase = false
 var player = null
 var textito = ""
 var bod = ""
-
+var canattack = true
 var maxHealth = 100
 var currentHealth = maxHealth
+var in_attack_zone = false
 
-var textos = ["AMOXICILINA","LANSOPRAZOL","FUROSEMIDA"]  # Arreglo con posibles textos
+var textos = ["amoxicilina","lansoprazol","furosemida"]#"AMOXICILINA","LANSOPRAZOL","FUROSEMIDA"]  # Arreglo con posibles textos
 
 var original_offset = Vector2(0, 0)
 var flipped_offset = Vector2(-30,0)
@@ -27,6 +28,13 @@ func seleccionar_texto_aleatorio():
 	$RichTextLabel.text = texto_aleatorio
 	
 func _physics_process(delta):
+	
+	if in_attack_zone and canattack and player!=null:
+		player.reduce_health()
+		anim.play("attack")
+		$attack_timer.start()
+		canattack = false
+		
 	if player !=null and player.get_error():
 		seleccionar_texto_aleatorio()
 		player.set_error(false)
@@ -74,12 +82,16 @@ func _on_watch_zone_body_exited(body):
 		
 func _on_attack_zone_body_entered(body):
 	if body.name == "Player":
-		body.reduce_health()
-		anim.play("attack")
+		in_attack_zone = true
 
 func _on_attack_zone_body_exited(body):
 	if body.name == "Player":
+		in_attack_zone = false
 		anim.play("fly")
-
+		
 func _on_timer_timeout():
 	self.queue_free()
+
+func _on_attack_timer_timeout():
+	canattack = true
+	print("ya puede atacar")

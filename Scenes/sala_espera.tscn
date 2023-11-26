@@ -2670,6 +2670,7 @@ shape = SubResource("RectangleShape2D_aybux")
 
 [node name="Player" parent="." instance=ExtResource("3_5a7j0")]
 position = Vector2(591, 297)
+knockBackPower = 200
 
 [node name="cat" parent="." instance=ExtResource("5_78jyn")]
 position = Vector2(478, 184)

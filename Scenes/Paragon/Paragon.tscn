@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bgaxba3oi2ang" path="res://Assets/ETC/healthbarProgress.png" id="3_82akj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fq3hr"]
-radius = 60.0083
+radius = 25.1794
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v5rkq"]
 load_path = "res://.godot/imported/Paragon-attack1-outline.png-866e76a6ca8cd693eefebcc6621ee379.ctex"
@@ -172,7 +172,7 @@ animations = [{
 "duration": 2.0,
 "texture": SubResource("AtlasTexture_uewp6")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack1",
 "speed": 5.0
 }, {
@@ -198,7 +198,7 @@ animations = [{
 "duration": 2.0,
 "texture": SubResource("AtlasTexture_f0mkc")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack2",
 "speed": 5.0
 }, {
@@ -224,7 +224,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_f1qm3")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -279,7 +279,7 @@ animations = [{
 radius = 117.098
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtuvy"]
-size = Vector2(208, 53)
+size = Vector2(208, 62)
 
 [node name="Paragon" type="CharacterBody2D"]
 floor_constant_speed = true
@@ -294,7 +294,7 @@ texture_filter = 1
 position = Vector2(3, -29)
 scale = Vector2(1.54688, 1.5)
 sprite_frames = SubResource("SpriteFrames_v02cl")
-animation = &"attack2"
+animation = &"move"
 
 [node name="watch_zone" type="Area2D" parent="."]
 
@@ -304,7 +304,7 @@ shape = SubResource("CircleShape2D_fhdqg")
 [node name="attack_zone" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_zone"]
-position = Vector2(0, 1.5)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_vtuvy")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
@@ -321,17 +321,21 @@ scroll_active = false
 [node name="Timer" type="Timer" parent="."]
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("paragon")]
-offset_left = -29.0
+offset_left = -33.0
 offset_top = -32.0
-offset_right = 35.0
+offset_right = 31.0
 offset_bottom = -20.0
 texture_under = ExtResource("2_d77ir")
 texture_progress = ExtResource("3_82akj")
 script = ExtResource("2_2p50s")
 paragon = NodePath("..")
 
+[node name="attack_timer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="body_entered" from="watch_zone" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="watch_zone" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="attack_zone" to="." method="_on_attack_zone_body_entered"]
 [connection signal="body_exited" from="attack_zone" to="." method="_on_attack_zone_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]
