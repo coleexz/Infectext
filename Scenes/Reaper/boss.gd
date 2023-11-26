@@ -31,18 +31,18 @@ var mode = 0
 var maxHealth = 300
 var currentHealth = maxHealth
 
-var hurt_offset = Vector2(-50, 0)  # Ajusta este valor según sea necesario
+var hurt_offset = Vector2(-37, 0)  # Ajusta este valor según sea necesario
 var normal_offset = Vector2(0, 0)
 
 var textos = [
-	"HONORIFICABILITUDINITATIBUS",
-	"INCOMPREHENSIBILIDADES",
-	"ANTICONSTITUCIONALISSIMAMENTE",
-	"TRANSUBSTANTIATIONALIST",
-	"DISPROPORTIONABLENESS",
-	"SUPERCALIFRAGILISTICEXPIALIDOCIOUS",
-	"PNEUMONOULTRAMICROSCOPICSILICOVOLCANOCONIOSIS",
-	"FLOCCINAUCINIHILIPILIFICATION"
+	"honorificabilitudinitatibus",
+	"incomprehensibilidades",
+	"anticonstitucionalissimamente",
+	"transubstantiationalist",
+	"disproportionableness",
+	"supercalifragilisticexpalidocious",
+	"pneumonoultramicroscopicsilicovolcanoconiosis",
+	"floccinaucinihilipilification"
 ]
 
 var textito = ""
@@ -127,7 +127,7 @@ func change_to_null_mode():
 	$NullMode.start()
 	shoot_timer.stop()
 	mode_timer.stop()
-	anim.offset = hurt_offset  # Cambiar al offset de "hurt"
+	anim.offset = hurt_offset  
 	anim.play("hurt")
 	seleccionar_texto_aleatorio()
 	player.set_text(textito)

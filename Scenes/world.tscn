@@ -1,44 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://bybbgc24l2ivv"]
+[gd_scene load_steps=5 format=3 uid="uid://bybbgc24l2ivv"]
 
-[ext_resource type="PackedScene" uid="uid://de6pic1rsxunv" path="res://Scenes/Beholder/Beholder.tscn" id="1_y8ke6"]
-[ext_resource type="PackedScene" uid="uid://bvvay8k0iv1kc" path="res://Scenes/Player/player.tscn" id="2_uqkw3"]
-[ext_resource type="PackedScene" uid="uid://bt4t2ymfpoml4" path="res://Scenes/Behemoth/Behemoth.tscn" id="3_3lx5p"]
-[ext_resource type="PackedScene" uid="uid://h34at2bt5i7" path="res://Scenes/Cat/Cat.tscn" id="4_j2503"]
-[ext_resource type="PackedScene" uid="uid://dndsesxrrhp62" path="res://Scenes/Paragon/Paragon.tscn" id="4_mtbs4"]
-[ext_resource type="PackedScene" uid="uid://s8wapijblex2" path="res://Scenes/NPC_3/NPC_3.tscn" id="5_w74er"]
-[ext_resource type="PackedScene" uid="uid://qntm0kroabgy" path="res://Scenes/NPC_2/NPC_2.tscn" id="6_l2ows"]
-[ext_resource type="PackedScene" uid="uid://cpohfj5xgk8a3" path="res://Scenes/NPC_1/NPC_1.tscn" id="7_qukot"]
-[ext_resource type="PackedScene" uid="uid://bchb40vn662b6" path="res://Scenes/Rat/Rat.tscn" id="8_crfv0"]
-[ext_resource type="PackedScene" uid="uid://bd34mp05ws1ds" path="res://Scenes/Reaper/boss.tscn" id="9_b4oc6"]
+[ext_resource type="PackedScene" uid="uid://de6pic1rsxunv" path="res://Scenes/Beholder/Beholder.tscn" id="1_pmft7"]
+[ext_resource type="PackedScene" uid="uid://bt4t2ymfpoml4" path="res://Scenes/Behemoth/Behemoth.tscn" id="2_0ikju"]
+[ext_resource type="PackedScene" uid="uid://dndsesxrrhp62" path="res://Scenes/Paragon/Paragon.tscn" id="3_x1x40"]
+[ext_resource type="PackedScene" uid="uid://bvvay8k0iv1kc" path="res://Scenes/Player/player.tscn" id="4_deup1"]
 
-[node name="world" type="Node2D"]
+[node name="Node2D" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("2_uqkw3")]
-position = Vector2(519, 98)
+[node name="Player" parent="." instance=ExtResource("4_deup1")]
+position = Vector2(300, 177)
 
-[node name="Beholder" parent="." instance=ExtResource("1_y8ke6")]
-position = Vector2(318, 59)
+[node name="Paragon" parent="." instance=ExtResource("3_x1x40")]
+position = Vector2(138, 258)
 
-[node name="Behemoth" parent="." instance=ExtResource("3_3lx5p")]
-position = Vector2(582, -39)
+[node name="enemy2" parent="." instance=ExtResource("1_pmft7")]
+position = Vector2(248, 53)
 
-[node name="Cat" parent="." instance=ExtResource("4_j2503")]
-position = Vector2(380, 325)
-
-[node name="King" parent="." instance=ExtResource("7_qukot")]
-position = Vector2(439, 332)
-
-[node name="Merchant" parent="." instance=ExtResource("6_l2ows")]
-position = Vector2(547, 340)
-
-[node name="Knight" parent="." instance=ExtResource("5_w74er")]
-position = Vector2(631, 338)
-
-[node name="Paragon" parent="." instance=ExtResource("4_mtbs4")]
-position = Vector2(757, 148)
-
-[node name="rat" parent="." instance=ExtResource("8_crfv0")]
-position = Vector2(307, 316)
-
-[node name="Reaper" parent="." instance=ExtResource("9_b4oc6")]
-position = Vector2(473, 199)
+[node name="enemy" parent="." instance=ExtResource("2_0ikju")]
+position = Vector2(462, 243)

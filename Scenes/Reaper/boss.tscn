@@ -126,13 +126,13 @@ region = Rect2(1536, 0, 128, 64)
 atlas = SubResource("CompressedTexture2D_tgefx")
 region = Rect2(1664, 0, 128, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wkise"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f86nx"]
 atlas = ExtResource("2_scjdc")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fygu5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttv4g"]
 atlas = ExtResource("3_vfcmq")
-region = Rect2(256, 0, 64, 64)
+region = Rect2(380, 0, 76, 64)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l7dr0"]
 load_path = "res://.godot/imported/reaper-idle-outline.png-508f8f9157ed04c025d1dd5df9014f25.ctex"
@@ -290,10 +290,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wkise")
+"texture": SubResource("AtlasTexture_f86nx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fygu5")
+"texture": SubResource("AtlasTexture_ttv4g")
 }],
 "loop": true,
 "name": &"hurt",
@@ -361,12 +361,11 @@ script = ExtResource("1_0n0mo")
 [node name="Rotator" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(75.8788, -12.7501)
+position = Vector2(75, -12.75)
 scale = Vector2(2.20372, 2.33594)
 sprite_frames = SubResource("SpriteFrames_rxebk")
 animation = &"hurt"
-frame = 1
-frame_progress = 0.745005
+frame_progress = 0.424745
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)

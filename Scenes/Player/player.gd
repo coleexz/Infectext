@@ -2,13 +2,21 @@ extends CharacterBody2D
 
 class_name Player
 
+
 @onready var heartsContainer = $CanvasLayer/heartsContainer
 @onready var anim = $AnimatedSprite2D
 @onready var err = $err
 @onready var key = $key
 
-@export var knockBackPower: int = 800
+static var kingprofile = preload("res://Assets/Mobs/NPC/perfil/king.png")
+static var captainprofile = preload("res://Assets/Mobs/NPC/perfil/captain.png")
+static var panzonprofile = preload("res://Assets/Mobs/NPC/perfil/merchant.png")
+static var playerprofile = preload("res://Assets/Mobs/NPC/perfil/player.png")
+static var catprofile = preload("res://Assets/Mobs/NPC/perfil/cat.png")
 
+@export var knockBackPower: int = 200
+
+var moving = false
 var anim_speed = 1200
 var speed = 100
 var cat_inrange=false
@@ -18,7 +26,7 @@ var maxHealth = 8
 var currentHealth = maxHealth
 var enemy_attack_cooldown = true
 var enemy_in_attack_range = false
-var bod = ""
+static var bod = ""
 var input_enabled = false
 
 var my_text = ""
@@ -27,6 +35,9 @@ var input_index = 0
 var wrote_good = false
 var error = false
 
+func cambiaricononpc():
+	pass
+		
 func reset():
 	$CanvasLayer/TEXTO.text = ""
 	my_text = ""
@@ -64,6 +75,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		if alreadyspeak==false:
 			DialogueManager.show_example_dialogue_balloon(load("res://main.dialogue"),"Start")
+			bod = "PLAYER"
 			alreadyspeak=true
 			return 
 	
@@ -171,7 +183,20 @@ func _on_player_hitbox_body_entered(body):
 		pass
 	else :
 		knockBack()
+		
+	if body.name == "NPC_1":
+		cambiaricononpc()
+		bod = "KING"
+	elif body.name == "NPC_2":
+		cambiaricononpc()
+		bod = "PANZON"
+	elif body.name == "NPC_3":
+		cambiaricononpc()
+		bod = "KNIGHT"
+	
+	
 	if body.has_method("Cat"):
+		cambiaricononpc()
 		cat_inrange=true
 		
 	bod = body.name
@@ -179,8 +204,11 @@ func _on_player_hitbox_body_entered(body):
 func _on_player_hitbox_body_exited(body):
 	#salio alguien
 	if body.has_method("Cat"):
+		cambiaricononpc()
 		cat_inrange=false
 	bod = ""
+	
+	cambiaricononpc()
 
 func set_text(text: String):
 	enemy_text = text
@@ -194,8 +222,9 @@ func _input(event):
 	if input_enabled and event is InputEventKey:
 		if event.pressed and not event.is_echo():
 			var key_text = event.as_text()
+			key_text = key_text.to_lower()
 				
-			if key_text not in ["Up", "Down", "Left", "Right", "CapsLock", "Super", "PageDown", "PageUp"]:
+			if key_text not in ["up", "down", "left", "right", "capslock", "super", "pagedown", "pageup"]:
 				print(key_text)
 				if input_index < enemy_text.length() and key_text == str(enemy_text[input_index]):
 					my_text += key_text
@@ -223,6 +252,6 @@ func _input(event):
 					heartsContainer.updateHearts(currentHealth)
 					
 func knockBack():
-	var knockBackDirection = ( -velocity.normalized()) * knockBackPower
+	var knockBackDirection = -velocity.normalized() * knockBackPower
 	velocity = knockBackDirection
 	move_and_slide()
