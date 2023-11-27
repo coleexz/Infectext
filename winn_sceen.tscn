@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbqbipwkkq4fl"]
+[gd_scene load_steps=7 format=3 uid="uid://cbqbipwkkq4fl"]
 
 [ext_resource type="Script" path="res://winn_sceen.gd" id="1_3a2f8"]
 [ext_resource type="FontFile" uid="uid://dc11tx7jc36fv" path="res://resurces/Kenney Pixel.ttf" id="1_jrhlj"]
 [ext_resource type="Texture2D" uid="uid://d3gv5osbdnvdg" path="res://resurces/Diseño sin título (3).png" id="2_rqrm1"]
+[ext_resource type="AudioStream" uid="uid://do0smbv1o1cf3" path="res://resurces/winn_audio.mp3" id="4_a45kv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qr5yo"]
 bg_color = Color(1, 1, 1, 1)
@@ -21,10 +22,10 @@ texture = ExtResource("2_rqrm1")
 
 [node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
 layout_mode = 2
-offset_left = 164.0
-offset_top = 261.0
-offset_right = 1746.0
-offset_bottom = 1425.0
+offset_left = 148.0
+offset_top = 278.0
+offset_right = 1730.0
+offset_bottom = 1442.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/margin_bottom = 390
@@ -73,6 +74,12 @@ theme_override_fonts/font = ExtResource("1_jrhlj")
 theme_override_font_sizes/font_size = 150
 theme_override_styles/normal = SubResource("StyleBoxFlat_iu0vf")
 text = "  EXIT  "
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_a45kv")
+volume_db = 14.857
+pitch_scale = 1.68
+autoplay = true
 
 [connection signal="pressed" from="TextureRect/MarginContainer/Rows/CenterContainer/VBoxContainer/menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="TextureRect/MarginContainer/Rows/CenterContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
