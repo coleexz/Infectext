@@ -1,9 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://b8nte5i8ch1cu"]
+[gd_scene load_steps=18 format=3 uid="uid://b8nte5i8ch1cu"]
 
 [ext_resource type="Texture2D" uid="uid://6ik55jmws7jl" path="res://Assets/Mapa/Nuevo Mapa/mainlevbuild.png" id="1_55qjr"]
+[ext_resource type="Script" path="res://Scenes/mundo_alreves.gd" id="1_epe0t"]
 [ext_resource type="Texture2D" uid="uid://ctshtd0cr2n1d" path="res://Assets/Mapa/Nuevo Mapa/decorative.png" id="2_vs5d7"]
 [ext_resource type="Texture2D" uid="uid://dlgfd6fdix7p1" path="res://Assets/Mapa/Nuevo Mapa/torch_1.png" id="3_lbmio"]
 [ext_resource type="PackedScene" uid="uid://bvvay8k0iv1kc" path="res://Scenes/Player/player.tscn" id="4_gweqy"]
+[ext_resource type="PackedScene" uid="uid://bt4t2ymfpoml4" path="res://Scenes/Behemoth/Behemoth.tscn" id="6_rp2nh"]
+[ext_resource type="PackedScene" uid="uid://de6pic1rsxunv" path="res://Scenes/Beholder/Beholder.tscn" id="7_8mdwk"]
+[ext_resource type="PackedScene" uid="uid://dndsesxrrhp62" path="res://Scenes/Paragon/Paragon.tscn" id="8_u3e8g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mesyr"]
 texture = ExtResource("1_55qjr")
@@ -3228,7 +3232,11 @@ sources/0 = SubResource("TileSetAtlasSource_g1uef")
 sources/1 = SubResource("TileSetAtlasSource_7pdy0")
 sources/2 = SubResource("TileSetAtlasSource_l4tri")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3r54"]
+size = Vector2(76, 64)
+
 [node name="Mundo_Alreves" type="Node2D"]
+script = ExtResource("1_epe0t")
 
 [node name="piso" type="TileMap" parent="."]
 position = Vector2(2, -1)
@@ -3254,3 +3262,20 @@ polygon = PackedVector2Array(4, 1, 19, 1, 13, 70, 57, 70, 80, 74, 90, 74, 96, 40
 
 [node name="Player" parent="." instance=ExtResource("4_gweqy")]
 position = Vector2(121, 115)
+
+[node name="enemy" parent="." instance=ExtResource("6_rp2nh")]
+position = Vector2(142, 521)
+
+[node name="enemy2" parent="." instance=ExtResource("7_8mdwk")]
+position = Vector2(894, 226)
+
+[node name="Paragon" parent="." instance=ExtResource("8_u3e8g")]
+position = Vector2(421, 141)
+
+[node name="Puertaboss" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Puertaboss"]
+position = Vector2(1098, 626)
+shape = SubResource("RectangleShape2D_w3r54")
+
+[connection signal="body_entered" from="Puertaboss" to="." method="_on_puertaboss_body_entered"]

@@ -40,6 +40,8 @@ func _physics_process(delta):
 			currentHealth = 0
 			healthChanged.emit()
 			anim.play("death")
+			Global.cont_demonios=Global.cont_demonios+1
+			print("contdemonios",Global.cont_demonios)
 			player.reset()
 			player_chase = false
 			$Timer.start()

@@ -65,6 +65,8 @@ func _physics_process(delta):
 			currentHealth = 0
 			healthChanged.emit()
 			alive = false
+			Global.cont_demonios=Global.cont_demonios+1
+			print("contdemonios",Global.cont_demonios)
 			$Timer.start()
 			player.set_wrote_good(false)
 			

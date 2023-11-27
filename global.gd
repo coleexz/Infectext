@@ -5,7 +5,7 @@ signal encontrogato_cambiado
 var escenaactual="sala_espera"
 var cambioescena=false
 var entrosalaboss=false
-
+var cont_demonios=0
 #donde comienza
 var playerstart_x=0
 var playerstart_y=0
@@ -22,11 +22,24 @@ func finish_changescenes():
 			escenaactual="tile_map"
 			
 func finish_salaboss():
-	if entrosalaboss==true:
-		entrosalaboss=false
+	print("entro",cont_demonios)
+	if cambioescena==true:
+		if entrosalaboss==true and cont_demonios>2:
+			entrosalaboss=false
 		if escenaactual=="tile_map":
 			escenaactual="sala_boss"
 		else:
 			escenaactual="sala_boss"
 		
 			
+			
+func finish_mapaalreves():
+	if cont_demonios>2:
+		cont_demonios=0
+		if escenaactual=="tile_map":
+			escenaactual="mundo_alreves"
+		else:
+			escenaactual="tile_map"
+		
+	else:
+		escenaactual="mundo_alreves"		

@@ -47,7 +47,8 @@ func _physics_process(delta):
 		anim.play("death")
 		$Timer.start()
 		player.set_wrote_good(false)
-		
+		Global.cont_demonios=Global.cont_demonios+1
+		print("contdemonios",Global.cont_demonios)
 	if player_chase:
 		var direction = player.global_position - global_position
 		direction = direction.normalized() 
