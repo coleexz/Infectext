@@ -8,7 +8,7 @@ var player_chase = false
 var player = null
 var alive = true
 var textito = ""
-var textos = ["paracetamol","acetaminofen","cofalpremium","sanasanaculitoderana"]
+var textos = ["pala"]
 var death_animation_played = false
 
 var maxHealth = 100

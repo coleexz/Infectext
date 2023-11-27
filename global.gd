@@ -23,23 +23,25 @@ func finish_changescenes():
 			
 func finish_salaboss():
 	print("entro",cont_demonios)
-	if cambioescena==true:
-		if entrosalaboss==true and cont_demonios>2:
-			entrosalaboss=false
+	if entrosalaboss==true and cont_demonios==3:
+		entrosalaboss=false
+		cont_demonios=0
 		if escenaactual=="tile_map":
 			escenaactual="sala_boss"
 		else:
 			escenaactual="sala_boss"
-		
-			
-			
+		if escenaactual=="mundo_alreves":
+			escenaactual="sala_boss"
+		else:
+			escenaactual="sala_boss"					
+	
+				
 func finish_mapaalreves():
-	if cont_demonios>2:
+	if entrosalaboss==true and cont_demonios==3:
 		cont_demonios=0
+		entrosalaboss=false
 		if escenaactual=="tile_map":
 			escenaactual="mundo_alreves"
 		else:
 			escenaactual="tile_map"
-		
-	else:
-		escenaactual="mundo_alreves"		
+	

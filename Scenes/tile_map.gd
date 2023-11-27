@@ -19,14 +19,12 @@ func _on_puertaboss_body_entered(body):
 			entropuerta=true
 
 func cambiarsalaboss():
-		if Global.entrosalaboss==true and Global.cont_demonios>2:
+		if Global.entrosalaboss==true and Global.cont_demonios==3:
 			if Global.escenaactual=="tile_map":
 				get_tree().change_scene_to_file("res://Scenes/sala_boss.tscn")
 				Global.finish_salaboss()
 		else:
 			if entropuerta==true:
 				entropuerta=false
-				Global.entrosalaboss=false
-				Global.cont_demonios=0
 				get_tree().change_scene_to_file("res://Scenes/mundo_alreves.tscn")
 				Global.finish_mapaalreves()
