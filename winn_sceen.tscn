@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" path="res://winn_sceen.gd" id="1_3a2f8"]
 [ext_resource type="FontFile" uid="uid://dc11tx7jc36fv" path="res://resurces/Kenney Pixel.ttf" id="1_jrhlj"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fo45u"]
-bg_color = Color(0, 0, 0, 1)
+[ext_resource type="Texture2D" uid="uid://d3gv5osbdnvdg" path="res://resurces/Diseño sin título (3).png" id="2_rqrm1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qr5yo"]
 bg_color = Color(1, 1, 1, 1)
@@ -15,41 +13,34 @@ bg_color = Color(1, 1, 1, 1)
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_3a2f8")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -686.0
-offset_top = -286.0
-offset_right = 694.0
-offset_bottom = 87.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_fo45u")
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_top = -14.0
+offset_right = 1935.0
+offset_bottom = 1084.0
+texture = ExtResource("2_rqrm1")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
 layout_mode = 2
+offset_left = 164.0
+offset_top = 261.0
+offset_right = 1746.0
+offset_bottom = 1425.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/margin_left = 390
-theme_override_constants/margin_top = 390
-theme_override_constants/margin_right = 390
 theme_override_constants/margin_bottom = 390
 
-[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="Rows" type="VBoxContainer" parent="TextureRect/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 100
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+[node name="Label" type="Label" parent="TextureRect/MarginContainer/Rows"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_jrhlj")
 theme_override_font_sizes/font_size = 300
 text = "Congradulations
 "
 
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+[node name="Label2" type="Label" parent="TextureRect/MarginContainer/Rows"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("1_jrhlj")
@@ -57,15 +48,15 @@ theme_override_font_sizes/font_size = 100
 text = "YOU FIND THE CURE"
 horizontal_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
+[node name="CenterContainer" type="CenterContainer" parent="TextureRect/MarginContainer/Rows"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer/Rows/CenterContainer"]
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="menu" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+[node name="menu" type="Button" parent="TextureRect/MarginContainer/Rows/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -74,7 +65,7 @@ theme_override_font_sizes/font_size = 150
 theme_override_styles/normal = SubResource("StyleBoxFlat_qr5yo")
 text = " Menu "
 
-[node name="Exit" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+[node name="Exit" type="Button" parent="TextureRect/MarginContainer/Rows/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
@@ -83,5 +74,5 @@ theme_override_font_sizes/font_size = 150
 theme_override_styles/normal = SubResource("StyleBoxFlat_iu0vf")
 text = "  EXIT  "
 
-[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/menu" to="." method="_on_menu_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/Rows/CenterContainer/VBoxContainer/menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/Rows/CenterContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
