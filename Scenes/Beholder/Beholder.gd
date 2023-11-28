@@ -14,7 +14,7 @@ var maxHealth = 100
 var currentHealth = maxHealth
 var in_attack_zone = false
 
-var textos = ["amoxicilina","lansoprazol","furosemida"]#"AMOXICILINA","LANSOPRAZOL","FUROSEMIDA"]  # Arreglo con posibles textos
+var textos = ["hola"]#"AMOXICILINA","LANSOPRAZOL","FUROSEMIDA"]  # Arreglo con posibles textos
 
 var original_offset = Vector2(0, 0)
 var flipped_offset = Vector2(-30,0)
