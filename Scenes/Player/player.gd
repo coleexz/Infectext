@@ -77,7 +77,7 @@ func _physics_process(delta):
 			DialogueManager.show_example_dialogue_balloon(load("res://main.dialogue"),"Start")
 			bod = "PLAYER"
 			alreadyspeak=true
-			return 
+			return
 	
 	
 	if player_alive:
@@ -137,7 +137,7 @@ func show_canvas(delta):
 		$CanvasLayer/Sprite2D.position.y -= anim_speed * delta
 	if current_y_texto > 910:
 		$CanvasLayer/TEXTO.position.y -= anim_speed * delta
-	else: 
+	else:
 		pass
 	
 func die():
@@ -164,7 +164,6 @@ func enemy_attack():
 func reduce_health():
 	currentHealth -=1
 	heartsContainer.updateHearts(currentHealth)
-	$Particles.show()
 	$Particles.play("blood")
 
 func _on_attack_cooldown_timeout():
@@ -226,13 +225,16 @@ func _input(event):
 			key_text = key_text.to_lower()
 				
 			if key_text not in ["up", "down", "left", "right", "capslock", "super", "pagedown", "pageup"]:
-				print(key_text)
 				if input_index < enemy_text.length() and key_text == str(enemy_text[input_index]):
 					my_text += key_text
 					input_index += 1
-					print(my_text)
+					var typed_text = enemy_text.substr(0, input_index)
+					var remaining_text = enemy_text.substr(input_index, enemy_text.length() - input_index)
+					$CanvasLayer/TEXTO.bbcode_text = "[color=green]" + typed_text + "[/color]" + remaining_text
 					$Particles.show()
 					$Particles.play("good")
+								
+								
 					key.play()
 				else:
 					if currentHealth != 0:
@@ -244,7 +246,7 @@ func _input(event):
 					print("Reinicio debido a entrada incorrecta")
 					reduce_health()
 					activate_cooldown()
-					
+								
 				if input_index == enemy_text.length():
 					wrote_good=true
 					currentHealth=currentHealth+1

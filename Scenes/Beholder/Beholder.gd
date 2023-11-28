@@ -4,6 +4,7 @@ class_name Beholder
 
 @onready var anim = $AnimatedSprite2D
 var speed = 20
+var alive = true
 var player_chase = false
 var player = null
 var textito = ""
@@ -49,7 +50,7 @@ func _physics_process(delta):
 		player.set_wrote_good(false)
 		Global.cont_demonios=Global.cont_demonios+1
 		print("contdemonios",Global.cont_demonios)
-	if player_chase:
+	if player_chase and alive:
 		var direction = player.global_position - global_position
 		direction = direction.normalized() 
 		if direction.x < 0:  # Si el jugador está a la izquierda
@@ -91,6 +92,7 @@ func _on_attack_zone_body_exited(body):
 		anim.play("fly")
 		
 func _on_timer_timeout():
+	alive = false
 	self.queue_free()
 
 func _on_attack_timer_timeout():

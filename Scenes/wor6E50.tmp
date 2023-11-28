@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bybbgc24l2ivv"]
+
+[ext_resource type="PackedScene" uid="uid://de6pic1rsxunv" path="res://Scenes/Beholder/Beholder.tscn" id="1_pmft7"]
+[ext_resource type="PackedScene" uid="uid://bt4t2ymfpoml4" path="res://Scenes/Behemoth/Behemoth.tscn" id="2_0ikju"]
+[ext_resource type="PackedScene" uid="uid://dndsesxrrhp62" path="res://Scenes/Paragon/Paragon.tscn" id="3_x1x40"]
+[ext_resource type="PackedScene" uid="uid://bvvay8k0iv1kc" path="res://Scenes/Player/player.tscn" id="4_deup1"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("4_deup1")]
+position = Vector2(300, 177)
+
+[node name="Paragon" parent="." instance=ExtResource("3_x1x40")]
+position = Vector2(138, 258)
+
+[node name="enemy2" parent="." instance=ExtResource("1_pmft7")]
+position = Vector2(248, 53)
+
+[node name="enemy" parent="." instance=ExtResource("2_0ikju")]
+position = Vector2(462, 243)

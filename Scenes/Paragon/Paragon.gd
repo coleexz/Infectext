@@ -2,11 +2,14 @@ extends CharacterBody2D
 
 class_name Paragon
 
+enum States { IDLE, MOVE, ATTACK, DEAD }
+var state = States.IDLE
+
 signal healthChanged
 
 @onready var anim = $AnimatedSprite2D
-var speed = 20
 var player_chase = false
+var speed = 20
 var player = null
 var alive = true
 var death_animation_played = false
@@ -19,62 +22,70 @@ var canattack = true
 
 func _ready():
 	seleccionar_texto_aleatorio()
-	anim.play("idle")
+	change_state(States.IDLE)
 
 func seleccionar_texto_aleatorio():
 	var texto_aleatorio = textos[randi() % textos.size()]
 	$RichTextLabel.text = texto_aleatorio
 
+func change_state(new_state):
+	state = new_state
+	match state:
+		States.IDLE:
+			anim.play("idle")
+		States.MOVE:
+			anim.play("move")
+		States.ATTACK:
+			var attack_anim = "attack1" if randi() % 2 == 0 else "attack2"
+			anim.play(attack_anim)
+		States.DEAD:
+			anim.play("death")
+			if not death_animation_played:
+				death_animation_played = true
+				$Timer.start()
+
 func _physics_process(delta):
+	if state == States.DEAD:
+		return
+
 	if alive:
-		
-		if !canattack and player_chase:
-			anim.play("move")
-			
-		if canattack and in_attack_zone and player != null:
-			anim.stop()
-			var num = randi() % 2
-			if num == 0:
-				anim.play("attack1")
-			elif num==1:
-				anim.play("attack2")
-			player.reduce_health()
-			canattack = false
-			$attack_timer.start()
-			anim.play("move")
-			
+		# Verificar si el estado de ataque ha terminado
+		if state == States.ATTACK and not anim.is_playing():
+			change_state(States.IDLE)
+
+		# Interacciones con el jugador
+		if player != null:
+			if player.get_error():
+				seleccionar_texto_aleatorio()
+				player.set_error(false)
+				textito = $RichTextLabel.text
+				player.set_text(textito)
+			elif player.wrote_good:
+				currentHealth = 0
+				healthChanged.emit()
+				alive = false
+				change_state(States.DEAD)
+				Global.cont_demonios += 1
+				player.set_wrote_good(false)
+
+		# Manejar movimiento y ataque
 		if player_chase:
 			var direction = player.global_position - global_position
-			direction=direction.normalized()
-			if direction.x < 0:
-				anim.flip_h = true
-			else:
-				anim.flip_h = false
+			direction = direction.normalized()
+			anim.flip_h = direction.x < 0
+			if state != States.ATTACK:
+				change_state(States.MOVE)
 			global_position += direction * speed * delta
 			move_and_collide(direction * speed * delta)
-		else:
-			anim.play("idle")
-			
-		if player != null and player.get_error():
-			seleccionar_texto_aleatorio()
-			player.set_error(false)
-			textito = $RichTextLabel.text
-			player.set_text(textito)
-				
-		if player != null and player.wrote_good:
-			currentHealth = 0
-			healthChanged.emit()
-			alive = false
-			Global.cont_demonios=Global.cont_demonios+1
-			print("contdemonios",Global.cont_demonios)
-			$Timer.start()
-			player.set_wrote_good(false)
-			
-	elif not death_animation_played:
-		player.reset()
-		anim.play("death")
-		$Timer.start()
-		death_animation_played = true
+
+		# Iniciar ataque si es posible
+		if canattack and in_attack_zone and state != States.ATTACK and player != null:
+			change_state(States.ATTACK)
+			canattack = false
+			$attack_timer.start()
+	else:
+		change_state(States.DEAD)
+
 
 func _on_area_2d_body_entered(body):
 	if body.name == "Player":
@@ -91,17 +102,19 @@ func _on_area_2d_body_exited(body):
 		player_chase = false
 		body.enable_input_capture(false)
 		body.set_text("")
-		anim.play("idle")
+		change_state(States.IDLE)
 
 func _on_attack_zone_body_entered(body):
 	if alive and body.name == "Player":
-		canattack = true
 		in_attack_zone = true
-		
+		if canattack:
+			change_state(States.ATTACK)
+
 func _on_attack_zone_body_exited(body):
 	if body.name == "Player":
-		canattack = false
 		in_attack_zone = false
+		if state == States.ATTACK:
+			change_state(States.IDLE)
 
 func _on_timer_timeout():
 	self.queue_free()  # Elimina el objeto cuando la animación de muerte termina
