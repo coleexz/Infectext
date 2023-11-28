@@ -44,4 +44,9 @@ func finish_mapaalreves():
 			escenaactual="mundo_alreves"
 		else:
 			escenaactual="tile_map"
-	
+	else:
+		entrosalaboss=false
+		if escenaactual=="tile_map":
+			escenaactual="mundo_alreves"
+		else:
+			escenaactual="tile_map"
