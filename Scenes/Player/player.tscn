@@ -1052,9 +1052,13 @@ volume_db = 2.811
 position = Vector2(25, 15)
 stream = ExtResource("10_kmyn0")
 
+[node name="speedTimer" type="Timer" parent="."]
+wait_time = 10.0
+
 [connection signal="area_entered" from="player_hitbox" to="." method="_on_player_hitbox_area_entered"]
 [connection signal="area_exited" from="player_hitbox" to="." method="_on_player_hitbox_area_exited"]
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="death_timer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="speedTimer" to="." method="_on_speed_timer_timeout"]

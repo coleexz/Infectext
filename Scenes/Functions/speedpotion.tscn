@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://djcp111gwkxjn"]
+
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_qm6c1"]
+[ext_resource type="Texture2D" uid="uid://uoo1sqlkbc0h" path="res://Assets/ETC/potion_A_blue_full.png" id="2_j04ft"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y21d7"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_qm6c1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_j04ft")
+
+[node name="pocion_velocidad" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pocion_velocidad"]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_y21d7")
+
+[connection signal="body_entered" from="pocion_velocidad" to="." method="_on_pocion_velocidad_body_entered"]

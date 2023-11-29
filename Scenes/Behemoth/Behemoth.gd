@@ -2,10 +2,11 @@ extends CharacterBody2D
 
 class_name Behemoth
 
-enum States { IDLE, MOVE, ATTACK, DEAD }
+enum States {IDLE, MOVE, ATTACK, DEAD}
 var state = States.IDLE
 
 @onready var anim = $AnimatedSprite2D
+var canattack = true
 var speed = 20
 var player_chase = false
 var player = null
@@ -41,18 +42,30 @@ func change_state(new_state):
 			var attack_anim = "attack1" if randi() % 2 == 0 else "attack2"
 			anim.play(attack_anim)
 			anim.offset = original_offset
-			player.reduce_health()
+			if player != null:
+				player.reduce_health()
+			canattack = false  # Disable further attacks
+			$attack_timer.start()  # Start the attack cooldown timer
 		States.DEAD:
-			anim.play("death")
-			$death_timer.start()
+			if not death_animation_played:
+				anim.play("death")
+				$death_timer.start()
+				death_animation_played = true
 
 func _physics_process(delta):
-	if state == States.DEAD:
+	if not alive:
+		if not death_animation_played:
+			change_state(States.DEAD)
 		return
+		
+		if currentHealth <= 0 and alive:
+			alive = false
+			change_state(States.DEAD)
 
 	if alive:
 		if state == States.ATTACK and not anim.is_playing():
 			change_state(States.IDLE)
+			canattack = false
 
 		if player != null:
 			if player.get_error():
@@ -64,7 +77,7 @@ func _physics_process(delta):
 				currentHealth = 0
 				healthChanged.emit()
 				alive = false
-				change_state(States.DEAD)
+
 				Global.cont_demonios += 1
 				player.set_wrote_good(false)
 
@@ -95,7 +108,7 @@ func _on_detection_area_body_exited(body):
 		change_state(States.IDLE)
 
 func _on_attack_zone_body_entered(body):
-	if alive and body.name == "Player":
+	if alive and body.name == "Player" and canattack:
 		in_attack_zone = true
 		change_state(States.ATTACK)
 
@@ -104,6 +117,10 @@ func _on_attack_zone_body_exited(body):
 		in_attack_zone = false
 		if state == States.ATTACK:
 			change_state(States.IDLE)
+
+func _on_attack_timer_timeout():
+	canattack = true
+
 
 func _on_death_timer_timeout():
 	self.queue_free()

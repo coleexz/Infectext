@@ -308,7 +308,7 @@ position = Vector2(-2, 3)
 scale = Vector2(1.28906, 1.39063)
 sprite_frames = SubResource("SpriteFrames_7gry1")
 animation = &"idle"
-frame_progress = 0.629041
+frame_progress = 0.563309
 speed_scale = 0.7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -331,7 +331,6 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_qn1a2")
 
 [node name="death_timer" type="Timer" parent="."]
-wait_time = 2.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 visible = false

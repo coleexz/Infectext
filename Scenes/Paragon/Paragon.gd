@@ -38,6 +38,7 @@ func change_state(new_state):
 		States.ATTACK:
 			var attack_anim = "attack1" if randi() % 2 == 0 else "attack2"
 			anim.play(attack_anim)
+			player.reduce_health()
 		States.DEAD:
 			anim.play("death")
 			if not death_animation_played:
@@ -51,7 +52,7 @@ func _physics_process(delta):
 	if alive:
 		# Verificar si el estado de ataque ha terminado
 		if state == States.ATTACK and not anim.is_playing():
-			change_state(States.IDLE)
+			change_state(States.MOVE)
 
 		# Interacciones con el jugador
 		if player != null:
@@ -117,7 +118,7 @@ func _on_attack_zone_body_exited(body):
 			change_state(States.IDLE)
 
 func _on_timer_timeout():
-	self.queue_free()  # Elimina el objeto cuando la animación de muerte termina
+	self.queue_free() 
 
 func _on_attack_timer_timeout():
 	canattack = true

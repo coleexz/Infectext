@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmmo8rnbc4bn"]
+
+[ext_resource type="Texture2D" uid="uid://b1yyd62bfx05l" path="res://Assets/ETC/potion_A_red_full.png" id="1_nbk3y"]
+[ext_resource type="Script" path="res://Scenes/Functions/potion.gd" id="1_sp22e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5rvtl"]
+radius = 7.28011
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_sp22e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-8.75, -13.5)
+scale = Vector2(0.796875, 0.59375)
+texture = ExtResource("1_nbk3y")
+
+[node name="pocion_salud" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pocion_salud"]
+position = Vector2(-9, -11)
+shape = SubResource("CircleShape2D_5rvtl")
+
+[connection signal="body_entered" from="pocion_salud" to="." method="_on_pocion_salud_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://slpyugjjxqkt"]
+[gd_scene load_steps=19 format=3 uid="uid://slpyugjjxqkt"]
 
 [ext_resource type="Texture2D" uid="uid://1ougu1kckfh6" path="res://Assets/Mapa/Tiles.png" id="1_bw4tn"]
 [ext_resource type="Script" path="res://Scenes/tile_map.gd" id="1_m1v73"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://de6pic1rsxunv" path="res://Scenes/Beholder/Beholder.tscn" id="7_i6waq"]
 [ext_resource type="PackedScene" uid="uid://bt4t2ymfpoml4" path="res://Scenes/Behemoth/Behemoth.tscn" id="8_5e4tr"]
 [ext_resource type="AudioStream" uid="uid://43tq17isift8" path="res://Assets/MP3/x2mate.com - Dark Ambience - Horror Background Music 10 Hours (128 kbps).mp3" id="10_s22lg"]
+[ext_resource type="PackedScene" uid="uid://dmmo8rnbc4bn" path="res://Scenes/Functions/potion.tscn" id="11_2yxaw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ufk2a"]
 texture = ExtResource("1_bw4tn")
@@ -1319,5 +1320,8 @@ shape = SubResource("RectangleShape2D_82iop")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_s22lg")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("11_2yxaw")]
+position = Vector2(979.122, 152.219)
 
 [connection signal="body_entered" from="Puertaboss" to="." method="_on_puertaboss_body_entered"]

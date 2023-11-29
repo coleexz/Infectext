@@ -35,6 +35,12 @@ var input_index = 0
 var wrote_good = false
 var error = false
 
+func setHealth(nuevoHealth):
+	currentHealth = nuevoHealth
+	
+func incrementSpeed():
+	speed = 300
+	
 func cambiaricononpc():
 	pass
 		
@@ -117,6 +123,13 @@ func _physics_process(delta):
 		if input_enabled == true:
 			show_canvas(delta)
 
+func increaseHealth():
+	currentHealth = currentHealth + 1
+	if currentHealth >= maxHealth:
+		currentHealth = maxHealth
+	heartsContainer.updateHearts(currentHealth)
+	
+	
 func hiiide():
 	$CanvasLayer/TEXTO.position.y = 1500
 	$CanvasLayer/Sprite2D.position.y = 1500
@@ -172,6 +185,11 @@ func _on_attack_cooldown_timeout():
 func _on_player_hitbox_area_entered(area):
 	if area.name == "attack_zone" || area.name == "enemy_projectile":
 		enemy_in_attack_range = true
+	if area.name == "pocion_salud":
+		increaseHealth()
+	if area.name == "pocion_velocidad":
+		incrementSpeed()
+		$speedTimer.start()
 
 func _on_player_hitbox_area_exited(area):
 	if area.name == "attack_zone" || area.name == "enemy_projectile":
@@ -258,3 +276,6 @@ func knockBack():
 	var knockBackDirection = -velocity.normalized() * knockBackPower
 	velocity = knockBackDirection
 	move_and_slide()
+
+func _on_speed_timer_timeout():
+	speed = 100	
