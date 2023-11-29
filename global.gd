@@ -1,7 +1,6 @@
 extends Node
 
 var encontrogato=false
-signal encontrogato_cambiado
 var escenaactual="sala_espera"
 var cambioescena=false
 var entrosalaboss=false
@@ -16,6 +15,7 @@ var playerexit_y=0
 func finish_changescenes():
 	if cambioescena==true:
 		cambioescena=false
+		encontrogato=false
 		if escenaactual=="sala_espera":
 			escenaactual="tile_map"
 		else:

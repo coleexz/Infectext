@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cucqv3pgsovu2"]
+[gd_scene load_steps=17 format=3 uid="uid://cucqv3pgsovu2"]
 
 [ext_resource type="Texture2D" uid="uid://1ougu1kckfh6" path="res://Assets/Mapa/Tiles.png" id="1_b41ii"]
 [ext_resource type="Script" path="res://Scenes/sala_espera.gd" id="1_t4ewr"]
+[ext_resource type="FontFile" uid="uid://dc11tx7jc36fv" path="res://resurces/Kenney Pixel.ttf" id="2_4avtq"]
 [ext_resource type="Texture2D" uid="uid://b1uwjdu7lenao" path="res://Assets/Mapa/Props.png" id="2_cetli"]
+[ext_resource type="Texture2D" uid="uid://brbahm4gw1q22" path="res://resurces/You must interact with the cat to continue (1) (2).png" id="2_gb5kw"]
 [ext_resource type="PackedScene" uid="uid://bvvay8k0iv1kc" path="res://Scenes/Player/player.tscn" id="3_5a7j0"]
 [ext_resource type="PackedScene" uid="uid://dcjjq3rtrbxtv" path="res://Scenes/Cat.tscn" id="5_78jyn"]
 
@@ -2640,6 +2642,19 @@ size = Vector2(67, 141)
 position = Vector2(-15, -13)
 script = ExtResource("1_t4ewr")
 
+[node name="Window" type="Window" parent="."]
+title = "Warning"
+initial_position = 1
+size = Vector2i(300, 250)
+unresizable = true
+theme_override_fonts/title_font = ExtResource("2_4avtq")
+theme_override_font_sizes/title_font_size = 40
+
+[node name="Camera2D" type="Camera2D" parent="Window"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Window/Camera2D"]
+texture = ExtResource("2_gb5kw")
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_3d7nn")
 format = 2
@@ -2674,4 +2689,5 @@ position = Vector2(591, 297)
 [node name="cat" parent="." instance=ExtResource("5_78jyn")]
 position = Vector2(478, 184)
 
+[connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
 [connection signal="body_entered" from="entrada_laberinto" to="." method="_on_entrada_laberinto_body_entered"]
