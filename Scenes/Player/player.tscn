@@ -1,4 +1,4 @@
-[gd_scene load_steps=143 format=3 uid="uid://bvvay8k0iv1kc"]
+[gd_scene load_steps=145 format=3 uid="uid://bvvay8k0iv1kc"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_fu3bl"]
 [ext_resource type="Texture2D" uid="uid://c4nda0ut1psx" path="res://Assets/Personaje/player.png" id="1_wuduq"]
@@ -11,6 +11,8 @@
 [ext_resource type="AudioStream" uid="uid://dnthpradvme42" path="res://Assets/MP3/y2mate.com - Keyboard typing sound effect.mp3" id="8_6x54y"]
 [ext_resource type="AudioStream" uid="uid://lwj4ga8u1soi" path="res://Assets/MP3/y2mate.com - Minecraft Steve OOF Sound Effect.mp3" id="9_2q0gs"]
 [ext_resource type="AudioStream" uid="uid://c1atu8djuvnc" path="res://Assets/MP3/y2mate.com - Terraria  NPC Chatter Sound wav.mp3" id="10_kmyn0"]
+[ext_resource type="AudioStream" uid="uid://b4jfm3mtve3kb" path="res://resurces/powerup.mp3" id="12_lqui1"]
+[ext_resource type="AudioStream" uid="uid://col2j8mwrnto7" path="res://resurces/1up.mp3" id="13_2rwwg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fly3j"]
 atlas = ExtResource("1_wuduq")
@@ -1003,7 +1005,7 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="Particles" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 1000)
+position = Vector2(4, 10)
 scale = Vector2(1.11589, 1.17356)
 sprite_frames = SubResource("SpriteFrames_5pjrk")
 animation = &"blood"
@@ -1018,8 +1020,10 @@ position = Vector2(81.8361, 827.294)
 scale = Vector2(9.02342, 8.04905)
 
 [node name="heartsContainer" parent="CanvasLayer" instance=ExtResource("5_sji6d")]
-offset_right = 70.0
-offset_bottom = 21.0
+offset_left = -1.0
+offset_top = -2.0
+offset_right = 69.0
+offset_bottom = 19.0
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
 show_behind_parent = true
@@ -1060,6 +1064,12 @@ wait_time = 10.0
 
 [node name="errorTImer" type="Timer" parent="."]
 wait_time = 1.5
+
+[node name="powerup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_lqui1")
+
+[node name="hpup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_2rwwg")
 
 [connection signal="area_entered" from="player_hitbox" to="." method="_on_player_hitbox_area_entered"]
 [connection signal="area_exited" from="player_hitbox" to="." method="_on_player_hitbox_area_exited"]

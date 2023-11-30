@@ -7,7 +7,8 @@ class_name Player
 @onready var anim = $AnimatedSprite2D
 @onready var err = $err
 @onready var key = $key
-@onready var global = Global
+@onready var powerup = $powerup
+@onready var hpup = $hpup
 
 static var kingprofile = preload("res://Assets/Mobs/NPC/perfil/king.png")
 static var captainprofile = preload("res://Assets/Mobs/NPC/perfil/captain.png")
@@ -25,21 +26,17 @@ var cat_inrange=false
 var alreadyspeak=false;
 var player_alive = true
 var maxHealth = 8
-var currentHealth = maxHealth
+var currentHealth = 8
 var enemy_attack_cooldown = true
 var enemy_in_attack_range = false
 static var bod = ""
 var input_enabled = false
-
 var my_text = ""
 var enemy_text = ""
 var input_index = 0
 var wrote_good = false
 var error = false
 
-func setHealth(nuevoHealth):
-	currentHealth = nuevoHealth
-	
 func incrementSpeed():
 	speed = 300
 	
@@ -73,9 +70,11 @@ func get_wrote_good():
 	return wrote_good
 	
 func _ready():
+	heartsContainer.setMaxHearts(maxHealth)
+	currentHealth = Global.sal
 	anim.play("idle_down")
 	$Particles.hide()
-	heartsContainer.setMaxHearts(currentHealth)
+	heartsContainer.updateHearts(currentHealth)
 	hiiide()
 	
 func _physics_process(delta):
@@ -189,8 +188,10 @@ func _on_player_hitbox_area_entered(area):
 		enemy_in_attack_range = true
 	if area.name == "pocion_salud":
 		increaseHealth()
+		hpup.play()
 	if area.name == "pocion_velocidad":
 		incrementSpeed()
+		powerup.play()
 		$speedTimer.start()
 	if area.name == "Puertaboss":
 		Global.guardarSalud(currentHealth)

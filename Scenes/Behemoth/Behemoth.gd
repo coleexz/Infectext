@@ -86,7 +86,7 @@ func _physics_process(delta):
 				change_state(States.MOVE)
 
 func _on_detection_area_body_entered(body):
-	if body.name == "Player":
+	if body.name == "Player" and alive:
 		player = body
 		player_chase = true
 		body.enable_input_capture(true)
@@ -94,7 +94,7 @@ func _on_detection_area_body_entered(body):
 		body.set_text(textito)
 
 func _on_detection_area_body_exited(body):
-	if body.name == "Player":
+	if body.name == "Player" and alive:
 		player.reset()
 		player = null
 		player_chase = false
@@ -110,7 +110,7 @@ func _on_attack_zone_body_entered(body):
 func _on_attack_zone_body_exited(body):
 	if body.name == "Player":
 		in_attack_zone = false
-		if state == States.ATTACK:
+		if state == States.ATTACK and alive:
 			change_state(States.IDLE)
 
 func _on_attack_timer_timeout():

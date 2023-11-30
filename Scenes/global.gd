@@ -13,13 +13,9 @@ var playerstart_y=0
 #donde sale
 var playerexit_x=0
 var playerexit_y=0
-
-
-func guardarSalud(saludJugador):
-	sal = saludJugador
-
-func ponerSalud() -> int:
-	return sal
+	
+func guardarSalud(salud):
+	sal = salud
 	
 func finish_changescenes():
 	if cambioescena==true:
