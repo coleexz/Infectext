@@ -44,6 +44,7 @@ func change_state(new_state):
 			if not death_animation_played:
 				death_animation_played = true
 				$Timer.start()
+				player.cantype(false)
 
 func _physics_process(delta):
 	if state == States.DEAD:

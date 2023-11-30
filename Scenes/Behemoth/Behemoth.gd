@@ -72,9 +72,9 @@ func _physics_process(delta):
 				currentHealth = 0
 				healthChanged.emit()
 				alive = false
-
 				Global.cont_demonios += 1
 				player.set_wrote_good(false)
+				player.cantype(false)
 
 		if player_chase and not in_attack_zone and state!=States.DEAD:
 			var direction = player.global_position - global_position

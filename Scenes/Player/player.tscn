@@ -1034,14 +1034,23 @@ scale = Vector2(1.09766, 0.708772)
 texture = ExtResource("6_0vbmn")
 
 [node name="TEXTO" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 441.0
-offset_top = 907.0
-offset_right = 1521.0
-offset_bottom = 1029.0
+texture_filter = 2
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.878
+anchor_right = 0.5
+anchor_bottom = 0.878
+offset_left = -525.0
+offset_top = -28.2401
+offset_right = 555.0
+offset_bottom = 58.7599
+grow_horizontal = 2
+grow_vertical = 2
 tooltip_text = "					HOLA"
 theme_override_fonts/normal_font = ExtResource("7_ilqrd")
 theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
+fit_content = true
 
 [node name="err" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_ta7ow")

@@ -18,6 +18,7 @@ static var catprofile = preload("res://Assets/Mobs/NPC/perfil/cat.png")
 
 @export var knockBackPower: int = 200
 
+var puedeescribir = false
 var error_timer_active = false
 var moving = false
 var anim_speed = 1200
@@ -37,6 +38,9 @@ var input_index = 0
 var wrote_good = false
 var error = false
 
+func cantype(value: bool):
+	input_enabled = value
+	
 func incrementSpeed():
 	speed = 300
 	
@@ -235,16 +239,17 @@ func _on_player_hitbox_body_exited(body):
 
 func set_text(text: String):
 	if !error_timer_active:
+		puedeescribir = true
 		enemy_text = text
 		print("texto agarrado: "+enemy_text)
-		$CanvasLayer/TEXTO.text = enemy_text
+		$CanvasLayer/TEXTO.text = "[center]"+enemy_text+"[/center]"
 	
 func enable_input_capture(enable: bool):
 	input_enabled = enable
 	
 func _input(event):
 	if input_enabled and event is InputEventKey:
-		if event.pressed and not event.is_echo():
+		if event.pressed and not event.is_echo() and puedeescribir:
 			var key_text = event.as_text()
 			key_text = key_text.to_lower()
 				
@@ -254,7 +259,7 @@ func _input(event):
 					input_index += 1
 					var typed_text = enemy_text.substr(0, input_index)
 					var remaining_text = enemy_text.substr(input_index, enemy_text.length() - input_index)
-					$CanvasLayer/TEXTO.bbcode_text = "[color=green]" + typed_text + "[/color]" + remaining_text
+					$CanvasLayer/TEXTO.bbcode_text = "[center][color=green]" + typed_text + "[/color]" + remaining_text +"[/center]"
 					$Particles.show()
 					$Particles.play("good")
 					key.play()
@@ -264,8 +269,9 @@ func _input(event):
 					error = true
 					my_text = ""
 					input_index = 0
-					wrote_good = false
-					$CanvasLayer/TEXTO.bbcode_text = "[color=red]" + enemy_text + "[/color]"
+					wrote_good = false		
+					puedeescribir = false
+					$CanvasLayer/TEXTO.bbcode_text = "[center][color=red]" + enemy_text + "[/color][/center]"
 					error_timer_active = true  # Desactivar entrada de texto
 					$errorTImer.start()  # Iniciar el timer
 					reduce_health()
@@ -287,5 +293,6 @@ func _on_speed_timer_timeout():
 	speed = 100
 	
 func _on_error_t_imer_timeout():
+	puedeescribir = true
 	error_timer_active = false  # Reactivar entrada de texto
-	$CanvasLayer/TEXTO.bbcode_text = "[color=white]" + enemy_text + "[/color]"
+	$CanvasLayer/TEXTO.bbcode_text = "[center][color=white]" + enemy_text + "[/color][/center]"
