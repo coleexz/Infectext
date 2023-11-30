@@ -1,5 +1,6 @@
 extends Node
 
+var sal = 8
 var encontrogato=false
 signal encontrogato_cambiado
 var escenaactual="sala_espera"
@@ -13,6 +14,13 @@ var playerstart_y=0
 var playerexit_x=0
 var playerexit_y=0
 
+
+func guardarSalud(saludJugador):
+	sal = saludJugador
+
+func ponerSalud() -> int:
+	return sal
+	
 func finish_changescenes():
 	if cambioescena==true:
 		cambioescena=false
@@ -29,8 +37,6 @@ func finish_salaboss():
 			escenaactual="sala_boss"
 		else:
 			escenaactual="sala_boss"
-		
-			
 			
 func finish_mapaalreves():
 	if cont_demonios>2:
@@ -38,4 +44,3 @@ func finish_mapaalreves():
 			escenaactual="mundo_alreves"
 		else:
 			escenaactual="tile_map"
-		

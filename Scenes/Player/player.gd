@@ -7,6 +7,7 @@ class_name Player
 @onready var anim = $AnimatedSprite2D
 @onready var err = $err
 @onready var key = $key
+@onready var global = Global
 
 static var kingprofile = preload("res://Assets/Mobs/NPC/perfil/king.png")
 static var captainprofile = preload("res://Assets/Mobs/NPC/perfil/captain.png")
@@ -16,6 +17,7 @@ static var catprofile = preload("res://Assets/Mobs/NPC/perfil/cat.png")
 
 @export var knockBackPower: int = 200
 
+var error_timer_active = false
 var moving = false
 var anim_speed = 1200
 var speed = 100
@@ -73,7 +75,7 @@ func get_wrote_good():
 func _ready():
 	anim.play("idle_down")
 	$Particles.hide()
-	heartsContainer.setMaxHearts(maxHealth)
+	heartsContainer.setMaxHearts(currentHealth)
 	hiiide()
 	
 func _physics_process(delta):
@@ -190,7 +192,9 @@ func _on_player_hitbox_area_entered(area):
 	if area.name == "pocion_velocidad":
 		incrementSpeed()
 		$speedTimer.start()
-
+	if area.name == "Puertaboss":
+		Global.guardarSalud(currentHealth)
+		
 func _on_player_hitbox_area_exited(area):
 	if area.name == "attack_zone" || area.name == "enemy_projectile":
 		enemy_in_attack_range = false
@@ -229,9 +233,10 @@ func _on_player_hitbox_body_exited(body):
 	cambiaricononpc()
 
 func set_text(text: String):
-	enemy_text = text
-	print("texto agarrado: "+enemy_text)
-	$CanvasLayer/TEXTO.text = enemy_text
+	if !error_timer_active:
+		enemy_text = text
+		print("texto agarrado: "+enemy_text)
+		$CanvasLayer/TEXTO.text = enemy_text
 	
 func enable_input_capture(enable: bool):
 	input_enabled = enable
@@ -251,8 +256,6 @@ func _input(event):
 					$CanvasLayer/TEXTO.bbcode_text = "[color=green]" + typed_text + "[/color]" + remaining_text
 					$Particles.show()
 					$Particles.play("good")
-								
-								
 					key.play()
 				else:
 					if currentHealth != 0:
@@ -261,10 +264,12 @@ func _input(event):
 					my_text = ""
 					input_index = 0
 					wrote_good = false
-					print("Reinicio debido a entrada incorrecta")
+					$CanvasLayer/TEXTO.bbcode_text = "[color=red]" + enemy_text + "[/color]"
+					error_timer_active = true  # Desactivar entrada de texto
+					$errorTImer.start()  # Iniciar el timer
 					reduce_health()
 					activate_cooldown()
-								
+							
 				if input_index == enemy_text.length():
 					wrote_good=true
 					currentHealth=currentHealth+1
@@ -278,4 +283,8 @@ func knockBack():
 	move_and_slide()
 
 func _on_speed_timer_timeout():
-	speed = 100	
+	speed = 100
+	
+func _on_error_t_imer_timeout():
+	error_timer_active = false  # Reactivar entrada de texto
+	$CanvasLayer/TEXTO.bbcode_text = "[color=white]" + enemy_text + "[/color]"

@@ -44,6 +44,7 @@ func _physics_process(delta):
 		player.set_text(textito)
 		
 	if player != null and player.wrote_good:
+		alive = false
 		currentHealth = 0
 		healthChanged.emit()
 		anim.play("death")
@@ -51,6 +52,8 @@ func _physics_process(delta):
 		player.set_wrote_good(false)
 		Global.cont_demonios=Global.cont_demonios+1
 		print("contdemonios",Global.cont_demonios)
+		return 
+		
 	if player_chase and alive:
 		var direction = player.global_position - global_position
 		direction = direction.normalized() 
@@ -93,7 +96,6 @@ func _on_attack_zone_body_exited(body):
 		anim.play("fly")
 		
 func _on_timer_timeout():
-	alive = false
 	self.queue_free()
 
 func _on_attack_timer_timeout():

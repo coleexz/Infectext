@@ -4,6 +4,7 @@ class_name tile_map
 
 @onready var musica = $AudioStreamPlayer2D
 var entropuerta=false
+@export var player : Player
 
 func _ready():
 	musica.play()
@@ -21,11 +22,13 @@ func cambiarsalaboss():
 		if Global.entrosalaboss==true and Global.cont_demonios==3:
 			print("if escenaactualtilemap: ",Global.escenaactual)
 			if Global.escenaactual=="tile_map":
+				Global.guardarSalud(player.currentHealth)
 				get_tree().change_scene_to_file("res://Scenes/sala_boss.tscn")
 				Global.finish_salaboss()
 		else:
 			if entropuerta==true:
 				entropuerta=false
+				Global.guardarSalud(player.currentHealth)
 				print("else escenaactualtilemap: ",Global.escenaactual)
 				Global.cont_demonios=0
 				get_tree().change_scene_to_file("res://Scenes/mundo_alreves.tscn")
