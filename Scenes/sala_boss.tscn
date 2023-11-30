@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://1ougu1kckfh6" path="res://Assets/Mapa/Tiles.png" id="2_hiu7q"]
 [ext_resource type="PackedScene" uid="uid://bvvay8k0iv1kc" path="res://Scenes/Player/player.tscn" id="3_eic0e"]
 [ext_resource type="PackedScene" uid="uid://bd34mp05ws1ds" path="res://Scenes/Reaper/boss.tscn" id="4_lce1j"]
-[ext_resource type="PackedScene" uid="uid://djcp111gwkxjn" path="res://Scenes/Functions/speedpotion.tscn" id="5_c4guy"]
-[ext_resource type="PackedScene" uid="uid://dmmo8rnbc4bn" path="res://Scenes/Functions/potion.tscn" id="6_gtmoc"]
+[ext_resource type="PackedScene" path="res://Scenes/Functions/speedpotion.tscn" id="5_c4guy"]
+[ext_resource type="PackedScene" path="res://Scenes/Functions/potion.tscn" id="6_gtmoc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lieqj"]
 texture = ExtResource("1_ccs18")

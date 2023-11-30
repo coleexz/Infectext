@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://Scenes/sala_espera.gd" id="1_t4ewr"]
 [ext_resource type="FontFile" uid="uid://dc11tx7jc36fv" path="res://resurces/Kenney Pixel.ttf" id="2_4avtq"]
 [ext_resource type="Texture2D" uid="uid://b1uwjdu7lenao" path="res://Assets/Mapa/Props.png" id="2_cetli"]
-[ext_resource type="Texture2D" uid="uid://brbahm4gw1q22" path="res://resurces/You must interact with the cat to continue (1) (2).png" id="2_gb5kw"]
 [ext_resource type="PackedScene" uid="uid://bvvay8k0iv1kc" path="res://Scenes/Player/player.tscn" id="3_5a7j0"]
+[ext_resource type="Texture2D" uid="uid://dcchik30ek7v1" path="res://resurces/You must interact with the cat to continue (4) (1).png" id="3_kf7pa"]
 [ext_resource type="PackedScene" uid="uid://dcjjq3rtrbxtv" path="res://Scenes/Cat.tscn" id="5_78jyn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jp6xq"]
@@ -2645,7 +2645,7 @@ script = ExtResource("1_t4ewr")
 [node name="Window" type="Window" parent="."]
 title = "Warning"
 initial_position = 1
-size = Vector2i(300, 250)
+size = Vector2i(500, 350)
 unresizable = true
 theme_override_fonts/title_font = ExtResource("2_4avtq")
 theme_override_font_sizes/title_font_size = 40
@@ -2653,7 +2653,7 @@ theme_override_font_sizes/title_font_size = 40
 [node name="Camera2D" type="Camera2D" parent="Window"]
 
 [node name="Sprite2D" type="Sprite2D" parent="Window/Camera2D"]
-texture = ExtResource("2_gb5kw")
+texture = ExtResource("3_kf7pa")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_3d7nn")

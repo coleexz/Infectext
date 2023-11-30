@@ -80,7 +80,7 @@ func _physics_process(delta):
 	$Particles.play("null")
 	if Input.is_action_just_pressed("ui_accept"):
 		if alreadyspeak==false:
-			DialogueManager.show_example_dialogue_balloon(load("res://main.dialogue"),"Start")
+			DialogueManager.show_example_dialogue_balloon(load("res://main2.dialogue"),"Start")
 			bod = "PLAYER"
 			alreadyspeak=true
 			return

@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bt4t2ymfpoml4" path="res://Scenes/Behemoth/Behemoth.tscn" id="6_rp2nh"]
 [ext_resource type="PackedScene" uid="uid://de6pic1rsxunv" path="res://Scenes/Beholder/Beholder.tscn" id="7_8mdwk"]
 [ext_resource type="PackedScene" uid="uid://dndsesxrrhp62" path="res://Scenes/Paragon/Paragon.tscn" id="8_u3e8g"]
-[ext_resource type="PackedScene" uid="uid://dmmo8rnbc4bn" path="res://Scenes/Functions/potion.tscn" id="9_7ffk3"]
+[ext_resource type="PackedScene" path="res://Scenes/Functions/potion.tscn" id="9_7ffk3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mesyr"]
 texture = ExtResource("1_55qjr")

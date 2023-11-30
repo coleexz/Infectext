@@ -35,6 +35,7 @@ func _physics_process(delta):
 		anim.play("attack")
 		$attack_timer.start()
 		canattack = false
+		Global.entro_zonaataque=true
 		
 	if player !=null and player.get_error():
 		seleccionar_texto_aleatorio()

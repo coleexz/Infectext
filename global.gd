@@ -12,6 +12,8 @@ var playerstart_y=0
 var playerexit_x=0
 var playerexit_y=0
 
+var entro_zonaataque=false;
+
 func finish_changescenes():
 	if cambioescena==true:
 		cambioescena=false

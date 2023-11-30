@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://de6pic1rsxunv" path="res://Scenes/Beholder/Beholder.tscn" id="7_i6waq"]
 [ext_resource type="PackedScene" uid="uid://bt4t2ymfpoml4" path="res://Scenes/Behemoth/Behemoth.tscn" id="8_5e4tr"]
 [ext_resource type="AudioStream" uid="uid://43tq17isift8" path="res://Assets/MP3/x2mate.com - Dark Ambience - Horror Background Music 10 Hours (128 kbps).mp3" id="10_s22lg"]
-[ext_resource type="PackedScene" uid="uid://dmmo8rnbc4bn" path="res://Scenes/Functions/potion.tscn" id="11_2yxaw"]
+[ext_resource type="PackedScene" path="res://Scenes/Functions/potion.tscn" id="11_2yxaw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ufk2a"]
 texture = ExtResource("1_bw4tn")
@@ -1292,7 +1292,7 @@ position = Vector2(674.38, 476.462)
 position = Vector2(126.158, 197.899)
 
 [node name="NPC_2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_75xl6")]
-position = Vector2(231.138, 172.816)
+position = Vector2(232.138, 172.815)
 player = NodePath("../Player")
 
 [node name="enemy" parent="." instance=ExtResource("7_i6waq")]
