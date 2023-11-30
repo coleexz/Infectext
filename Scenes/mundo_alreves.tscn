@@ -3280,6 +3280,6 @@ position = Vector2(1098, 626)
 shape = SubResource("RectangleShape2D_w3r54")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("9_7ffk3")]
-position = Vector2(1033, 582)
+position = Vector2(642, 76)
 
 [connection signal="body_entered" from="Puertaboss" to="." method="_on_puertaboss_body_entered"]

@@ -17,8 +17,6 @@ var death_animation_played = false
 var maxHealth = 100
 var currentHealth = maxHealth
 var in_attack_zone = false
-var walk_offset = Vector2(-20, 0)
-var original_offset = Vector2(0,0)
 signal healthChanged
 
 func _ready():
@@ -34,14 +32,11 @@ func change_state(new_state):
 	match state:
 		States.IDLE:
 			anim.play("idle")
-			anim.offset = original_offset
 		States.MOVE:
 			anim.play("walk")
-			anim.offset = walk_offset
 		States.ATTACK:
 			var attack_anim = "attack1" if randi() % 2 == 0 else "attack2"
 			anim.play(attack_anim)
-			anim.offset = original_offset
 			if player != null:
 				player.reduce_health()
 			canattack = false  # Disable further attacks
@@ -81,7 +76,7 @@ func _physics_process(delta):
 				Global.cont_demonios += 1
 				player.set_wrote_good(false)
 
-		if player_chase and not in_attack_zone:
+		if player_chase and not in_attack_zone and state!=States.DEAD:
 			var direction = player.global_position - global_position
 			direction = direction.normalized()
 			anim.flip_h = direction.x < 0

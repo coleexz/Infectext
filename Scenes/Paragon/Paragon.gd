@@ -70,7 +70,7 @@ func _physics_process(delta):
 				player.set_wrote_good(false)
 
 		# Manejar movimiento y ataque
-		if player_chase:
+		if player_chase and state != States.DEAD:
 			var direction = player.global_position - global_position
 			direction = direction.normalized()
 			anim.flip_h = direction.x < 0
