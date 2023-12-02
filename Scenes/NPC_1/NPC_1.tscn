@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpohfj5xgk8a3"]
+[gd_scene load_steps=11 format=3 uid="uid://cpohfj5xgk8a3"]
 
 [ext_resource type="Script" path="res://Scenes/NPC_1/NPC_1.gd" id="1_iu5ao"]
 [ext_resource type="Texture2D" uid="uid://cfd7axu6omhqo" path="res://Assets/Mobs/NPC/king.png" id="2_k6p5f"]
@@ -49,6 +49,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7pupo"]
 size = Vector2(61, 86)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_phagt"]
+radius = 76.4199
+
 [node name="NPC_1" type="CharacterBody2D"]
 script = ExtResource("1_iu5ao")
 
@@ -63,3 +66,12 @@ animation = &"idle"
 texture_filter = 1
 position = Vector2(23.5, 15)
 shape = SubResource("RectangleShape2D_7pupo")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(14, 10)
+shape = SubResource("CircleShape2D_phagt")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
