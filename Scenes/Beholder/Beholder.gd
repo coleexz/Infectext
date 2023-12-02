@@ -45,6 +45,7 @@ func _physics_process(delta):
 		
 	if player != null and player.wrote_good:
 		alive = false
+		player.cantype(false)
 		currentHealth = 0
 		healthChanged.emit()
 		anim.play("death")

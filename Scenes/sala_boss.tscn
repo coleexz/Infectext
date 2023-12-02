@@ -1,12 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://fcve7hnidg64"]
+[gd_scene load_steps=15 format=3 uid="uid://fcve7hnidg64"]
 
 [ext_resource type="Texture2D" uid="uid://b1uwjdu7lenao" path="res://Assets/Mapa/Props.png" id="1_ccs18"]
 [ext_resource type="Script" path="res://Scenes/sala_boss.gd" id="1_gmx66"]
 [ext_resource type="Texture2D" uid="uid://1ougu1kckfh6" path="res://Assets/Mapa/Tiles.png" id="2_hiu7q"]
 [ext_resource type="PackedScene" uid="uid://bvvay8k0iv1kc" path="res://Scenes/Player/player.tscn" id="3_eic0e"]
 [ext_resource type="PackedScene" uid="uid://bd34mp05ws1ds" path="res://Scenes/Reaper/boss.tscn" id="4_lce1j"]
-[ext_resource type="PackedScene" path="res://Scenes/Functions/speedpotion.tscn" id="5_c4guy"]
-[ext_resource type="PackedScene" path="res://Scenes/Functions/potion.tscn" id="6_gtmoc"]
+[ext_resource type="PackedScene" uid="uid://djcp111gwkxjn" path="res://Scenes/Functions/speedpotion.tscn" id="5_c4guy"]
+[ext_resource type="PackedScene" uid="uid://dmmo8rnbc4bn" path="res://Scenes/Functions/potion.tscn" id="6_gtmoc"]
+[ext_resource type="AudioStream" uid="uid://nhl1dy0ylxwj" path="res://resurces/scream.mp3" id="8_7emne"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lieqj"]
 texture = ExtResource("1_ccs18")
@@ -2812,13 +2813,16 @@ position = Vector2(70, 164)
 position = Vector2(576, 380)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("5_c4guy")]
-position = Vector2(115, 103)
+position = Vector2(168, 96)
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("6_gtmoc")]
-position = Vector2(51, 598)
+position = Vector2(55, 599)
 
 [node name="CharacterBody2D4" parent="." instance=ExtResource("5_c4guy")]
-position = Vector2(1032, 574)
+position = Vector2(1019, 563)
 
 [node name="CharacterBody2D3" parent="." instance=ExtResource("6_gtmoc")]
 position = Vector2(1074, 191)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_7emne")
