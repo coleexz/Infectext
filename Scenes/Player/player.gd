@@ -214,6 +214,8 @@ func _on_player_hitbox_area_entered(area):
 func _on_player_hitbox_area_exited(area):
 	if area.name == "attack_zone" || area.name == "enemy_projectile":
 		enemy_in_attack_range = false
+	if area.name == "attack_zone":
+		$enemyalerted.play()
 
 func _on_player_hitbox_body_entered(body):
 	#entro alguien

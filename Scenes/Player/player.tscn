@@ -1,4 +1,4 @@
-[gd_scene load_steps=146 format=3 uid="uid://bvvay8k0iv1kc"]
+[gd_scene load_steps=147 format=3 uid="uid://bvvay8k0iv1kc"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_fu3bl"]
 [ext_resource type="Texture2D" uid="uid://c4nda0ut1psx" path="res://Assets/Personaje/player.png" id="1_wuduq"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://c1atu8djuvnc" path="res://Assets/MP3/y2mate.com - Terraria  NPC Chatter Sound wav.mp3" id="10_kmyn0"]
 [ext_resource type="AudioStream" uid="uid://b4jfm3mtve3kb" path="res://resurces/powerup.mp3" id="12_lqui1"]
 [ext_resource type="AudioStream" uid="uid://col2j8mwrnto7" path="res://resurces/1up.mp3" id="13_2rwwg"]
+[ext_resource type="AudioStream" uid="uid://d0ny3kwaehxms" path="res://resurces/enemyalerted.mp3" id="15_cl4ed"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fly3j"]
 atlas = ExtResource("1_wuduq")
@@ -1090,6 +1091,9 @@ stream = ExtResource("13_2rwwg")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.01
+
+[node name="enemyalerted" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_cl4ed")
 
 [connection signal="timeout" from="PointLight2D/light_Timer" to="." method="_on_light_timer_timeout"]
 [connection signal="area_entered" from="player_hitbox" to="." method="_on_player_hitbox_area_entered"]

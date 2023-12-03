@@ -399,7 +399,7 @@ offset_right = 135.0
 offset_bottom = -39.0
 
 [node name="DeathTimer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 2.5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
