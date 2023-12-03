@@ -1,7 +1,8 @@
-[gd_scene load_steps=145 format=3 uid="uid://bvvay8k0iv1kc"]
+[gd_scene load_steps=146 format=3 uid="uid://bvvay8k0iv1kc"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_fu3bl"]
 [ext_resource type="Texture2D" uid="uid://c4nda0ut1psx" path="res://Assets/Personaje/player.png" id="1_wuduq"]
+[ext_resource type="Texture2D" uid="uid://dkwfq4bonxcq2" path="res://resurces/Captura de Pantalla 2023-12-02 a la(s) 17.08.39 (1).png" id="2_7ty85"]
 [ext_resource type="Texture2D" uid="uid://b8gvprs5rj8xm" path="res://Assets/Personaje/3_100x100px.png" id="3_ph6ud"]
 [ext_resource type="Texture2D" uid="uid://derf1es4ouqns" path="res://Assets/Personaje/Explosion_Default_Orange-sheet.png" id="4_xbhlx"]
 [ext_resource type="PackedScene" uid="uid://re1r6rt2778a" path="res://Scenes/hearts_container.tscn" id="5_sji6d"]
@@ -971,6 +972,13 @@ up_direction = Vector2(0, 1)
 safe_margin = 0.001
 script = ExtResource("1_fu3bl")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = ExtResource("2_7ty85")
+texture_scale = 2.9
+
+[node name="light_Timer" type="Timer" parent="PointLight2D"]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 scale = Vector2(1.10417, 1.10417)
@@ -1080,6 +1088,7 @@ stream = ExtResource("12_lqui1")
 [node name="hpup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_2rwwg")
 
+[connection signal="timeout" from="PointLight2D/light_Timer" to="." method="_on_light_timer_timeout"]
 [connection signal="area_entered" from="player_hitbox" to="." method="_on_player_hitbox_area_entered"]
 [connection signal="area_exited" from="player_hitbox" to="." method="_on_player_hitbox_area_exited"]
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]

@@ -10,6 +10,9 @@ class_name Player
 @onready var powerup = $powerup
 @onready var hpup = $hpup
 
+@onready var timer := $PointLight2D/light_Timer
+@onready var light := $PointLight2D
+
 static var kingprofile = preload("res://Assets/Mobs/NPC/perfil/king.png")
 static var captainprofile = preload("res://Assets/Mobs/NPC/perfil/captain.png")
 static var panzonprofile = preload("res://Assets/Mobs/NPC/perfil/merchant.png")
@@ -80,9 +83,11 @@ func _ready():
 	$Particles.hide()
 	heartsContainer.updateHearts(currentHealth)
 	hiiide()
+	randomize()
 	
 func _physics_process(delta):
 	$Particles.play("null")
+	
 	if Input.is_action_just_pressed("ui_accept"):
 		if alreadyspeak==false:
 			DialogueManager.show_example_dialogue_balloon(load("res://main2.dialogue"),"Start")
@@ -296,3 +301,12 @@ func _on_error_t_imer_timeout():
 	puedeescribir = true
 	error_timer_active = false  # Reactivar entrada de texto
 	$CanvasLayer/TEXTO.bbcode_text = "[center][color=white]" + enemy_text + "[/color][/center]"
+
+
+func _on_light_timer_timeout():
+	print("Light Timer Timeout Called")
+	var rand_amt := (randf())
+	print(rand_amt)
+	light.energy = rand_amt
+
+	timer.start(rand_amt/20)
