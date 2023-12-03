@@ -2,7 +2,7 @@ extends Node2D
 var entropuerta=false
 
 func _ready():
-	pass # Replace with function body.
+	Global.encenderluz=false; # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

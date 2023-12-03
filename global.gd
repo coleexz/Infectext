@@ -7,6 +7,7 @@ var escenaactual="sala_espera"
 var cambioescena=false
 var entrosalaboss=false
 var cont_demonios=0
+var encenderluz=false;
 #donde comienza
 var playerstart_x=0
 var playerstart_y=0

@@ -20,7 +20,7 @@ static var playerprofile = preload("res://Assets/Mobs/NPC/perfil/player.png")
 static var catprofile = preload("res://Assets/Mobs/NPC/perfil/cat.png")
 
 @export var knockBackPower: int = 200
-
+var salaboss=false;
 var walking = false
 var puedeescribir = false
 var error_timer_active = false
@@ -91,6 +91,7 @@ func _ready():
 	randomize()
 	
 func _physics_process(delta):
+	salaboss=true;
 	$Particles.play("null")
 	
 	if Input.is_action_just_pressed("ui_accept"):
@@ -328,7 +329,7 @@ func _on_error_t_imer_timeout():
 
 
 func _on_light_timer_timeout():
-	if Global.escenaactual=="sala_boss":
+	if Global.encenderluz==true:
 		var rand_amt := (randf())
 		light.energy = rand_amt
 		timer.start(rand_amt/20)

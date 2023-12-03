@@ -8,6 +8,7 @@ var entropuerta=false
 
 func _ready():
 	musica.play()
+	Global.encenderluz=false;
 	pass # Replace with function body.
 	
 func _process(delta):
