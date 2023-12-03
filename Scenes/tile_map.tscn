@@ -1324,4 +1324,7 @@ stream = ExtResource("10_s22lg")
 [node name="CharacterBody2D" parent="." instance=ExtResource("11_2yxaw")]
 position = Vector2(979.122, 152.219)
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.329412, 0.329412, 0.329412, 1)
+
 [connection signal="body_entered" from="Puertaboss" to="." method="_on_puertaboss_body_entered"]

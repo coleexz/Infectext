@@ -3282,4 +3282,7 @@ shape = SubResource("RectangleShape2D_w3r54")
 [node name="CharacterBody2D" parent="." instance=ExtResource("9_7ffk3")]
 position = Vector2(642, 76)
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.513726, 0.513726, 0.513726, 1)
+
 [connection signal="body_entered" from="Puertaboss" to="." method="_on_puertaboss_body_entered"]

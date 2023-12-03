@@ -978,6 +978,7 @@ texture = ExtResource("2_7ty85")
 texture_scale = 2.9
 
 [node name="light_Timer" type="Timer" parent="PointLight2D"]
+autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
