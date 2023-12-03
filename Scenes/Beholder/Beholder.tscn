@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://de6pic1rsxunv"]
+[gd_scene load_steps=34 format=3 uid="uid://de6pic1rsxunv"]
 
 [ext_resource type="Script" path="res://Scenes/Beholder/Beholder.gd" id="1_07ttg"]
 [ext_resource type="Texture2D" uid="uid://bennt8728cuys" path="res://Assets/Mobs/Beholder/Beholder_attack_outline.png" id="2_lmt40"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://rww8oojx87xv" path="res://Assets/ETC/healthbarUnder.png" id="4_o8eee"]
 [ext_resource type="Texture2D" uid="uid://bgaxba3oi2ang" path="res://Assets/ETC/healthbarProgress.png" id="5_qi1hs"]
 [ext_resource type="Script" path="res://Scenes/Beholder/TextureProgressBar.gd" id="6_fsym0"]
+[ext_resource type="AudioStream" uid="uid://ouuqrr2ye54j" path="res://resurces/beholderfly.mp3" id="7_aysdf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kfp5t"]
 atlas = ExtResource("2_lmt40")
@@ -205,7 +206,7 @@ tab_size = 5
 position = Vector2(8, -5)
 sprite_frames = SubResource("SpriteFrames_ni6lt")
 animation = &"fly"
-frame_progress = 0.719448
+frame_progress = 0.542882
 offset = Vector2(0, 6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -242,6 +243,11 @@ beholder = NodePath("..")
 
 [node name="attack_timer" type="Timer" parent="."]
 wait_time = 2.5
+
+[node name="fly" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_aysdf")
+volume_db = 2.971
+max_polyphony = 8
 
 [connection signal="body_entered" from="watch_zone" to="." method="_on_watch_zone_body_entered"]
 [connection signal="body_exited" from="watch_zone" to="." method="_on_watch_zone_body_exited"]

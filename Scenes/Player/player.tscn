@@ -1,4 +1,4 @@
-[gd_scene load_steps=147 format=3 uid="uid://bvvay8k0iv1kc"]
+[gd_scene load_steps=149 format=3 uid="uid://bvvay8k0iv1kc"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_fu3bl"]
 [ext_resource type="Texture2D" uid="uid://c4nda0ut1psx" path="res://Assets/Personaje/player.png" id="1_wuduq"]
@@ -14,7 +14,9 @@
 [ext_resource type="AudioStream" uid="uid://c1atu8djuvnc" path="res://Assets/MP3/y2mate.com - Terraria  NPC Chatter Sound wav.mp3" id="10_kmyn0"]
 [ext_resource type="AudioStream" uid="uid://b4jfm3mtve3kb" path="res://resurces/powerup.mp3" id="12_lqui1"]
 [ext_resource type="AudioStream" uid="uid://col2j8mwrnto7" path="res://resurces/1up.mp3" id="13_2rwwg"]
-[ext_resource type="AudioStream" uid="uid://d0ny3kwaehxms" path="res://resurces/enemyalerted.mp3" id="15_cl4ed"]
+[ext_resource type="AudioStream" uid="uid://bejnumms2hwl5" path="res://resurces/alerted.mp3" id="15_halhh"]
+[ext_resource type="AudioStream" uid="uid://dghxfsjgbh6pq" path="res://resurces/walkin.mp3" id="16_r5w3k"]
+[ext_resource type="AudioStream" uid="uid://c35q7t8ukjfgw" path="res://resurces/wrotegood.mp3" id="17_xg634"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fly3j"]
 atlas = ExtResource("1_wuduq")
@@ -258,22 +260,22 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_7og63")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_ld2us")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_ty3o7")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_6lh68")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_a0c75")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_mk77h")
 }],
 "loop": true,
@@ -281,22 +283,22 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_3hd0m")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_dcg6n")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_bdgpa")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_m1e21")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_pu3mu")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_ocmbg")
 }],
 "loop": true,
@@ -304,22 +306,22 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_yj7g6")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_t7xgf")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_w2sw4")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_rn4el")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_4t51w")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_dk3rr")
 }],
 "loop": true,
@@ -984,7 +986,8 @@ texture_scale = 2.9
 position = Vector2(0, -8)
 scale = Vector2(1.10417, 1.10417)
 sprite_frames = SubResource("SpriteFrames_udplx")
-animation = &"death"
+animation = &"walk_up"
+frame_progress = 0.345583
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
@@ -1067,6 +1070,8 @@ stream = ExtResource("7_ta7ow")
 [node name="key" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(17, 22)
 stream = ExtResource("8_6x54y")
+volume_db = 7.924
+max_polyphony = 16
 
 [node name="deathh" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(21, 18)
@@ -1093,7 +1098,15 @@ stream = ExtResource("13_2rwwg")
 wait_time = 0.01
 
 [node name="enemyalerted" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("15_cl4ed")
+stream = ExtResource("15_halhh")
+
+[node name="playerwalk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_r5w3k")
+max_polyphony = 12
+
+[node name="good" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_xg634")
+max_polyphony = 6
 
 [connection signal="timeout" from="PointLight2D/light_Timer" to="." method="_on_light_timer_timeout"]
 [connection signal="area_entered" from="player_hitbox" to="." method="_on_player_hitbox_area_entered"]

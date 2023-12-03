@@ -53,11 +53,15 @@ func _physics_process(delta):
 		player.set_wrote_good(false)
 		Global.cont_demonios=Global.cont_demonios+1
 		print("contdemonios",Global.cont_demonios)
-		return 
+		return
 		
 	if player_chase and alive:
+		
+		if not $fly.playing:
+			$fly.play()
+			
 		var direction = player.global_position - global_position
-		direction = direction.normalized() 
+		direction = direction.normalized()
 		if direction.x < 0:  # Si el jugador está a la izquierda
 			anim.flip_h = true
 			anim.offset = flipped_offset
@@ -65,10 +69,13 @@ func _physics_process(delta):
 			anim.flip_h = false
 			anim.offset = original_offset
 
-		global_position += direction * speed * delta 
-		move_and_collide(direction * speed * delta)  	
+		global_position += direction * speed * delta
+		move_and_collide(direction * speed * delta)
 	else:
 		anim.play("fly")
+		# Si el demonio no está persiguiendo al jugador, detener el sonido y reproducir animación de vuelo
+		if $fly.playing:
+			$fly.stop()
 		
 func _on_watch_zone_body_entered(body):
 	if body.name == "Player":
@@ -83,7 +90,7 @@ func _on_watch_zone_body_exited(body):
 		player.reset()
 		player = null
 		player_chase = false
-		seleccionar_texto_aleatorio() 
+		seleccionar_texto_aleatorio()
 		body.enable_input_capture(false)
 		body.set_text("")
 		
