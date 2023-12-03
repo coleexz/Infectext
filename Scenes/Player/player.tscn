@@ -1097,9 +1097,6 @@ stream = ExtResource("13_2rwwg")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.01
 
-[node name="enemyalerted" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("15_halhh")
-
 [node name="playerwalk" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_r5w3k")
 max_polyphony = 12
@@ -1107,6 +1104,9 @@ max_polyphony = 12
 [node name="good" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_xg634")
 max_polyphony = 6
+
+[node name="alerted" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_halhh")
 
 [connection signal="timeout" from="PointLight2D/light_Timer" to="." method="_on_light_timer_timeout"]
 [connection signal="area_entered" from="player_hitbox" to="." method="_on_player_hitbox_area_entered"]

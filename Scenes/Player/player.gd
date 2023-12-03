@@ -211,7 +211,7 @@ func _on_attack_cooldown_timeout():
 
 func _on_player_hitbox_area_entered(area):
 	if area.name == "attack_zone":
-		$enemyalerted.play()
+		$alerted.play()
 	if area.name == "attack_zone" || area.name == "enemy_projectile":
 		enemy_in_attack_range = true
 	if area.name == "pocion_salud":
