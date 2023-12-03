@@ -1004,7 +1004,7 @@ wait_time = 4.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, 3)
-zoom = Vector2(3, 3)
+zoom = Vector2(4.5, 4.5)
 limit_left = -6
 limit_top = 10
 limit_right = 1171
@@ -1088,6 +1088,9 @@ stream = ExtResource("12_lqui1")
 [node name="hpup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_2rwwg")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.025
+
 [connection signal="timeout" from="PointLight2D/light_Timer" to="." method="_on_light_timer_timeout"]
 [connection signal="area_entered" from="player_hitbox" to="." method="_on_player_hitbox_area_entered"]
 [connection signal="area_exited" from="player_hitbox" to="." method="_on_player_hitbox_area_exited"]
@@ -1097,3 +1100,4 @@ stream = ExtResource("13_2rwwg")
 [connection signal="timeout" from="death_timer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="speedTimer" to="." method="_on_speed_timer_timeout"]
 [connection signal="timeout" from="errorTImer" to="." method="_on_error_t_imer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
