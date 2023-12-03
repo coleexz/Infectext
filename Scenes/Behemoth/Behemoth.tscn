@@ -258,31 +258,31 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_jnflq")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_je82g")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_4tte5")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_t6dqt")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_7myk1")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_sdm1v")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_0ur8d")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_eqdgk")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_w5kcr")
 }],
 "loop": true,
@@ -307,10 +307,8 @@ script = ExtResource("1_575c2")
 position = Vector2(-2, 3)
 scale = Vector2(1.28906, 1.39063)
 sprite_frames = SubResource("SpriteFrames_7gry1")
-animation = &"death"
-frame = 7
-frame_progress = 1.0
-speed_scale = 0.5
+animation = &"walk"
+frame_progress = 0.828688
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 1)
@@ -332,7 +330,6 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_qn1a2")
 
 [node name="death_timer" type="Timer" parent="."]
-wait_time = 2.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 visible = false

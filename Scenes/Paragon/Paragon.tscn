@@ -154,22 +154,22 @@ region = Rect2(320, 0, 64, 64)
 [sub_resource type="SpriteFrames" id="SpriteFrames_v02cl"]
 animations = [{
 "frames": [{
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ik67v")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_c7qsd")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_mklio")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_idfs2")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_iufua")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_uewp6")
 }],
 "loop": false,
@@ -177,25 +177,25 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_02i15")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_a2ygv")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_5mjmc")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ysqyv")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_5fwnc")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ygqdv")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_f0mkc")
 }],
 "loop": false,
@@ -252,22 +252,22 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_g6ubj")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_sq41a")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_lm34e")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_sj3o6")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_qv5dn")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_bkrue")
 }],
 "loop": true,
@@ -294,7 +294,8 @@ texture_filter = 1
 position = Vector2(3, -29)
 scale = Vector2(1.54688, 1.5)
 sprite_frames = SubResource("SpriteFrames_v02cl")
-animation = &"move"
+animation = &"idle"
+frame_progress = 0.11206
 
 [node name="watch_zone" type="Area2D" parent="."]
 

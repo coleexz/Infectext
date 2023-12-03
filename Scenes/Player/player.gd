@@ -40,6 +40,10 @@ var enemy_text = ""
 var input_index = 0
 var wrote_good = false
 var error = false
+var target_zoom = Vector2(2.5, 2.5)  # Zoom objetivo cuando se recoge la poción
+var original_zoom = Vector2(4.5, 4.5)
+var zoom_speed = 0.01 # Velocidad a la que cambia el zoom
+
 
 func cantype(value: bool):
 	input_enabled = value
@@ -201,6 +205,8 @@ func _on_player_hitbox_area_entered(area):
 	if area.name == "pocion_velocidad":
 		incrementSpeed()
 		powerup.play()
+		target_zoom = Vector2(2.5,2.5)  # Establece el zoom objetivo
+		$Timer.start()  # Inicia el temporizador para la interpolación del zoom
 		$speedTimer.start()
 	if area.name == "Puertaboss":
 		Global.guardarSalud(currentHealth)
@@ -208,6 +214,8 @@ func _on_player_hitbox_area_entered(area):
 func _on_player_hitbox_area_exited(area):
 	if area.name == "attack_zone" || area.name == "enemy_projectile":
 		enemy_in_attack_range = false
+	if area.name == "attack_zone":
+		$enemyalerted.play()
 
 func _on_player_hitbox_body_entered(body):
 	#entro alguien
@@ -274,7 +282,7 @@ func _input(event):
 					error = true
 					my_text = ""
 					input_index = 0
-					wrote_good = false		
+					wrote_good = false
 					puedeescribir = false
 					$CanvasLayer/TEXTO.bbcode_text = "[center][color=red]" + enemy_text + "[/color][/center]"
 					error_timer_active = true  # Desactivar entrada de texto
@@ -295,7 +303,9 @@ func knockBack():
 	move_and_slide()
 
 func _on_speed_timer_timeout():
-	speed = 100
+	speed = 100  # Restablecer la velocidad
+	target_zoom = original_zoom  # Establecer el zoom objetivo
+	$Timer.start()
 	
 func _on_error_t_imer_timeout():
 	puedeescribir = true
@@ -310,3 +320,14 @@ func _on_light_timer_timeout():
 	light.energy = rand_amt
 
 	timer.start(rand_amt/20)
+
+
+func _on_timer_timeout():
+	var current_zoom = $Camera2D.zoom
+	current_zoom = current_zoom.lerp(target_zoom, zoom_speed)
+	$Camera2D.zoom = current_zoom
+
+	# Comprobar si se ha alcanzado el zoom objetivo
+	if current_zoom.distance_to(target_zoom) < 0.01:
+		$Camera2D.zoom = target_zoom  # Establecer el valor exacto
+		$Timer.stop()  # Detener el temporizador

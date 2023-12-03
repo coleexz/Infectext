@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://bd34mp05ws1ds"]
+[gd_scene load_steps=59 format=3 uid="uid://bd34mp05ws1ds"]
 
 [ext_resource type="Script" path="res://Scenes/Reaper/boss.gd" id="1_0n0mo"]
 [ext_resource type="Texture2D" uid="uid://cq1pr3lkd55cx" path="res://Assets/Mobs/Reaper/reaper-hurt-outline.png" id="2_scjdc"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://jrj6inuwjy0t" path="res://Assets/Mobs/Reaper/healthbarProgress.png" id="5_312cu"]
 [ext_resource type="Script" path="res://Scenes/Reaper/TextureProgressBar.gd" id="6_rbcee"]
 [ext_resource type="AudioStream" uid="uid://0ps4huj73dl8" path="res://Assets/MP3/x2mate.com - Dark Souls 3 OST - Slave Knight Gael (128 kbps).mp3" id="7_yhfga"]
+[ext_resource type="AudioStream" uid="uid://bkejviheofp2g" path="res://resurces/execution.mp3" id="8_qonig"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fva3y"]
 load_path = "res://.godot/imported/reaper-attack-outline.png-9c93dff3e97b8887859987d4fc9c6e21.ctex"
@@ -398,7 +399,7 @@ offset_right = 135.0
 offset_bottom = -39.0
 
 [node name="DeathTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 2.5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -426,6 +427,9 @@ boss = NodePath("../..")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_yhfga")
+
+[node name="death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_qonig")
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="ModeTimer" to="." method="_on_mode_timer_timeout"]
