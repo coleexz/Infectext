@@ -21,6 +21,7 @@ static var catprofile = preload("res://Assets/Mobs/NPC/perfil/cat.png")
 
 @export var knockBackPower: int = 200
 
+var walking = false
 var puedeescribir = false
 var error_timer_active = false
 var moving = false
@@ -107,7 +108,19 @@ func _physics_process(delta):
 		var mouse_pos = get_global_mouse_position()
 		var dir_to_mouse = mouse_pos - global_position
 
+# Comprobar si el personaje se está moviendo
+		if dir != Vector2.ZERO:
+			if not walking:
+				$playerwalk.play()
+				walking = true
+			elif !$playerwalk.playing:  # Si el personaje sigue moviéndose pero el sonido terminó
+				$playerwalk.play()  # Reiniciar la reproducción del sonido
+		elif walking:
+			$playerwalk.stop()
+			walking = false
+			
 		if dir == Vector2.ZERO:
+			walking = false
 			if dir_to_mouse.y > 0:
 				anim.play("idle_down")
 			elif dir_to_mouse.y < 0:
@@ -197,6 +210,8 @@ func _on_attack_cooldown_timeout():
 	enemy_attack_cooldown = true
 
 func _on_player_hitbox_area_entered(area):
+	if area.name == "attack_zone":
+		$alerted.play()
 	if area.name == "attack_zone" || area.name == "enemy_projectile":
 		enemy_in_attack_range = true
 	if area.name == "pocion_salud":
@@ -214,8 +229,6 @@ func _on_player_hitbox_area_entered(area):
 func _on_player_hitbox_area_exited(area):
 	if area.name == "attack_zone" || area.name == "enemy_projectile":
 		enemy_in_attack_range = false
-	if area.name == "attack_zone":
-		$enemyalerted.play()
 
 func _on_player_hitbox_body_entered(body):
 	#entro alguien
@@ -292,6 +305,7 @@ func _input(event):
 							
 				if input_index == enemy_text.length():
 					wrote_good=true
+					$good.play()
 					currentHealth=currentHealth+1
 					if currentHealth >= maxHealth:
 						currentHealth = maxHealth
