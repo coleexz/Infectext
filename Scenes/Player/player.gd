@@ -41,7 +41,7 @@ var enemy_text = ""
 var input_index = 0
 var wrote_good = false
 var error = false
-var target_zoom = Vector2(2.5, 2.5)  # Zoom objetivo cuando se recoge la poción
+var target_zoom = Vector2(3,3)  # Zoom objetivo cuando se recoge la poción
 var original_zoom = Vector2(4.5, 4.5)
 var zoom_speed = 0.01 # Velocidad a la que cambia el zoom
 
