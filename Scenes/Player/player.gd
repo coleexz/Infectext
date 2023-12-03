@@ -158,7 +158,7 @@ func show_canvas(delta):
 	var current_y_texto = $CanvasLayer/TEXTO.position.y
 	if current_y_sprite2d > 961:
 		$CanvasLayer/Sprite2D.position.y -= anim_speed * delta
-	if current_y_texto > 910:
+	if current_y_texto > 925:
 		$CanvasLayer/TEXTO.position.y -= anim_speed * delta
 	else:
 		pass
@@ -304,7 +304,9 @@ func _on_error_t_imer_timeout():
 
 
 func _on_light_timer_timeout():
-	if Global.escenaactual=="sala_boss":
-		var rand_amt := (randf())
-		light.energy = rand_amt
-		timer.start(rand_amt/20)
+	print("Light Timer Timeout Called")
+	var rand_amt := (randf())
+	print(rand_amt)
+	light.energy = rand_amt
+
+	timer.start(rand_amt/20)
