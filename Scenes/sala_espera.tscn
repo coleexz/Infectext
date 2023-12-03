@@ -2643,7 +2643,7 @@ script = ExtResource("1_t4ewr")
 
 [node name="Window" type="Window" parent="."]
 title = "Warning"
-initial_position = 1
+initial_position = 2
 size = Vector2i(500, 360)
 unresizable = true
 popup_window = true
