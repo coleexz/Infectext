@@ -14,6 +14,7 @@ signal healthChanged
 var player
 
 const bullet_scene = preload("res://Scenes/Functions/enemy_projectile.tscn")
+const cura=preload("res://Scenes/cura.tscn")
 
 @export var attack_speed = 15
 @export var idle_speed = 60
@@ -64,7 +65,8 @@ func _physics_process(delta):
 		currentHealth = 0
 		Global.cambioescena=false
 		Global.escenaactual="sala_espera"
-		get_tree().change_scene_to_file("res://winn_sceen.tscn")
+		
+		
 		
 	if player !=null and player.get_error():
 		seleccionar_texto_aleatorio()
@@ -207,6 +209,9 @@ func death():
 	$DeathTimer.start()  # Asegurarse de que se inicie el temporizador
 	anim.offset = normal_offset
 	musica.stop()
+	var cura_instance = cura.instance()
+	cura_instance.position = global_position
+	get_tree().get_root().add_child(cura_instance)
 	
 func _on_death_timer_timeout():
 	self.queue_free()
