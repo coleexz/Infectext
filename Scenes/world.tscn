@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bybbgc24l2ivv"]
+[gd_scene load_steps=6 format=3 uid="uid://bybbgc24l2ivv"]
 
 [ext_resource type="PackedScene" uid="uid://de6pic1rsxunv" path="res://Scenes/Beholder/Beholder.tscn" id="1_pmft7"]
 [ext_resource type="PackedScene" uid="uid://bt4t2ymfpoml4" path="res://Scenes/Behemoth/Behemoth.tscn" id="2_0ikju"]
 [ext_resource type="PackedScene" uid="uid://dndsesxrrhp62" path="res://Scenes/Paragon/Paragon.tscn" id="3_x1x40"]
 [ext_resource type="PackedScene" uid="uid://bvvay8k0iv1kc" path="res://Scenes/Player/player.tscn" id="4_deup1"]
+[ext_resource type="PackedScene" uid="uid://djcp111gwkxjn" path="res://Scenes/Functions/speedpotion.tscn" id="5_xm7df"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -18,3 +19,6 @@ position = Vector2(248, 53)
 
 [node name="enemy" parent="." instance=ExtResource("2_0ikju")]
 position = Vector2(462, 243)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("5_xm7df")]
+position = Vector2(297, 210)

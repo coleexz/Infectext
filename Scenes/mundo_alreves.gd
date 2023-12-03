@@ -1,8 +1,6 @@
 extends Node2D
 var entropuerta=false
 
-@export var player : Player
-
 func _ready():
 	pass # Replace with function body.
 
@@ -10,6 +8,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	cambiarsalaboss()
+
 
 func _on_puertaboss_body_entered(body):
 	if body.has_method("Player"):
@@ -30,4 +29,3 @@ func cambiarsalaboss():
 				Global.cont_demonios=0
 				get_tree().change_scene_to_file("res://Scenes/tile_map.tscn")
 				Global.finish_mapaalreves()
-				
