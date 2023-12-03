@@ -46,6 +46,7 @@ func _ready():
 	mode_timer.start()
 	seleccionar_texto_aleatorio()
 	musica.play()
+	$grito.play()
 
 func seleccionar_texto_aleatorio():
 	textito = textos[randi() % textos.size()]
