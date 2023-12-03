@@ -61,7 +61,8 @@ position = Vector2(16.5, 1.5)
 scale = Vector2(2.03125, 1.96875)
 sprite_frames = SubResource("SpriteFrames_jvlu8")
 animation = &"idle"
-frame_progress = 0.0572806
+frame_progress = 0.552026
+speed_scale = 1.2
 
 [node name="npc" type="CollisionShape2D" parent="."]
 position = Vector2(15, 3.5)

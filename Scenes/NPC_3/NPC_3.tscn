@@ -53,6 +53,8 @@ position = Vector2(29, 19.5)
 scale = Vector2(2.70588, 2.85294)
 sprite_frames = SubResource("SpriteFrames_3i0t4")
 animation = &"idle"
+frame_progress = 0.359078
+speed_scale = 0.8
 
 [node name="npc" type="CollisionShape2D" parent="."]
 position = Vector2(31, 19.5)

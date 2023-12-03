@@ -103,13 +103,13 @@ animations = [{
 "duration": 1.5,
 "texture": SubResource("AtlasTexture_cdg4m")
 }, {
-"duration": 1.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2hmik")
 }, {
-"duration": 1.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_knvl0")
 }, {
-"duration": 1.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_nht47")
 }],
 "loop": false,
@@ -155,19 +155,19 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_yuwsl")
 }, {
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_gxlov")
 }, {
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_uj7wv")
 }, {
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_wxkdy")
 }, {
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_iib0f")
 }],
 "loop": true,
@@ -204,7 +204,8 @@ tab_size = 5
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(8, -5)
 sprite_frames = SubResource("SpriteFrames_ni6lt")
-animation = &"death"
+animation = &"fly"
+frame_progress = 0.719448
 offset = Vector2(0, 6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

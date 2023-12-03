@@ -209,9 +209,11 @@ func death():
 	$DeathTimer.start()  # Asegurarse de que se inicie el temporizador
 	anim.offset = normal_offset
 	musica.stop()
-	var cura_instance = cura.instance()
-	cura_instance.position = global_position
-	get_tree().get_root().add_child(cura_instance)
+	$death.play()
+	#var cura_instance = cura.instance()
+	#cura_instance.position = global_position
+	#get_tree().get_root().add_child(cura_instance)
+	#$death.play()
 	
 func _on_death_timer_timeout():
 	self.queue_free()

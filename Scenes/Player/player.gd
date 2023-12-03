@@ -42,7 +42,7 @@ var wrote_good = false
 var error = false
 var target_zoom = Vector2(2.5, 2.5)  # Zoom objetivo cuando se recoge la poción
 var original_zoom = Vector2(4.5, 4.5)
-var zoom_speed = 0.025 # Velocidad a la que cambia el zoom
+var zoom_speed = 0.01 # Velocidad a la que cambia el zoom
 
 
 func cantype(value: bool):

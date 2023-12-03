@@ -1089,7 +1089,7 @@ stream = ExtResource("12_lqui1")
 stream = ExtResource("13_2rwwg")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.025
+wait_time = 0.01
 
 [connection signal="timeout" from="PointLight2D/light_Timer" to="." method="_on_light_timer_timeout"]
 [connection signal="area_entered" from="player_hitbox" to="." method="_on_player_hitbox_area_entered"]
