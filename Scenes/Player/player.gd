@@ -328,12 +328,10 @@ func _on_error_t_imer_timeout():
 
 
 func _on_light_timer_timeout():
-	print("Light Timer Timeout Called")
-	var rand_amt := (randf())
-	print(rand_amt)
-	light.energy = rand_amt
-
-	timer.start(rand_amt/20)
+	if Global.escenaactual=="sala_boss":
+		var rand_amt := (randf())
+		light.energy = rand_amt
+		timer.start(rand_amt/20)
 
 
 func _on_timer_timeout():
