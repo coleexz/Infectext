@@ -4,6 +4,7 @@ class_name Reaper
 
 signal healthChanged
 
+
 @onready var musica = $AudioStreamPlayer2D
 @onready var anim = $AnimatedSprite2D
 @onready var shoot_timer = $ShootTimer
@@ -16,6 +17,7 @@ var player
 const bullet_scene = preload("res://Scenes/Functions/enemy_projectile.tscn")
 const cura=preload("res://Scenes/cura.tscn")
 
+@export var sala : sala_boss
 @export var attack_speed = 15
 @export var idle_speed = 60
 @export var time_between_shots = 0.3
@@ -34,7 +36,6 @@ var currentHealth = maxHealth
 
 var hurt_offset = Vector2(-37, 0)  # Ajusta este valor según sea necesario
 var normal_offset = Vector2(0, 0)
-
 var textos = [
 	"hola"
 ]
@@ -198,6 +199,7 @@ func _on_null_mode_timeout():
 	mode_timer.start()
 	anim.offset = normal_offset
 	
+	
 func death():
 	if not $DeathTimer.is_stopped():  # Verificar si el temporizador ya está en marcha
 		return  # Evitar reiniciar el temporizador si ya está activo
@@ -211,6 +213,7 @@ func death():
 	anim.offset = normal_offset
 	musica.stop()
 	$death.play()
+	Global.reaperalive = false
 	#var cura_instance = cura.instance()
 	#cura_instance.position = global_position
 	#get_tree().get_root().add_child(cura_instance)
@@ -218,3 +221,4 @@ func death():
 	
 func _on_death_timer_timeout():
 	self.queue_free()
+	

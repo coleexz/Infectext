@@ -15,7 +15,12 @@ var playerstart_y=0
 var playerexit_x=0
 var playerexit_y=0
 var entro_zonaataque=false
+var reaperalive = true
 
+
+func getReaperAlive():
+	return reaperalive 
+	
 func guardarSalud(saludJugador):
 	sal = saludJugador
 
