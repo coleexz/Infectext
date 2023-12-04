@@ -108,7 +108,8 @@ func _physics_process(delta):
 		
 		var mouse_pos = get_global_mouse_position()
 		var dir_to_mouse = mouse_pos - global_position
-
+		print("")
+		
 # Comprobar si el personaje se está moviendo
 		if dir != Vector2.ZERO:
 			if not walking:
