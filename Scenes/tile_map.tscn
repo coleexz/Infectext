@@ -1268,11 +1268,10 @@ sources/1 = SubResource("TileSetAtlasSource_8p7iw")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82iop"]
 size = Vector2(65.0294, 94.9738)
 
-[node name="Mapa" type="Node2D" node_paths=PackedStringArray("player")]
+[node name="Mapa" type="Node2D"]
 position = Vector2(-10, -96)
 rotation = 0.000797791
 script = ExtResource("1_m1v73")
-player = NodePath("Player")
 
 [node name="Node2D" type="TileMap" parent="."]
 position = Vector2(15.1093, 136.988)
