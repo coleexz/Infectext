@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b8nte5i8ch1cu"]
+[gd_scene load_steps=20 format=3 uid="uid://b8nte5i8ch1cu"]
 
 [ext_resource type="Texture2D" uid="uid://6ik55jmws7jl" path="res://Assets/Mapa/Nuevo Mapa/mainlevbuild.png" id="1_55qjr"]
 [ext_resource type="Script" path="res://Scenes/mundo_alreves.gd" id="1_epe0t"]
@@ -3236,6 +3236,9 @@ sources/2 = SubResource("TileSetAtlasSource_l4tri")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3r54"]
 size = Vector2(76, 64)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_satkm"]
+radius = 27.0185
+
 [node name="Mundo_Alreves" type="Node2D"]
 script = ExtResource("1_epe0t")
 
@@ -3281,5 +3284,12 @@ shape = SubResource("RectangleShape2D_w3r54")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("9_7ffk3")]
 position = Vector2(1033, 582)
+
+[node name="hoyo" type="Area2D" parent="."]
+position = Vector2(702, 386)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hoyo"]
+position = Vector2(2, -1)
+shape = SubResource("CircleShape2D_satkm")
 
 [connection signal="body_entered" from="Puertaboss" to="." method="_on_puertaboss_body_entered"]

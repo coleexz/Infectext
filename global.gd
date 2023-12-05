@@ -16,8 +16,12 @@ var playerexit_x=0
 var playerexit_y=0
 var entro_zonaataque=false
 var reaperalive = true
+var playeralive = true
 
-
+func _process(delta):
+	if !playeralive:
+		sal = 8
+		
 func getReaperAlive():
 	return reaperalive 
 	

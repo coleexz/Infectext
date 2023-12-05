@@ -44,8 +44,7 @@ var error = false
 var target_zoom = Vector2(3,3)  # Zoom objetivo cuando se recoge la poción
 var original_zoom = Vector2(4.5, 4.5)
 var zoom_speed = 0.01 # Velocidad a la que cambia el zoom
-
-
+	
 func cantype(value: bool):
 	input_enabled = value
 	
@@ -143,8 +142,8 @@ func _physics_process(delta):
 		enemy_attack()
 		
 		if currentHealth<=0:
-			die()
-			get_tree().change_scene_to_file("res://game_over_sceen.tscn")
+			$death_timer.start()
+			player_alive = false
 		
 		if input_enabled == false:
 			hide_canvas(delta)
@@ -183,6 +182,8 @@ func show_canvas(delta):
 		pass
 	
 func die():
+	get_tree().change_scene_to_file("res://game_over_sceen.tscn")
+	Global.playeralive = false
 	$deathh.play()
 	player_alive = false
 	anim.play("death")
@@ -212,6 +213,11 @@ func _on_attack_cooldown_timeout():
 	enemy_attack_cooldown = true
 
 func _on_player_hitbox_area_entered(area):
+	if area.name == "hoyo":
+		player_alive = false
+		$AnimatedSprite2D.hide()
+		$falltimer.start()
+		
 	if area.name == "attack_zone":
 		$alerted.play()
 	if area.name == "attack_zone" || area.name == "enemy_projectile":
@@ -233,12 +239,7 @@ func _on_player_hitbox_area_exited(area):
 		enemy_in_attack_range = false
 
 func _on_player_hitbox_body_entered(body):
-	#entro alguien
-	if body.name == "limite" or body.name == "CollisionPolygon2D" or body.name == "NPC_1" or body.name == "NPC_2" or body.name == "NPC_3" or body.name == "cat":
-		pass
-	else :
-		knockBack()
-		
+	#entro alguien		
 	if body.name == "NPC_1":
 		cambiaricononpc()
 		bod = "KING"
@@ -312,11 +313,6 @@ func _input(event):
 					if currentHealth >= maxHealth:
 						currentHealth = maxHealth
 					heartsContainer.updateHearts(currentHealth)
-					
-func knockBack():
-	var knockBackDirection = -velocity.normalized() * knockBackPower
-	velocity = knockBackDirection
-	move_and_slide()
 
 func _on_speed_timer_timeout():
 	speed = 100  # Restablecer la velocidad
@@ -345,3 +341,12 @@ func _on_timer_timeout():
 	if current_zoom.distance_to(target_zoom) < 0.01:
 		$Camera2D.zoom = target_zoom  # Establecer el valor exacto
 		$Timer.stop()  # Detener el temporizador
+
+
+func _on_falltimer_timeout():
+	die()
+
+
+func _on_death_timer_timeout():
+	die()
+	
