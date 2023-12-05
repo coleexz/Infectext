@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 class_name Player
 
-
 @onready var heartsContainer = $CanvasLayer/heartsContainer
 @onready var anim = $AnimatedSprite2D
 @onready var err = $err
@@ -20,6 +19,8 @@ static var playerprofile = preload("res://Assets/Mobs/NPC/perfil/player.png")
 static var catprofile = preload("res://Assets/Mobs/NPC/perfil/cat.png")
 
 @export var knockBackPower: int = 200
+
+var arr
 var salaboss=false;
 var walking = false
 var puedeescribir = false
@@ -101,7 +102,7 @@ func _physics_process(delta):
 			return
 	
 	
-	if player_alive:
+	if player_alive and arr!="hoyo":
 		var dir = Input.get_vector("right","left","up","down")
 		velocity = dir * speed
 		
@@ -141,6 +142,9 @@ func _physics_process(delta):
 		move_and_slide()
 		enemy_attack()
 		
+		if arr == "hoyo":
+			player_alive = false
+			
 		if currentHealth<=0:
 			$death_timer.start()
 			player_alive = false
@@ -151,10 +155,23 @@ func _physics_process(delta):
 		if input_enabled == true:
 			show_canvas(delta)
 	else:
-		anim.play("death")
-		if(!anim.is_playing()):
-			anim.stop()
-			
+		if bod == "hoyo" and !player_alive:
+			$falltimer.start()
+			anim.play("idle_down")
+			$AnimatedSprite2D.rotation_degrees += 400 * delta  # Ajusta la velocidad de rotación según sea necesario
+
+		# Escalar el sprite haciéndolo más pequeño
+			$AnimatedSprite2D.scale = $AnimatedSprite2D.scale - Vector2(0.01, 0.01) * delta  # Ajusta la tasa de reducción de escala según sea necesario
+
+		# Asegurarse de que el sprite no se haga demasiado pequeño
+			if $AnimatedSprite2D.scale.x < 0.1:  # Ajusta el valor mínimo de la escala según sea necesario
+				$AnimatedSprite2D.scale = Vector2(0.1, 0.1)
+		else:
+			$death_timer.start()
+			anim.play("death")
+			if(!anim.is_playing()):
+				anim.stop()
+				
 func increaseHealth():
 	currentHealth = currentHealth + 1
 	if currentHealth >= maxHealth:
@@ -217,11 +234,10 @@ func _on_attack_cooldown_timeout():
 	enemy_attack_cooldown = true
 
 func _on_player_hitbox_area_entered(area):
+	
 	if area.name == "hoyo":
+		arr = area.name
 		player_alive = false
-		$AnimatedSprite2D.hide()
-		$falltimer.start()
-		
 	if area.name == "attack_zone":
 		$alerted.play()
 	if area.name == "attack_zone" || area.name == "enemy_projectile":
@@ -349,8 +365,8 @@ func _on_timer_timeout():
 
 func _on_falltimer_timeout():
 	die()
-
+	print("murio")
 
 func _on_death_timer_timeout():
 	die()
-	
+	print("murio")
