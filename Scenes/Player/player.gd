@@ -150,7 +150,9 @@ func _physics_process(delta):
 			
 		if input_enabled == true:
 			show_canvas(delta)
-
+	else:
+		anim.play("death")
+		
 func increaseHealth():
 	currentHealth = currentHealth + 1
 	if currentHealth >= maxHealth:
