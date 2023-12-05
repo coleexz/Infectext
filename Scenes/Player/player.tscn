@@ -1099,6 +1099,7 @@ wait_time = 0.01
 
 [node name="playerwalk" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_r5w3k")
+volume_db = 4.685
 max_polyphony = 12
 
 [node name="good" type="AudioStreamPlayer" parent="."]

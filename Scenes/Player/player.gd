@@ -330,10 +330,10 @@ func _on_error_t_imer_timeout():
 
 
 func _on_light_timer_timeout():
-	if Global.encenderluz==true:
-		var rand_amt := (randf())
-		light.energy = rand_amt
-		timer.start(rand_amt/20)
+#if Global.encenderluz==true:
+	var rand_amt := (randf())
+	light.energy = rand_amt
+	timer.start(rand_amt/20)
 
 
 func _on_timer_timeout():

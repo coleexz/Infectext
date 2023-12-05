@@ -1321,6 +1321,7 @@ shape = SubResource("RectangleShape2D_82iop")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_s22lg")
+volume_db = -4.685
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("11_2yxaw")]
 position = Vector2(979.122, 152.219)
