@@ -2813,6 +2813,13 @@ position = Vector2(70, 164)
 
 [node name="Reaper" parent="." instance=ExtResource("4_lce1j")]
 position = Vector2(576, 380)
+attack_speed = null
+idle_speed = null
+time_between_shots = null
+spawn_point_count = null
+radius = null
+rotate_speed = null
+direction_change_interval = null
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("5_c4guy")]
 position = Vector2(168, 96)
