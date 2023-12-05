@@ -177,13 +177,13 @@ region = Rect2(240, 240, 48, 48)
 [sub_resource type="SpriteFrames" id="SpriteFrames_udplx"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 3.2,
 "texture": SubResource("AtlasTexture_fly3j")
 }, {
-"duration": 1.0,
+"duration": 3.2,
 "texture": SubResource("AtlasTexture_5rrkd")
 }, {
-"duration": 1.0,
+"duration": 3.5,
 "texture": SubResource("AtlasTexture_0b3fw")
 }],
 "loop": false,
@@ -986,8 +986,9 @@ texture_scale = 2.9
 position = Vector2(0, -8)
 scale = Vector2(1.10417, 1.10417)
 sprite_frames = SubResource("SpriteFrames_udplx")
-animation = &"walk_up"
-frame_progress = 0.345583
+animation = &"death"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
